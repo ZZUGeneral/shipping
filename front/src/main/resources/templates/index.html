@@ -1,0 +1,259 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout/layout(title='实时数据',nav='1:1',cssPaths='')">
+
+<div class="content-wrapper" th:fragment="main-content">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">水位传感器</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="chart" id="water_level_1" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="water_level_2" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="water_level_3" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="water_level_4" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">倾斜传感器</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="chart" id="tilt_1" style="height: 400px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="chart" id="tilt_2" style="height: 400px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="chart" id="tilt_3" style="height: 400px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="chart" id="tilt_4" style="height: 400px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">角度传感器</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="chart" id="angle_1" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="angle_2" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="angle_3" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="angle_4" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">振动传感器</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="chart" id="vibration_1" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="vibration_2" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="vibration_3" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="vibration_4" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">气象传感器</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="chart" id="temperature" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="humidity" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="airPressure" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="windSpeed" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="chart" id="windDirection" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="rainfall" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="chart" id="visibility" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+</div>
+
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+</div>
+
+<footer th:fragment="js-footer">
+    <script th:src="@{/plugins/websocket/sockjs.min.js}"></script>
+    <script th:src="@{/plugins/websocket/stomp.min.js}"></script>
+    <script th:src="@{/plugins/echarts/echarts.min.js}"></script>
+    <!--    <script th:src="@{/plugins/mqtt/mqtt.min.js}"></script>-->
+    <script th:src="@{/js/index/index.js}"></script>
+    <script th:src="@{/js/index/index.waterlevel.js}"></script>
+    <script th:src="@{/js/index/index.tilt.js}"></script>
+    <script th:src="@{/js/index/index.angle.js}"></script>
+    <script th:src="@{/js/index/index.vibration.js}"></script>
+    <script th:src="@{/js/index/index.weather.js}"></script>
+</footer>
+
+</html>

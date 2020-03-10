@@ -1,0 +1,8 @@
+<div th:fragment="js" xmlns:th="http://www.thymeleaf.org">
+    <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+    <script th:src="@{/plugins/lodash/lodash.js}"></script>
+    <script th:src="@{/plugins/adminLTE/js/adminlte.min.js}"></script>
+    <script th:inline="javascript">
+        var context = [[${#httpServletRequest.getContextPath()}]];
+    </script>
+</div>

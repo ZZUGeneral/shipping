@@ -1,0 +1,14 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+  datasource:
+    url: jdbc:postgresql://221.131.113.43:6411/cloud-river
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+
+mybatis-plus:
+  type-enums-package: "com.cit.its.shipping.front.enums"
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

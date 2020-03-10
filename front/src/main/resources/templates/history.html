@@ -1,0 +1,93 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout/layout(title='历史记录',nav='1:2',
+    cssPaths='/plugins/datetimePicker/css/bootstrap-datetimepicker.css')">
+
+<div class="content-wrapper" th:fragment="main-content">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">水位传感器</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <form id="water_level_form">
+                                        <div class="form-group">
+                                            <label for="beginDateTime">开始时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="beginDateTime" name="beginDateTime">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endDateTime">结束时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="endDateTime" name="endDateTime">
+                                        </div>
+                                        <div class="from-group text-right">
+                                            <button type="button" class="btn btn-danger col-md-3" onclick="waterLevelReset()"><i
+                                                    class="fa fa-undo"></i></button>
+                                            <button type="button" class="btn btn-primary col-md-3" onclick="waterLevelHistory()"><i
+                                                    class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="chart" id="water_chart" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+
+                                <div class="row col-md-2 align-items-center">
+                                    <ul>
+                                        <li class="text-muted">最大值：<span id="wl_max"></span></li>
+                                        <li class="text-muted">最小值：<span id="wl_min"></span></li>
+                                        <li class="text-muted">平均值：<span id="wl_avg"></span></li>
+                                        <li class="text-muted">总体方差：<span id="wl_vpop"></span></li>
+                                        <li class="text-muted">总体标准差：<span id="wl_spop"></span></li>
+                                        <li class="text-muted">样本方差：<span id="wl_vsamp"></span></li>
+                                        <li class="text-muted">样本标准差：<span id="wl_ssamp"></span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+<footer th:fragment="js-footer">
+    <script th:src="@{/plugins/echarts/echarts.min.js}"></script>
+    <script th:src="@{/plugins/datetimePicker/js/bootstrap-datetimepicker.js}"></script>
+    <script th:src="@{/plugins/datetimePicker/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+    <script th:src="@{/js/history/history.js}"></script>
+    <script th:src="@{/js/history/history.waterlevel.js}"></script>
+</footer>
+
+</html>
