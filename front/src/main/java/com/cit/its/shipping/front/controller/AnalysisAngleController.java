@@ -6,6 +6,7 @@ import com.cit.its.shipping.front.entity.Angle;
 import com.cit.its.shipping.front.service.AngleAnalysisService;
 import com.cit.its.shipping.front.service.AngleService;
 import com.cit.its.shipping.front.vo.Result;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,13 +48,14 @@ public class AnalysisAngleController {
         return Result.success(dataMap);
     }
 
+    @ApiOperation(value = "获取用户列表", notes = "获取所有用户的列表")
     @PostMapping("analysis/pieChart/angle")
     public Result analysisAnglePieChart(String leftInterval, String rightInterval, String firstYear, String firstMonth, String count) {
 
         List<List<Integer>> resultList = intervalSet(leftInterval, rightInterval, count);
         System.out.println(resultList.toString());
         Map<String, Object> dataMap = new HashMap<>();
-        for (int i = 0; i < Integer.parseInt(count); i++){
+        for (int i = 0; i < Integer.parseInt(count); i++) {
             Map<String, LocalDateTime> firstDateTimeMap = getQueryDateMap(firstYear, firstMonth);
             int intervalMin = resultList.get(i).get(0);
             int intervalMax = resultList.get(i).get(1);
