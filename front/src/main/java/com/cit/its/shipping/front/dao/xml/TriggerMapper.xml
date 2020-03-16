@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cit.its.mms.display.dao.TriggerMapper">
+<mapper namespace="com.cit.its.shipping.front.dao.TriggerMapper">
 
-    <insert id="createTrigger"></insert>
+    <insert id="createTrigger">
+        create trigger ${trigger_name }
+        after insert on ${equip }
+        for each row
+        begin
+        <if test="relation == '>">
+            when new.${value_name} > ${value }
+        </if>
+        <if test="relation == '<">
+            when new.${value_name} < ${value }
+        </if>
 
-    <update id="confirmTrigger"></update>
+        insert into event (trigger_id,createTime) values (${trigger_name},new.time)
+        end;
+    </insert>
+
+    <update id="replaceTrigger">
+
+    </update>
+    <delete id="dropTrigger">
+        drop trigger if exit ${trigger_name }
+    </delete>
 </mapper>
