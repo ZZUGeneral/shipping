@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="layout/layout(title='触发器',nav='1:3',
+      th:replace="layout/layout(title='触发器',nav='1:4',
       cssPaths='/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')">
 <div class="content-wrapper" th:fragment="main-content">
     <!-- Content Header (Page header) -->
@@ -13,21 +13,6 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row mb-lg-3">
-            <div class="col-lg-2 col-6">
-                <!-- small box -->
-                <div class="small-box bg-info">
-                    <div class="inner">
-                        <h1 id="h_all">0/0</h1>
-                        <p>全部触发器</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">更多 <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -35,37 +20,9 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form class="row mb-lg-3" id="client_form">
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" placeholder="设备ID" id="clientId"
-                                       name="clientId">
-                            </div>
-                            <div class="col-md-2">
-                                <input class="form-control" type="text" placeholder="设备名称" id="name" name="name">
-                            </div>
-                            <div class="col-md-2">
-                                <select class="custom-select" type="text" placeholder="类型" id="type" name="type">
-                                    <option value="">全部</option>
-                                    <option th:each="type,stat:${typeList}" th:value="${type.getCode()}"
-                                            th:text="${type.getDesc()}"></option>
-                                </select>
-                            </div>
-                            <div class="col-md-1">
-                                <select class="custom-select" type="text" placeholder="状态" id="state" name="state">
-                                    <option value="">全部</option>
-                                    <option value="1">在线</option>
-                                    <option value="0">离线</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2 ml-5">
-                                <button type="button" class="btn btn-danger col-md-3" onclick="clientReset()"><i
-                                        class="fa fa-undo"></i></button>
-                                <button type="button" class="btn btn-primary col-md-3" onclick="clientSearch()"><i
-                                        class="fa fa-search"></i></button>
-                            </div>
-                        </form>
 
                         <table id="devices_table" class="table table-bordered table-hover dataTable">
+
                             <thead>
                             <tr>
                                 <th>设备ID</th>
@@ -86,7 +43,6 @@
                 <!-- /.card -->
             </div>
             <!-- /.col -->
-        </div>
 
     </section>
     <!-- /.content -->

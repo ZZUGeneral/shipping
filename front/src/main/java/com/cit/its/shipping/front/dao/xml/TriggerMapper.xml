@@ -8,11 +8,23 @@
         after insert on ${equip }
         for each row
         begin
-        <if test="relation == '>">
+        <if test="relation == 'eq">
+            when new.${value_name} = ${value }
+        </if>
+        <if test="relation == 'ne">
+            when new.${value_name} != ${value }
+        </if>
+        <if test="relation == 'gt">
             when new.${value_name} > ${value }
         </if>
-        <if test="relation == '<">
+        <if test="relation == 'lt">
             when new.${value_name} < ${value }
+        </if>
+        <if test="relation == 'ge">
+            when new.${value_name} >= ${value }
+        </if>
+        <if test="relation == 'le">
+            when new.${value_name} <= ${value }
         </if>
 
         insert into event (trigger_id,createTime) values (${trigger_name},new.time)
