@@ -30,9 +30,5 @@ public class Trigger {
     private int value;
     //告警描述
     private String desc;
-    //逻辑删除
-   /* @TableLogic(value = "0", delval = "1")
-    @TableField(select = false)
-    private Integer deleted;*/
 
 }

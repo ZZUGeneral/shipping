@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -39,6 +40,8 @@ public class IndexController {
     private WeatherRainfallService weatherRainfallService;
     @Autowired
     private WeatherVisibilityService weatherVisibilityService;
+    @Autowired
+    private TriggerService triggerService;
 
     @GetMapping("/")
     public ModelAndView index() {
@@ -61,15 +64,27 @@ public class IndexController {
         return new ModelAndView("history");
     }
 
+    @GetMapping("/trigger")
+    public ModelAndView trigger() {
+        return new ModelAndView("trigger");
+    }
+
     @PostMapping("/devices/pageData")
     public Result devicesPageData(Client client, Integer typeValue,
-                  @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+                                  @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         if (typeValue != null) {
             client.setType(ClientTypeEnum.getByCode(typeValue));
         }
         IPage<Client> clientIPage = clientService.clientPageList(client, page, size);
         PageVo<Client> pageVo = new PageVo<Client>(page, size, clientIPage.getTotal(), clientIPage.getRecords());
         return Result.success(pageVo);
+    }
+
+    @PostMapping("/trigger/pageData")
+    public Result triggerPageData(Model model) {
+        List<Trigger> triggerList = this.triggerService.list(null);
+        model.addAttribute("triggerList", triggerList);
+        return Result.success();
     }
 
     @GetMapping("/devices/state")
@@ -93,7 +108,7 @@ public class IndexController {
     }
 
     @PostMapping("history/waterLevel")
-    public Result historyWaterLevelData(@RequestParam(value="beginDateStr",required=false) String beginDateStr, @RequestParam(value="endDateStr",required=false) String endDateStr) {
+    public Result historyWaterLevelData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
         LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         List<WaterLevel> waterLevelList = waterLevelService.waterLevelHistory("get/waterLevel/w2", beginDateTime, endDateTime);
@@ -107,7 +122,7 @@ public class IndexController {
     }
 
     @PostMapping("history/tilt")
-    public Result historyTiltData(@RequestParam(value="beginDateStr",required=false) String beginDateStr, @RequestParam(value="endDateStr",required=false) String endDateStr) {
+    public Result historyTiltData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
         LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         List<Tilt> tiltList = tiltService.tiltHistory(null, beginDateTime, endDateTime);
@@ -127,7 +142,7 @@ public class IndexController {
     }
 
     @PostMapping("history/vibration")
-    public Result historyVibrationData(@RequestParam(value="beginDateStr",required=false) String beginDateStr, @RequestParam(value="endDateStr",required=false) String endDateStr) {
+    public Result historyVibrationData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
         LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         List<Vibration> vibrationList = vibrationService.vibrationHistory(null, beginDateTime, endDateTime);
@@ -144,7 +159,7 @@ public class IndexController {
     }
 
     @PostMapping("history/angle")
-    public Result historyAngleData(@RequestParam(value="beginDateStr",required=false) String beginDateStr, @RequestParam(value="endDateStr",required=false) String endDateStr) {
+    public Result historyAngleData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
         LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         List<Angle> angleList = angleService.angleHistory(null, beginDateTime, endDateTime);
@@ -158,7 +173,7 @@ public class IndexController {
     }
 
     @PostMapping("history/weather_general")
-    public Result historyWeatherGeneralData(@RequestParam(value="beginDateStr",required=false) String beginDateStr, @RequestParam(value="endDateStr",required=false) String endDateStr) {
+    public Result historyWeatherGeneralData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
         LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         List<WeatherGeneral> weatherGeneralList = weatherGeneralService.weatherGeneralHistory(null, beginDateTime, endDateTime);
@@ -180,7 +195,7 @@ public class IndexController {
     }
 
     @PostMapping("history/weather_rainfall")
-    public Result historyWeatherRainfallData(@RequestParam(value="beginDateStr",required=false) String beginDateStr, @RequestParam(value="endDateStr",required=false) String endDateStr) {
+    public Result historyWeatherRainfallData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
         LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         List<WeatherRainfall> weatherRainfallList = weatherRainfallService.weatherRainfallHistory(null, beginDateTime, endDateTime);
@@ -194,7 +209,7 @@ public class IndexController {
     }
 
     @PostMapping("history/weather_visibility")
-    public Result historyWeatherVisibilityData(@RequestParam(value="beginDateStr",required=false) String beginDateStr, @RequestParam(value="endDateStr",required=false) String endDateStr) {
+    public Result historyWeatherVisibilityData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
         LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         List<WeatherVisibility> weatherVisibilityList = weatherVisibilityService.weatherVisibilityHistory(null, beginDateTime, endDateTime);
