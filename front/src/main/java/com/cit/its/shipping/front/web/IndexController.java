@@ -69,6 +69,11 @@ public class IndexController {
         return new ModelAndView("trigger");
     }
 
+    @GetMapping("/event")
+    public ModelAndView event() {
+        return new ModelAndView("event");
+    }
+
     @PostMapping("/devices/pageData")
     public Result devicesPageData(Client client, Integer typeValue,
                                   @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {

@@ -3,6 +3,7 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     cache: false
+    encoding: UTF-8
   datasource:
     url: jdbc:postgresql://221.131.113.43:6411/cloud-river
     username: postgres

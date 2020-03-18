@@ -2,7 +2,8 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="#" class="brand-link">
-            <img th:src="@{plugins/adminLTE/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img th:src="@{plugins/adminLTE/img/AdminLTELogo.png}" alt="AdminLTE Logo"
+                 class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
         </a>
@@ -11,13 +12,14 @@
         <div class="sidebar">
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <li class="nav-item">
                         <a th:href="@{/}" th:class="${nav=='1:1'} ? 'nav-link active' : 'nav-link'">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 实时数据
-<!--                                <span class="right badge badge-danger">New</span>-->
+                                <!--                                <span class="right badge badge-danger">New</span>-->
                             </p>
                         </a>
                     </li>
@@ -26,8 +28,8 @@
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 历史数据
-<!--                                <i class="fas fa-angle-left right"></i>-->
-<!--                                <span class="badge badge-info right">6</span>-->
+                                <!--                                <i class="fas fa-angle-left right"></i>-->
+                                <!--                                <span class="badge badge-info right">6</span>-->
                             </p>
                         </a>
                     </li>
@@ -36,7 +38,7 @@
                             <i class="nav-icon fas fa-chart-pie"></i>
                             <p>
                                 设备状态
-<!--                                <i class="right fas fa-angle-left"></i>-->
+                                <!--                                <i class="right fas fa-angle-left"></i>-->
                             </p>
                         </a>
                     </li>
@@ -45,6 +47,15 @@
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 触发器列表
+                                <!--                                <i class="right fas fa-angle-left"></i>-->
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/event}" th:class="${nav=='1:5'} ? 'nav-link active' : 'nav-link'">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                触发事件列表
                                 <!--                                <i class="right fas fa-angle-left"></i>-->
                             </p>
                         </a>

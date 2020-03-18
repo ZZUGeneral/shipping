@@ -32,14 +32,10 @@ function initDataTable() {
                 }
                 data.size = data.length;
                 data.page = data.start / data.size + 1;
-                data.id = $('#triggerId').val();
                 data.trigger_name = $('#triggerName').val();
                 data.grade = $('#grade').val();
                 data.equip = $('#equip').val();
                 data.data = $('#data').val();
-                data.relation = $('#relation').val();
-                data.value = $('#value').val();
-                data.desc = $('#desc').val();
                 delete data['start'];
                 delete data['length'];
             },
@@ -52,6 +48,26 @@ function initDataTable() {
                 return JSON.stringify(tableData);
             }
         },
+        "columns": [
+            {"data": "triggerId"},
+            {"data": "triggerName"},
+            {
+                "data": "grade",
+                "render": function (data, type, full, meta) {
+                    if (data == "1") return '<span class="badge badge-danger">一级</span>';
+                    if (data == "2") return '<span class="badge badge-success">二级</span>';
+                    if (data == "3") return '<span class="badge badge-success">三级</span>';
+
+                },
+                "className": "text-center"
+            },
+            {"data": "equip"},
+            {"data": "data"},
+            {"data": "relation"},
+            {"data": "value"},
+            {"data": "desc"},
+
+        ],
         language: {
             "url": context + "/plugins/dataTable/datatables_language.json"
         },
@@ -65,5 +81,11 @@ function connect() {
     client.debug = null;
     client.connect({}, function (frame) {
         console.log("stomp connected ! ");
+        client.subscribe('/realtime/sensor', function (data) {
+            setTimeout(function () {
+                devicesState()
+                datatable.ajax.reload(false);
+            }, 1500);
+        });
     });
 }
