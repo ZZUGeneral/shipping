@@ -42,6 +42,8 @@ public class IndexController {
     private WeatherVisibilityService weatherVisibilityService;
     @Autowired
     private TriggerService triggerService;
+    @Autowired
+    private EventService eventService;
 
     @GetMapping("/")
     public ModelAndView index() {
@@ -86,10 +88,9 @@ public class IndexController {
     }
 
     @PostMapping("/trigger/pageData")
-    public Result triggerPageData(Model model) {
-        List<Trigger> triggerList = this.triggerService.list(null);
-        model.addAttribute("triggerList", triggerList);
-        return Result.success();
+    public Result triggerPageData(Trigger trigger, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+        List<Trigger> triggerList = this.triggerService.triggerPageData(trigger, page, size);
+        return Result.success(triggerList);
     }
 
     @GetMapping("/devices/state")

@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.cit.its.shipping.front.enums.TriggerGradeEnum;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author 杨贺龙
  * @name Trigger
@@ -28,6 +30,8 @@ public class Trigger {
     private String relation;
     //阈值
     private int value;
+    //创建时间
+    private Date createTime;
     //告警描述
     private String desc;
 

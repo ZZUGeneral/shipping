@@ -4,6 +4,8 @@ package com.cit.its.shipping.front.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cit.its.shipping.front.entity.Trigger;
 
+import java.util.List;
+
 /**
  * @author 杨贺龙
  * @name TriggerService
@@ -19,4 +21,6 @@ public interface TriggerService extends IService<Trigger> {
 
     //删除触发器
     int dropTrigger(int trigger_id);
+
+    public List<Trigger> triggerPageData(Trigger trigger,int page,int size);
 }

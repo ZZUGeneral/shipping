@@ -3,7 +3,6 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     cache: false
-    encoding: UTF-8
   datasource:
     url: jdbc:postgresql://221.131.113.43:6411/cloud-river
     username: postgres
@@ -13,3 +12,27 @@ mybatis-plus:
   type-enums-package: "com.cit.its.shipping.front.enums"
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+
+
+
+
+
+
+
+
+
+#spring:
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
+#    cache: false
+#    encoding: UTF-8
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/shipping?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&nullCatalogMeansCurrent=true
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver

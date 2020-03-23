@@ -57,6 +57,7 @@ function initDataTable() {
             "dataType": "json",
             "type": "POST",
             "data": function (data) {
+                console.log(data);
                 for(var key in data){
                     if(key.indexOf("columns")==0||key.indexOf("order")==0||key.indexOf("search")==0){
                         delete data[key];
