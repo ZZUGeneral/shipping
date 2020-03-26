@@ -93,6 +93,13 @@ public class IndexController {
         return Result.success(triggerList);
     }
 
+    @PostMapping("/event/pageData")
+    public Result eventPageData(@RequestParam Date beginTime, @RequestParam Date endTime, @RequestParam int grade, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+        List<Event> eventList = this.eventService.eventPageData(beginTime,endTime,grade,page,size);
+        return Result.success(eventList);
+    }
+
+
     @GetMapping("/devices/state")
     public Result devicesStatus() {
         List<Client> sensorList = clientService.sensorList();

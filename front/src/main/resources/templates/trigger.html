@@ -17,10 +17,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">触发器列表</h3>
-                    <h3 class="card-title" align="left">添加触发器</h3>
-                </div>
-                <div class="">
-
+                    <h3 class="card-title" align="left" onclick="dianwo()">添加触发器</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -36,6 +33,7 @@
                             <input class="form-control" type="text" placeholder="设备" id="equip" name="equip">
                         </div>
                         <div class="col-md-2">
+
                             <input class="form-control" type="text" placeholder="数据项" id="data" name="data">
                         </div>
                         <div class="col-md-2 ml-5">
@@ -60,7 +58,17 @@
                         <tbody>
                         </tbody>
                     </table>
-
+                    <div class="zhezhao" id='zhezhao'>
+                        <div class="tankuang">
+                            <div id="header">
+                                <span>我是弹窗</span>
+                                <div id="header-right" onclick="hidder()">x</div>
+                                <div>
+                                    Tmie sos
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- ./card-body -->
             </div>
@@ -72,6 +80,57 @@
     <!-- /.content -->
 </div>
 
+<script type="text/javascript">
+    document.getElementById('zhezhao').style.display = "none";
+
+    function dianwo() {
+        document.getElementById('zhezhao').style.display = "";
+    }
+
+    function hidder() {
+        document.getElementById('zhezhao').style.display = "none";
+    }
+</script>
+<style type="text/css">
+    body {
+        margin: 0px;
+    }
+
+    .zhezhao {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        background: #000;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+    }
+
+    .tankuang {
+        position: relative;
+        background: #fff;
+        width: 50%;
+        height: 80%;
+        border-radius: 5px;
+        margin: 5% auto;
+    }
+
+    #header {
+        height: 40px;
+    }
+
+    #header-right {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        background: red;
+        color: #fff;
+        right: 5px;
+        top: 5px;
+        text-align: center;
+    }
+</style>
 <footer th:fragment="js-footer">
     <script th:src="@{/plugins/dataTable/jquery.dataTables.min.js}"></script>
     <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>

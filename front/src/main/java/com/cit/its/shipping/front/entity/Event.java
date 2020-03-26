@@ -20,9 +20,12 @@ public class Event {
 
     private int trigger_id;
 
-    private long dealNo;
+    private int grade;
 
     private Timestamp creaeteTime;
 
+    private long deal_no;
+
+    private String desc;
 
 }

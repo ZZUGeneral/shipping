@@ -1,10 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/layout(title='触发事件',nav='1:5',
+      cssPaths='/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')">
+<div class="content-wrapper" th:fragment="main-content">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-</body>
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">传感器列表</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form class="row mb-lg-3" id="client_form">
+                            <div class="col-md-2">
+                                <input class="form-control" type="date" placeholder="起始时间" id="beginTime"
+                                       name="beginTime">
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="date" placeholder="结束事件" id="endTime" name="endTime">
+                            </div>
+                            <div class="col-md-2">
+                                <select class="custom-select" type="text" placeholder="事件等级" id="grade" name="grade">
+                                    <option value="1">一级</option>
+                                    <option value="2">二级</option>
+                                    <option value="3">三级</option>
+                                </select>
+                            </div>
+                        </form>
+
+                        <table id="event_table" class="table table-bordered table-hover dataTable">
+                            <thead>
+                            <tr>
+                                <th>事件ID</th>
+                                <th>触发时间</th>
+                                <th>事件等级</th>
+                                <th>事件描述</th>
+                                <th>处理人</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- ./card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+
+<footer th:fragment="js-footer">
+    <script th:src="@{/plugins/dataTable/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+    <script th:src="@{/plugins/moment/moment.min.js}"></script>
+    <script th:src="@{/plugins/websocket/sockjs.min.js}"></script>
+    <script th:src="@{/plugins/websocket/stomp.min.js}"></script>
+    <script th:src="@{/js/event/event.js}"></script>
+</footer>
+
 </html>
