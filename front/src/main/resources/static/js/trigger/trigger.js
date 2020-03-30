@@ -1,9 +1,26 @@
 var datatable;
 $(function () {
+
     initDataTable();
+    $('#id').hide();
+    $('#button').click(function () {
+        $('#id').show();
+        $('#id').animate({
+            // height:'300px',
+            // width:'260px',
+            top: '200px',
+            opacity: '1.0',
+            left: '480px',
+            top: '200px'
+        }, 10)
+    });
+    $('#header-right_create').click(function () {
+        $('#id').hide();
+
+    });
+    sensor();
     connect();
 })
-
 
 function clientReset() {
     $('#client_form')[0].reset();
@@ -71,6 +88,54 @@ function initDataTable() {
         language: {
             "url": context + "/plugins/dataTable/datatables_language.json"
         },
+    });
+}
+
+function addTrigger() {
+
+}
+
+function cancelTrigger() {
+    $('#id').hide();
+}
+
+function sensor() {
+    $.ajax({
+        type: "get",
+        url: "/js/trigger/trigger_data.json",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            if (data.statusCode == 100) {
+                var options = "<option>--请选择传感器--</option>";
+                for (var i = 0; i < data.data.length; i++) {
+                    options += "<option value='" + data.data[i].sensor + "'>" + data.data[i].name + "</option>";
+                }
+                $("#create_equip").html(options);
+                var create_data_options = "<option>--请选择传感器数据项--</option>";
+                //活动名称下拉选改变事件：
+                $(".create_equip").change(function () {
+                    var selectedIndex = $(this).get(0).selectedIndex;
+                    if (selectedIndex == 0) {
+                        console.log("没有进行选择");
+                        $(".create_data").html(create_data_options);
+                    } else {
+                        var trigger_data = data.data[selectedIndex].trigger_data;
+                        for (var i = 0; i < trigger_data.length; i++) {
+                            create_data_options += "<option value='" + trigger[i] + "'>" + trigger_data[i] + "</option>";
+                        }
+                    }
+                });
+            } else {
+                console.log("获取数据失败");
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(XMLHttpRequest.status);
+            alert(XMLHttpRequest.readyState);
+            alert(textStatus);
+        }
     });
 }
 

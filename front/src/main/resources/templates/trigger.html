@@ -17,7 +17,9 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">触发器列表</h3>
-                    <h3 class="card-title" align="left" onclick="dianwo()">添加触发器</h3>
+                    <h3 class="card-title" align="left" id="button">
+                        <button>添加触发器</button>
+                    </h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -58,79 +60,68 @@
                         <tbody>
                         </tbody>
                     </table>
-                    <div class="zhezhao" id='zhezhao'>
-                        <div class="tankuang">
-                            <div id="header">
-                                <span>我是弹窗</span>
-                                <div id="header-right" onclick="hidder()">x</div>
-                                <div>
-                                    Tmie sos
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- ./card-body -->
             </div>
             <!-- /.card -->
         </div>
         <!-- /.col -->
+        <div id="id"
+             style="width:300px;height:360px;border:2px solid grey; position:fixed;padding:10px;background-color:#f3f3f3;text-align:center;">
+            <div id="header-right_create" style="margin-right:0px;padding:0;"><img src="1.png" alt=""
+                                                                                   style="width:25px;height:25px;margin-left:260px;">
+            </div>
+            <br>
+            <div><h2>触发器</h2></div>
+            <div class="col-md-2">
+                触发器名称：<input class="form-control" type="text" placeholder="触发器名称" id="create_triggerName"
+                             name="create_triggerName">
+            </div>
+            <div class="col-md-2">
+                触发器级别：
+                <select class="custom-select" type="text" placeholder="触发器级别" id="create_grade" name="create_grade">
+                    <option value="0">未分类</option>
+                    <option value="1">信息</option>
+                    <option value="2">一般</option>
+                    <option value="3">警告</option>
+                    <option value="4">严重</option>
+                    <option value="5">灾难</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                触发设备：
+                <select class="custom-select" type="text" placeholder="设备" id="create_equip" name="create_equip">
+                   <!-- <option value="">水位传感器</option>
+                    <option value="water_level">角度传感器</option>
+                    <option value="angle">倾斜传感器</option>
+                    <option value="vibration">垂直传感器</option>
+                    <option value="weather_general">天气传感器</option>
+                    <option value="weather_rainfall">降雨量传感器</option>
+                    <option value="weather_visibility">可视度传感器</option>-->
+                </select>
+            </div>
+            <div class="col-md-2">
+                触发数据项：<input class="form-control" type="text" placeholder="数据项" id="create_data" name="create_data">
+            </div>
+            <div>
+                触发值区域：<input class="form-control" type="text" placeholder="较小值" id="le_calue" name="le_value">
+                <input class="form-control" type="text" placeholder="较大值" id="ge_calue" name="ge_value">
 
+            </div>
+            <br>
+            <br>
+            <div class="col-md-2 ml-5">
+                <button type="button" class="btn btn-danger col-md-3" onclick="addTrigger()"><i
+                        class="fa fa-undo"></i>添加
+                </button>
+                <button type="button" class="btn btn-primary col-md-3" onclick="cancelTrigger()"><i
+                        class="fa fa-search"></i>删除
+                </button>
+            </div>
+        </div>
     </section>
     <!-- /.content -->
 </div>
-
-<script type="text/javascript">
-    document.getElementById('zhezhao').style.display = "none";
-
-    function dianwo() {
-        document.getElementById('zhezhao').style.display = "";
-    }
-
-    function hidder() {
-        document.getElementById('zhezhao').style.display = "none";
-    }
-</script>
-<style type="text/css">
-    body {
-        margin: 0px;
-    }
-
-    .zhezhao {
-        position: fixed;
-        left: 0px;
-        top: 0px;
-        background: #000;
-        width: 100%;
-        height: 100%;
-        opacity: 0.5;
-    }
-
-    .tankuang {
-        position: relative;
-        background: #fff;
-        width: 50%;
-        height: 80%;
-        border-radius: 5px;
-        margin: 5% auto;
-    }
-
-    #header {
-        height: 40px;
-    }
-
-    #header-right {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        border-radius: 5px;
-        background: red;
-        color: #fff;
-        right: 5px;
-        top: 5px;
-        text-align: center;
-    }
-</style>
 <footer th:fragment="js-footer">
     <script th:src="@{/plugins/dataTable/jquery.dataTables.min.js}"></script>
     <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>

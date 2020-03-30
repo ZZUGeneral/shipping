@@ -54,8 +54,9 @@ public class OutputController {
     @ResponseBody
     private R getEquipStatusList(String name, int pageNo, long beginTime, long endTime) {
         List<EquipStatus> list = this.outPutService.getEquipStatusList(name, beginTime, endTime, pageNo);
-        if (list.isEmpty())
+        if (list.isEmpty()) {
             return R.failed("没有找到符合条件的数据,请重新设置筛选条件.");
+        }
         return R.ok(list);
     }
 
@@ -73,7 +74,6 @@ public class OutputController {
         List<EquipDetailData> detailDataList = this.outPutService.getDetailData(id, type, beginTime, endTime);
         return R.ok(detailDataList);
     }
-
 
 
     @ApiOperation(value = "导出运行状态报表", notes = "空载、超载、正常运行的次数，占比等，数据报表可下钻至某个时间断片的详细数据")
@@ -101,8 +101,9 @@ public class OutputController {
             e.printStackTrace();
         } finally {
             try {
-                if (os != null)
+                if (os != null) {
                     os.close();
+                }
                 response.flushBuffer();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -135,8 +136,9 @@ public class OutputController {
             e.printStackTrace();
         } finally {
             try {
-                if (os != null)
+                if (os != null) {
                     os.close();
+                }
                 response.flushBuffer();
             } catch (Exception e) {
                 e.printStackTrace();

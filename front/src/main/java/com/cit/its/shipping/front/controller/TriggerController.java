@@ -87,11 +87,18 @@ public class TriggerController {
     @ResponseBody
     public R selectTriggers(String trigger_name, int grade, String equip, String data, long page_no) {
         QueryWrapper<Trigger> wrapper = new QueryWrapper();
-        if (trigger_name != null)
+        if (trigger_name != null) {
             wrapper.like("trigger_name", trigger_name);
-        if (grade != 0) wrapper.eq("grade", grade);
-        if (equip != null) wrapper.eq("equip", equip);
-        if (data != null) wrapper.eq("data", data);
+        }
+        if (grade != 0) {
+            wrapper.eq("grade", grade);
+        }
+        if (equip != null) {
+            wrapper.eq("equip", equip);
+        }
+        if (data != null) {
+            wrapper.eq("data", data);
+        }
         wrapper.orderByDesc("id");
         Page<Trigger> page = new Page<>(page_no, 15);
         IPage<Trigger> iPage = this.triggerService.getBaseMapper().selectPage(page, wrapper);

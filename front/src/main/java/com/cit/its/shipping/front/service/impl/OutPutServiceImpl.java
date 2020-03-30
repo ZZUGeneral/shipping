@@ -51,8 +51,12 @@ public class OutPutServiceImpl implements OutPutService {
 
     @Override
     public List<EquipDetailData> getDetailData(long id, String type, long beginTime, long endTime) {
-        if (id < 0) return null;
-        if (beginTime == 0 || beginTime > endTime) return null;
+        if (id < 0) {
+            return null;
+        }
+        if (beginTime == 0 || beginTime > endTime) {
+            return null;
+        }
         Sensor sensor = sensorMapper.selectById(id);
 
         List<EquipDetailData> detailDataList = new ArrayList<>();
@@ -61,10 +65,13 @@ public class OutPutServiceImpl implements OutPutService {
             case "water_level":
                 QueryWrapper<WaterLevel> waterLevelQueryWrapper1 = new QueryWrapper<>();
                 waterLevelQueryWrapper1.in("topic", sensor.getTopic()).between("time", beginTime, endTime);
-                if (type == "noLoad") waterLevelQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
-                else if (type == "general")
+                if (type == "noLoad") {
+                    waterLevelQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
+                } else if (type == "general") {
                     waterLevelQueryWrapper1.between(sensor.getVal_name(), sensor.getNoLoadValue(), sensor.getOverLoadValue());
-                else waterLevelQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                } else {
+                    waterLevelQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                }
                 List<WaterLevel> waterLevelList = waterLevelMapper.selectList(waterLevelQueryWrapper1);
                 for (WaterLevel waterLevel : waterLevelList) {
                     EquipDetailData data = new EquipDetailData();
@@ -76,10 +83,13 @@ public class OutPutServiceImpl implements OutPutService {
             case "tilt":
                 QueryWrapper<Tilt> tiltQueryWrapper1 = new QueryWrapper<>();
                 tiltQueryWrapper1.in("topic", sensor.getTopic()).between("time", beginTime, endTime);
-                if (type == "noLoad") tiltQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
-                else if (type == "general")
+                if (type == "noLoad") {
+                    tiltQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
+                } else if (type == "general") {
                     tiltQueryWrapper1.between(sensor.getVal_name(), sensor.getNoLoadValue(), sensor.getOverLoadValue());
-                else tiltQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                } else {
+                    tiltQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                }
                 List<Tilt> tiltList = tiltMapper.selectList(tiltQueryWrapper1);
                 for (Tilt tilt : tiltList) {
                     EquipDetailData data = new EquipDetailData();
@@ -100,10 +110,13 @@ public class OutPutServiceImpl implements OutPutService {
             case "vibration":
                 QueryWrapper<Vibration> vibrationQueryWrapper1 = new QueryWrapper<>();
                 vibrationQueryWrapper1.in("topic", sensor.getTopic()).between("time", beginTime, endTime);
-                if (type == "noLoad") vibrationQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
-                else if (type == "general")
+                if (type == "noLoad") {
+                    vibrationQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
+                } else if (type == "general") {
                     vibrationQueryWrapper1.between(sensor.getVal_name(), sensor.getNoLoadValue(), sensor.getOverLoadValue());
-                else vibrationQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                } else {
+                    vibrationQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                }
                 List<Vibration> vibrationList = vibrationMapper.selectList(vibrationQueryWrapper1);
                 for (Vibration vibration : vibrationList) {
                     EquipDetailData data = new EquipDetailData();
@@ -119,10 +132,13 @@ public class OutPutServiceImpl implements OutPutService {
             case "angle":
                 QueryWrapper<Angle> angleQueryWrapper1 = new QueryWrapper<>();
                 angleQueryWrapper1.in("topic", sensor.getTopic()).between("time", beginTime, endTime);
-                if (type == "noLoad") angleQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
-                else if (type == "general")
+                if (type == "noLoad") {
+                    angleQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
+                } else if (type == "general") {
                     angleQueryWrapper1.between(sensor.getVal_name(), sensor.getNoLoadValue(), sensor.getOverLoadValue());
-                else angleQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                } else {
+                    angleQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                }
                 List<Angle> angleList = angleMapper.selectList(angleQueryWrapper1);
                 for (Angle angle : angleList) {
                     EquipDetailData data = new EquipDetailData();
@@ -135,10 +151,13 @@ public class OutPutServiceImpl implements OutPutService {
             case "weatherGeneral":
                 QueryWrapper<WeatherGeneral> weatherGeneralQueryWrapper1 = new QueryWrapper<>();
                 weatherGeneralQueryWrapper1.in("topic", sensor.getTopic()).between("time", beginTime, endTime);
-                if (type == "noLoad") weatherGeneralQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
-                else if (type == "general")
+                if (type == "noLoad") {
+                    weatherGeneralQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
+                } else if (type == "general") {
                     weatherGeneralQueryWrapper1.between(sensor.getVal_name(), sensor.getNoLoadValue(), sensor.getOverLoadValue());
-                else weatherGeneralQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                } else {
+                    weatherGeneralQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                }
                 List<WeatherGeneral> weatherGeneralList = weatherGeneralMapper.selectList(weatherGeneralQueryWrapper1);
                 for (WeatherGeneral general : weatherGeneralList) {
                     EquipDetailData data = new EquipDetailData();
@@ -160,10 +179,13 @@ public class OutPutServiceImpl implements OutPutService {
             case "weatherRainfall":
                 QueryWrapper<WeatherRainfall> weatherRainfallQueryWrapper = new QueryWrapper<>();
                 weatherRainfallQueryWrapper.in("topic", sensor.getTopic()).between("time", beginTime, endTime);
-                if (type == "noLoad") weatherRainfallQueryWrapper.le(sensor.getVal_name(), sensor.getNoLoadValue());
-                else if (type == "general")
+                if (type == "noLoad") {
+                    weatherRainfallQueryWrapper.le(sensor.getVal_name(), sensor.getNoLoadValue());
+                } else if (type == "general") {
                     weatherRainfallQueryWrapper.between(sensor.getVal_name(), sensor.getNoLoadValue(), sensor.getOverLoadValue());
-                else weatherRainfallQueryWrapper.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                } else {
+                    weatherRainfallQueryWrapper.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                }
                 List<WeatherRainfall> weatherRainfallList = weatherRainfallMapper.selectList(weatherRainfallQueryWrapper);
                 for (WeatherRainfall rainfall : weatherRainfallList) {
                     EquipDetailData data = new EquipDetailData();
@@ -176,10 +198,13 @@ public class OutPutServiceImpl implements OutPutService {
             case "weatherVisibility":
                 QueryWrapper<WeatherVisibility> weatherVisibilityQueryWrapper1 = new QueryWrapper<>();
                 weatherVisibilityQueryWrapper1.in("topic", sensor.getTopic()).between("time", beginTime, endTime);
-                if (type == "noLoad") weatherVisibilityQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
-                else if (type == "general")
+                if (type == "noLoad") {
+                    weatherVisibilityQueryWrapper1.le(sensor.getVal_name(), sensor.getNoLoadValue());
+                } else if (type == "general") {
                     weatherVisibilityQueryWrapper1.between(sensor.getVal_name(), sensor.getNoLoadValue(), sensor.getOverLoadValue());
-                else weatherVisibilityQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                } else {
+                    weatherVisibilityQueryWrapper1.ge(sensor.getVal_name(), sensor.getOverLoadValue());
+                }
                 List<WeatherVisibility> weatherVisibilityList = weatherVisibilityMapper.selectList(weatherVisibilityQueryWrapper1);
                 for (WeatherVisibility weatherVisibility : weatherVisibilityList) {
                     EquipDetailData data = new EquipDetailData();
@@ -250,8 +275,12 @@ public class OutPutServiceImpl implements OutPutService {
 
     //获取传感器数据
     public List<EquipStatus> getEquipData(String name, long beginTime, long endTime) {
-        if (name == null || name.equals("")) return null;
-        if (beginTime == 0 || beginTime > endTime) return null;
+        if (name == null || "".equals(name)) {
+            return null;
+        }
+        if (beginTime == 0 || beginTime > endTime) {
+            return null;
+        }
 
         // 获取对应传感器的topic
         QueryWrapper<Sensor> sensorQueryWrapper = new QueryWrapper<>();
@@ -397,8 +426,12 @@ public class OutPutServiceImpl implements OutPutService {
     }
 
     public String[][] getEquipStatusDetail(String name, long beginTime, long endTime) {
-        if (name == null || name.equals("")) return null;
-        if (beginTime == 0 || beginTime > endTime) return null;
+        if (name == null || "".equals(name)) {
+            return null;
+        }
+        if (beginTime == 0 || beginTime > endTime) {
+            return null;
+        }
 
         // 获取对应传感器的topic
         QueryWrapper<Sensor> sensorQueryWrapper = new QueryWrapper<>();

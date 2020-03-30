@@ -1,0 +1,59 @@
+[
+  {
+    "sensor": "angle",
+    "name": "角度传感器",
+    "trigger_data": [
+      "value"
+    ]
+  },
+  {
+    "sensor": "tilt",
+    "name": "倾斜传感器",
+    "trigger_data": [
+      "val1X",
+      "val1Y",
+      "val2X",
+      "val2Y"
+    ]
+  },
+  {
+    "sensor": "vbration",
+    "name": "垂直传感器",
+    "trigger_data": [
+      "valueH",
+      "valueV"
+    ]
+  },
+  {
+    "sensor": "water_level",
+    "name": "水位传感器",
+    "trigger_data": [
+      "value"
+    ]
+  },
+  {
+    "sensor": "weather_general",
+    "name": "天气传感器",
+    "trigger_data": [
+      "temperature",
+      "humidity",
+      "airPressure",
+      "windSpeed",
+      "windDirection"
+    ]
+  },
+  {
+    "sensor": "weather_rainfall",
+    "name": "降雨量传感器",
+    "trigger_data": [
+      "value"
+    ]
+  },
+  {
+    "sensor": "weather_visibility",
+    "name": "可视度传感器",
+    "trigger_data": [
+      "value"
+    ]
+  }
+]
