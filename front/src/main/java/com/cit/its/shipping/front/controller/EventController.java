@@ -64,8 +64,8 @@ public class EventController {
     @ResponseBody
     public R updateDealNoForEvent(@RequestParam long event_no, @RequestParam long deal_no) {
         Event event = new Event();
-        event.setEvent_id(event_no);
-        event.setDeal_no(deal_no);
+        event.setEventId(event_no);
+        event.setDealNo(deal_no);
         int result = this.eventService.getBaseMapper().updateById(event);
         if (result == 0) {
             return R.failed("分配失败");

@@ -43,7 +43,7 @@ public class OutputController {
     private OutPutService outPutService;
 
 
-    @ApiOperation(value = "运行状态列表", notes = "根据条件筛选运行状态条件列表")
+/*    @ApiOperation(value = "运行状态列表", notes = "根据条件筛选运行状态条件列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name", value = "设备名称", dataType = "String", required = true),
             @ApiImplicitParam(name = "pageNo", value = "页码", dataType = "Integer", required = true),
@@ -58,7 +58,7 @@ public class OutputController {
             return R.failed("没有找到符合条件的数据,请重新设置筛选条件.");
         }
         return R.ok(list);
-    }
+    }*/
 
 
     @ApiOperation(value = "获取设备数据", notes = "根据条件获取设备在某个时间段内的数据")
@@ -71,7 +71,7 @@ public class OutputController {
     @RequestMapping(value = "/getDetailData")
     @ResponseBody
     private R getDetailData(@RequestParam long id, @RequestParam String type, @RequestParam long beginTime, @RequestParam long endTime) {
-        List<EquipDetailData> detailDataList = this.outPutService.getDetailData(id, type, beginTime, endTime);
+        List<EquipDetailData> detailDataList = this.outPutService.getDetailData(id, beginTime, endTime);
         return R.ok(detailDataList);
     }
 
@@ -85,14 +85,14 @@ public class OutputController {
     })
     @RequestMapping(value = "runningStatusXlsx")
     @ResponseBody
-    public void runningStatusXlsx(HttpServletRequest request, HttpServletResponse response, @RequestParam String name, @RequestParam long beginTime, @RequestParam long endTime, @RequestParam boolean isDetail) {
+    public void runningStatusXlsx(HttpServletRequest request, HttpServletResponse response, @RequestParam String name, @RequestParam long beginTime, @RequestParam long endTime) {
         String filename = "运行状态" + new SimpleDateFormat("yyyyMMDDhh24mmssSSS")
                 .format(System.currentTimeMillis()) + ".xlsx";
 
         OutputStream os = null;
         HSSFWorkbook excel = null;
         try {
-            excel = outPutService.outputRunningStatusXlsx(name, beginTime, endTime, isDetail);
+            excel = outPutService.outputRunningStatusXlsx(name, beginTime, endTime);
             this.setResponseHeader(response, filename);
             os = response.getOutputStream();
             excel.write(os);
@@ -120,14 +120,14 @@ public class OutputController {
     })
     @RequestMapping(value = "runningStatusDoc")
     @ResponseBody
-    public void runningStatusDoc(HttpServletRequest request, HttpServletResponse response, @RequestParam String name, @RequestParam long beginTime, @RequestParam long endTime, @RequestParam boolean isDetail) {
+    public void runningStatusDoc(HttpServletRequest request, HttpServletResponse response, @RequestParam String name, @RequestParam long beginTime, @RequestParam long endTime) {
         String filename = "运行状态" + new SimpleDateFormat("yyyyMMDDhh24mmssSSS")
                 .format(System.currentTimeMillis()) + ".doc";
 
         OutputStream os = null;
         XWPFDocument word = null;
         try {
-            word = outPutService.outputRunningStatusDoc(name, beginTime, endTime, isDetail);
+            word = outPutService.outputRunningStatusDoc(name, beginTime, endTime);
             this.setResponseHeader(response, filename);
             os = response.getOutputStream();
             word.write(os);

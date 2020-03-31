@@ -2,7 +2,11 @@ package com.cit.its.shipping.front.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.cit.its.shipping.front.enums.TriggerGradeEnum;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -13,26 +17,47 @@ import java.util.Date;
  * @description: 告警
  */
 @Data
-@TableName("cr_triggert")
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("msg_triggert")
+@ApiModel("触发器")
 public class Trigger {
     //告警编号
+    @ApiModelProperty("触发器ID")
     @TableId(type = IdType.AUTO)
-    private int id;
+    @TableField("trigger_id")
+    private int triggerId;
     //告警名称
-    private String trigger_name;
+    @ApiModelProperty("触发器名称")
+    @TableField("trigger_name")
+    private String triggerName;
     //告警等级
+    @ApiModelProperty("触发器等级")
+    @TableField("grade")
     private TriggerGradeEnum grade;
     //该告警的设备
+    @ApiModelProperty("触发器对应的传感器名称")
+    @TableField("equip")
     private String equip;
     //数据项
+    @ApiModelProperty("触发器的数据项")
+    @TableField("data")
     private String data;
-    //与阈值之间的管理,大于,等于,小于
-    private String relation;
     //阈值
-    private int value;
+    @ApiModelProperty("触发数据项较小值")
+    @TableField("le_value")
+    private int le_value;
+
+    @ApiModelProperty("触发器数据项较大值")
+    @TableField("ge_value")
+    private int ge_value;
     //创建时间
+    @ApiModelProperty("触发器创建时间")
+    @TableField("create_time")
     private Date createTime;
     //告警描述
+    @TableField("trigger_desc")
+    @ApiModelProperty("触发事件描述")
     private String desc;
 
 }

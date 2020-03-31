@@ -16,17 +16,17 @@ import java.util.List;
  */
 public interface OutPutService {
 
-    //获取运行状态信息列表
+    /*//获取运行状态信息列表
     public List<EquipStatus> getEquipStatusList(String name, long beginTime, long endTime, int pageNo);
-
+*/
     //获取时间区间内的详细数据
-    public List<EquipDetailData> getDetailData(long id, String type, long beginTime, long endTime);
+    public List<EquipDetailData> getDetailData(long id, long beginTime, long endTime);
 
     //导出运行状态Excel
-    public HSSFWorkbook outputRunningStatusXlsx(String name, long beginTime, long endTime, boolean isDetail);
+    public HSSFWorkbook outputRunningStatusXlsx(String name, long beginTime, long endTime);
 
     //导出运行状态Word
-    public XWPFDocument outputRunningStatusDoc(String name, long beginTime, long endTime, boolean isDetail);
+    public XWPFDocument outputRunningStatusDoc(String name, long beginTime, long endTime);
 
 
 }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface TriggerService extends IService<Trigger> {
     //创建触发器
-    int createTrigger(Trigger trigger,float le_value,float ge_value);
+    int createTrigger(Trigger trigger);
 
     //更新触发器
     int replaceTrigger(Trigger trigger);

@@ -46,8 +46,8 @@ public class TriggerController {
     @ApiImplicitParam(name = "告警实体", required = true)
     @PostMapping("/createTrigger")
     @ResponseBody
-    public R createTrigger(@RequestParam Trigger trigger, @RequestParam float le_value, @RequestParam float ge_value) {
-        int result = this.triggerService.createTrigger(trigger,le_value,ge_value);
+    public R createTrigger(@RequestParam Trigger trigger) {
+        int result = this.triggerService.createTrigger(trigger);
         if (result == 0) {
             return R.failed("添加新的告警失败!");
         }

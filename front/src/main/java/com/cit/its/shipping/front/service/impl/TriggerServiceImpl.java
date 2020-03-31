@@ -30,8 +30,8 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
     TriggerMapper triggerMapper;
 
     @Override
-    public int createTrigger(Trigger trigger, float le_value, float ge_value) {
-        int rs = triggerMapper.createTrigger(trigger.getTrigger_name(), trigger.getEquip(), trigger.getData(), le_value, ge_value, trigger.getDesc());
+    public int createTrigger(Trigger trigger) {
+        int rs = triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getLe_value(), trigger.getGe_value(), trigger.getDesc());
         return rs;
     }
 
@@ -49,8 +49,8 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
     public List<Trigger> triggerPageData(Trigger trigger, int currentPage, int size) {
         Page page = new Page(currentPage, size);
         QueryWrapper<Trigger> queryWrapper = new QueryWrapper<>();
-        if (StrUtil.isNotEmpty(trigger.getTrigger_name())) {
-            queryWrapper.like("trigger_name", trigger.getTrigger_name());
+        if (StrUtil.isNotEmpty(trigger.getTriggerName())) {
+            queryWrapper.like("trigger_name", trigger.getTriggerName());
         }
         if (ObjectUtil.isNotNull(trigger.getGrade())) {
             queryWrapper.eq("grade", trigger.getGrade());
