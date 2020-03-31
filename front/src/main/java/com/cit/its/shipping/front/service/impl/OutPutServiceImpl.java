@@ -213,6 +213,8 @@ public class OutPutServiceImpl implements OutPutService {
                     detailDataList.add(data);
                 }
                 break;
+            default:
+                return null;
         }
         return detailDataList;
 
@@ -407,6 +409,8 @@ public class OutPutServiceImpl implements OutPutService {
                     equipStatus.setOverLoadTime(weatherVisibilityList.size());
 
                     break;
+                default:
+                    return null;
             }
             int noLoad = equipStatus.getNoLoadTime();
             int gengeral = equipStatus.getGeneralTime();
@@ -550,6 +554,8 @@ public class OutPutServiceImpl implements OutPutService {
                     detailDataList.add(data);
                 }
                 break;
+            default:
+                return null;
         }
 
         String[][] value = new String[detailDataList.size()][2];

@@ -8,29 +8,20 @@
         after insert on ${equip }
         for each row
         begin
-        <if test="relation == 'eq">
-            when new.${value_name} = ${value }
-        </if>
-        <if test="relation == 'ne">
-            when new.${value_name} != ${value }
-        </if>
-        <if test="relation == 'gt">
-            when new.${value_name} > ${value }
-        </if>
-        <if test="relation == 'lt">
-            when new.${value_name} < ${value }
-        </if>
-        <if test="relation == 'ge">
-            when new.${value_name} >= ${value }
-        </if>
-        <if test="relation == 'le">
-            when new.${value_name} <= ${value }
-        </if>
-
-        insert into event (trigger_id,createTime) values (${trigger_name},new.time)
+        if NEW.${value_name} > ${le_value } and NEW.${value_name} &lt; ${ge_value } then
+         insert into event (trigger_name,create_time,grade,event_desc) values (${trigger_name},CURRENT_TIMESTAMP(),${grade},${desc});
+        end if;
         end;
     </insert>
+    <!--
+    CREATE TRIGGER test_water AFTER INSERT ON msg_water_level FOR EACH ROW
+    BEGIN
+        IF NEW.value <300	AND NEW.value >200 then
+            insert into `event` ( trigger_id, createTime, grade, event_desc) VALUES (4,CURRENT_TIMESTAMP(),1,'水位过高');
+        END IF;
+    END
 
+    -->
     <update id="replaceTrigger">
 
     </update>

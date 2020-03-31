@@ -66,16 +66,16 @@
             <!-- /.card -->
         </div>
         <!-- /.col -->
-        <div id="id"
-             style="width:300px;height:360px;border:2px solid grey; position:fixed;padding:10px;background-color:#f3f3f3;text-align:center;">
+        <!--<div id="id"
+             style="width:1000px;height:600px;border:2px solid grey; position:fixed;padding:10px;background-color:#f3f3f3;text-align:center;">
             <div id="header-right_create" style="margin-right:0px;padding:0;"><img src="1.png" alt=""
                                                                                    style="width:25px;height:25px;margin-left:260px;">
             </div>
             <br>
             <div><h2>触发器</h2></div>
-            <div class="col-md-2">
+            <div class="col-md-2" th:width="100px">
                 触发器名称：<input class="form-control" type="text" placeholder="触发器名称" id="create_triggerName"
-                             name="create_triggerName">
+                             name="create_triggerName" width="100px">
             </div>
             <div class="col-md-2">
                 触发器级别：
@@ -91,17 +91,12 @@
             <div class="col-md-2">
                 触发设备：
                 <select class="custom-select" type="text" placeholder="设备" id="create_equip" name="create_equip">
-                   <!-- <option value="">水位传感器</option>
-                    <option value="water_level">角度传感器</option>
-                    <option value="angle">倾斜传感器</option>
-                    <option value="vibration">垂直传感器</option>
-                    <option value="weather_general">天气传感器</option>
-                    <option value="weather_rainfall">降雨量传感器</option>
-                    <option value="weather_visibility">可视度传感器</option>-->
                 </select>
             </div>
             <div class="col-md-2">
-                触发数据项：<input class="form-control" type="text" placeholder="数据项" id="create_data" name="create_data">
+                触发数据项：
+                <select class="custom-select" type="text" placeholder="数据项" id="create_data" name="create_data">
+                </select>
             </div>
             <div>
                 触发值区域：<input class="form-control" type="text" placeholder="较小值" id="le_calue" name="le_value">
@@ -118,7 +113,71 @@
                         class="fa fa-search"></i>删除
                 </button>
             </div>
+        </div>-->
+
+
+        <div class="popup"
+             style="width:500px;height:400px ;background-color:#f3f3f3;border:2px solid #dadde2;margin-left:260px;position:relative" id="id">
+
+            <div class="popup-head">
+                <!-- 标题 -->
+                <div class="popup-head title" style="text-align:center;margin-top:-20px">
+                    <h2>触发器</h2>
+                </div>
+
+            </div>
+
+            <div class="popup-body" style="margin-left:35px;width:90%;padding:0px;">
+                <div class="popup-body main">
+                    <ul class="popup-body list" style="list-style:none">
+                        <li style="margin-top:6px;">触发器名称 : <input class="" type="text" placeholder="触发器名称" id="create_triggerName"
+                                   name="create_triggerName" style="width:190px;height:30px"></li>
+                        <li style="margin-top:6px;">
+                            触发器级别 : <select class=" " type="text" placeholder="触发器级别" id="create_grade"
+                                    name="create_grade" style="width:190px;height:30px">
+                                <option value="0">未分类</option>
+                                <option value="1">信息</option>
+                                <option value="2">一般</option>
+                                <option value="3">警告</option>
+                                <option value="4">严重</option>
+                                <option value="5">灾难</option>
+                            </select>
+                        </li>
+                        <li style="margin-top:6px;">
+                            触 发 设 备 : <select class="" type="text" placeholder="设备" id="create_equip"
+                                    name="create_equip" style="width:190px;height:30px">
+                            </select>
+
+                        </li>
+                        <li style="margin-top:6px;">
+                            触发数据项 : <select class="" type="text" placeholder="设备" id="create_data"
+                                    name="create_data" style="width:190px;height:30px">
+                            </select>
+                        </li>
+                        <li style="margin-top:6px;">
+                            触发值区域 : <input class="" type="text" placeholder="较小值" id="le_calue" name="le_value"
+                                   style="width:190px;height:30px"><br>
+                            <input class="form-control" type="text" placeholder="较大值" id="ge_calue" name="ge_value"
+                                   style="width:190px;height:30px;margin-left:93px;margin-top:6px">
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="popup-foot" style="margin-left:180px;margin-top:10px">
+                <button type="button" class="btn btn-danger col-md-3" onclick="addTrigger()"
+                        style="width:80px;height:30px"><i
+                        class="fa fa-undo"></i>添加
+                </button>
+                <button type="button" class="btn btn-primary col-md-3" onclick="cancelTrigger()"
+                        style="width:80px;height:30px"><i
+                        class="fa fa-search"></i>删除
+                </button>
+            </div>
+
+
         </div>
+
     </section>
     <!-- /.content -->
 </div>

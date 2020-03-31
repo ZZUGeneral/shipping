@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -43,10 +44,10 @@ public class TriggerController {
      **/
     @ApiOperation(value = "添加新的告警")
     @ApiImplicitParam(name = "告警实体", required = true)
-    @RequestMapping("/createTrigger")
+    @PostMapping("/createTrigger")
     @ResponseBody
-    public R createTrigger(@RequestParam Trigger trigger) {
-        int result = this.triggerService.createTrigger(trigger);
+    public R createTrigger(@RequestParam Trigger trigger, @RequestParam float le_value, @RequestParam float ge_value) {
+        int result = this.triggerService.createTrigger(trigger,le_value,ge_value);
         if (result == 0) {
             return R.failed("添加新的告警失败!");
         }

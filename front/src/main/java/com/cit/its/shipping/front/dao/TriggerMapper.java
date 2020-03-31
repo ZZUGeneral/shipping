@@ -12,9 +12,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TriggerMapper extends BaseMapper<Trigger> {
-    int createTrigger(String trigger_name, String equip,String val_name, String relation, int value);
+    int createTrigger(String trigger_name, String equip, String val_name, float le_value, float ge_value, String desc);
 
-    int replaceTrigger(String trigger_name, String equip,String val_name, String relation, int value);
+    int replaceTrigger(String trigger_name, String equip, String val_name, String relation, int value);
 
     int dropTrigger(String trigger_name);
 }

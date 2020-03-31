@@ -16,16 +16,16 @@ import java.sql.Timestamp;
 @Data
 public class Event {
     @TableId(type = IdType.AUTO)
-    private long event_id;
+    private long eventId;
 
-    private int trigger_id;
+    private int triggerNamw;
 
     private int grade;
 
     private Timestamp creaeteTime;
 
-    private long deal_no;
+    private long dealNo;
 
-    private String desc;
+    private String eventDesc;
 
 }

@@ -30,9 +30,8 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
     TriggerMapper triggerMapper;
 
     @Override
-    public int createTrigger(Trigger trigger) {
-        int rs = triggerMapper.createTrigger(trigger.getTrigger_name(), trigger.getEquip(), trigger.getData(), trigger.getRelation(), trigger.getValue());
-
+    public int createTrigger(Trigger trigger, float le_value, float ge_value) {
+        int rs = triggerMapper.createTrigger(trigger.getTrigger_name(), trigger.getEquip(), trigger.getData(), le_value, ge_value, trigger.getDesc());
         return rs;
     }
 

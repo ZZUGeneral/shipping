@@ -92,6 +92,27 @@ function initDataTable() {
 }
 
 function addTrigger() {
+    $.ajax({
+        "url": context + '/trigger/createTrigger',
+        "dataType": "json",
+        "type": "POST",
+        "data": function (data) {
+            data.name = $('#create_triggerName').val();
+            data.grade = $('#create_grade').val();
+            data.equip = $('#create_equip').val();
+            data.data = $('#create_data').val();
+            data.le_value = $('#le_value').val();
+            data.ge_value = $('#ge_value').val();
+        },
+        success: function chegong(data) {
+            alert("添加触发器成功！");
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(XMLHttpRequest.status);
+            alert(XMLHttpRequest.readyState);
+            alert(textStatus);
+        }
+    });
 
 }
 
@@ -107,24 +128,26 @@ function sensor() {
         dataType: "json",
         success: function (data) {
             console.log(data);
-            if (data.statusCode == 100) {
+            console.log(data.length);
+            if (data.length > 0) {
                 var options = "<option>--请选择传感器--</option>";
-                for (var i = 0; i < data.data.length; i++) {
-                    options += "<option value='" + data.data[i].sensor + "'>" + data.data[i].name + "</option>";
+                for (var i = 0; i < data.length; i++) {
+                    options += "<option value='" + data[i].sensor + "'>" + data[i].name + "</option>";
                 }
                 $("#create_equip").html(options);
                 var create_data_options = "<option>--请选择传感器数据项--</option>";
                 //活动名称下拉选改变事件：
-                $(".create_equip").change(function () {
+                $("#create_equip").change(function () {
                     var selectedIndex = $(this).get(0).selectedIndex;
                     if (selectedIndex == 0) {
                         console.log("没有进行选择");
-                        $(".create_data").html(create_data_options);
                     } else {
-                        var trigger_data = data.data[selectedIndex].trigger_data;
+                        var trigger_data = data[selectedIndex].trigger_data;
                         for (var i = 0; i < trigger_data.length; i++) {
-                            create_data_options += "<option value='" + trigger[i] + "'>" + trigger_data[i] + "</option>";
+                            create_data_options += "<option value='" + trigger_data[i] + "'>" + trigger_data[i] + "</option>";
                         }
+                        console.log(create_data_options);
+                        $("#create_data").html(create_data_options);
                     }
                 });
             } else {
