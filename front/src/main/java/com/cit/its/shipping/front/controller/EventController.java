@@ -4,7 +4,7 @@ package com.cit.its.shipping.front.controller;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.cit.its.shipping.front.entity.Event;
 import com.cit.its.shipping.front.service.EventService;
-import com.cit.its.shipping.front.vo.EventDetailVO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -27,30 +26,23 @@ import java.util.List;
 @Controller
 @Slf4j
 @RequestMapping("/event")
+@Api(value = "事件处理controller", tags = "事件处理接口")
 public class EventController {
     @Autowired
     EventService eventService;
 
-    @ApiOperation(value = "触发事件详情列表", notes = "根据不同的判断条件(事件名称,等级,设备名,数据项,开始时间,结束时间,页数)筛选出事件列表")
+    @ApiOperation(value = "触发事件详情列表", notes = "根据不同的判断条件(等级,开始时间,结束时间,页数)筛选出事件列表")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "event_name", value = "事件名字", dataType = "String", required = false),
             @ApiImplicitParam(name = "grade", value = "告警级别", dataType = "int", required = false),
-            @ApiImplicitParam(name = "equip", value = "告警设备", dataType = "String", required = false),
-            @ApiImplicitParam(name = "data", value = "告警数据项", dataType = "String", required = false),
-            @ApiImplicitParam(name = "beginTimeStr", value = "事件触发时间范围起始时间", dataType = "String", required = false),
-            @ApiImplicitParam(name = "endTimeStr", value = "事件触发时间范围结束时间", dataType = "String", required = false),
-            @ApiImplicitParam(name = "page", value = "页数", dataType = "String", required = true)
+            @ApiImplicitParam(name = "beginDateStr", value = "事件触发时间范围起始时间", dataType = "String", required = false),
+            @ApiImplicitParam(name = "endDateStr", value = "事件触发时间范围结束时间", dataType = "String", required = false),
+            @ApiImplicitParam(name = "page", value = "页数", dataType = "Integer", required = true),
+            @ApiImplicitParam(name = "size", value = "数据项数", dataType = "Integer", required = true)
     })
     @RequestMapping("/selectDetailByFactors")
     @ResponseBody
-    public R selectDetailByFactors(@RequestParam String event_name, @RequestParam int grade, @RequestParam String equip, @RequestParam String data, @RequestParam String beginTimeStr, @RequestParam String endTimeStr, @RequestParam int page) {
-        if (beginTimeStr != null && endTimeStr == null) {
-            endTimeStr = Long.toString(System.currentTimeMillis());
-        }
-        if (beginTimeStr == null && endTimeStr != null) {
-            beginTimeStr = Long.toString(0);
-        }
-        List<EventDetailVO> detailList = this.eventService.selectDetailByFactors(event_name, grade, equip, data, beginTimeStr, endTimeStr, page);
+    public R selectDetailByFactors(@RequestParam int grade, @RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+        List<Event> detailList = this.eventService.eventPageData(beginDateStr, endDateStr, grade, page, size);
         return R.ok(detailList);
     }
 

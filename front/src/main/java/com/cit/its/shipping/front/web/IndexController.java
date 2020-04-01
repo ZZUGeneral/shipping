@@ -94,7 +94,7 @@ public class IndexController {
     }
 
     @PostMapping("/event/pageData")
-    public Result eventPageData(@RequestParam Date beginTime, @RequestParam Date endTime, @RequestParam int grade, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    public Result eventPageData(@RequestParam String beginTime, @RequestParam String endTime, @RequestParam int grade, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         List<Event> eventList = this.eventService.eventPageData(beginTime,endTime,grade,page,size);
         return Result.success(eventList);
     }
