@@ -66,56 +66,6 @@
             <!-- /.card -->
         </div>
         <!-- /.col -->
-        <!--<div id="id"
-             style="width:1000px;height:600px;border:2px solid grey; position:fixed;padding:10px;background-color:#f3f3f3;text-align:center;">
-            <div id="header-right_create" style="margin-right:0px;padding:0;"><img src="1.png" alt=""
-                                                                                   style="width:25px;height:25px;margin-left:260px;">
-            </div>
-            <br>
-            <div><h2>触发器</h2></div>
-            <div class="col-md-2" th:width="100px">
-                触发器名称：<input class="form-control" type="text" placeholder="触发器名称" id="create_triggerName"
-                             name="create_triggerName" width="100px">
-            </div>
-            <div class="col-md-2">
-                触发器级别：
-                <select class="custom-select" type="text" placeholder="触发器级别" id="create_grade" name="create_grade">
-                    <option value="0">未分类</option>
-                    <option value="1">信息</option>
-                    <option value="2">一般</option>
-                    <option value="3">警告</option>
-                    <option value="4">严重</option>
-                    <option value="5">灾难</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                触发设备：
-                <select class="custom-select" type="text" placeholder="设备" id="create_equip" name="create_equip">
-                </select>
-            </div>
-            <div class="col-md-2">
-                触发数据项：
-                <select class="custom-select" type="text" placeholder="数据项" id="create_data" name="create_data">
-                </select>
-            </div>
-            <div>
-                触发值区域：<input class="form-control" type="text" placeholder="较小值" id="le_calue" name="le_value">
-                <input class="form-control" type="text" placeholder="较大值" id="ge_calue" name="ge_value">
-
-            </div>
-            <br>
-            <br>
-            <div class="col-md-2 ml-5">
-                <button type="button" class="btn btn-danger col-md-3" onclick="addTrigger()"><i
-                        class="fa fa-undo"></i>添加
-                </button>
-                <button type="button" class="btn btn-primary col-md-3" onclick="cancelTrigger()"><i
-                        class="fa fa-search"></i>删除
-                </button>
-            </div>
-        </div>-->
-
-
         <div class="popup"
              style="width:500px;height:400px ;background-color:#f3f3f3;border:2px solid #dadde2;margin-left:260px;position:relative" id="id">
 
@@ -155,10 +105,14 @@
                             </select>
                         </li>
                         <li style="margin-top:6px;">
-                            触发值区域 : <input class="" type="text" placeholder="较小值" id="le_calue" name="le_value"
+                            触发值区域 : <input class="" type="text" placeholder="较小值" id="le_value" name="le_value"
                                    style="width:190px;height:30px"><br>
-                            <input class="form-control" type="text" placeholder="较大值" id="ge_calue" name="ge_value"
+                            <input class="form-control" type="text" placeholder="较大值" id="ge_value" name="ge_value"
                                    style="width:190px;height:30px;margin-left:93px;margin-top:6px">
+                        </li>
+                        <li style="margin-top:6px;">
+                            触发值区域 : <input class="" type="text" placeholder="描述" id="create_desc" name="create_desc"
+                                           style="width:190px;height:30px"><br>
                         </li>
                     </ul>
                 </div>

@@ -53,15 +53,26 @@ function initDataTable() {
             {
                 "data": "grade",
                 "render": function (data, type, full, meta) {
-                    if (data == "1") return '<span class="badge badge-danger">一级</span>';
-                    if (data == "2") return '<span class="badge badge-success">二级</span>';
-                    if (data == "3") return '<span class="badge badge-success">三级</span>';
+                    if (data == "0") return '<span class="badge badge-danger">未分类</span>';
+                    if (data == "1") return '<span class="badge badge-success">信息</span>';
+                    if (data == "2") return '<span class="badge badge-success">一般</span>';
+                    if (data == "3") return '<span class="badge badge-success">警告</span>';
+                    if (data == "4") return '<span class="badge badge-success">严重</span>';
+                    if (data == "5") return '<span class="badge badge-success">灾难</span>';
 
                 },
                 "className": "text-center"
             },
             {"data": "desc"},
-            {"data": "deal_no"}
+            {
+                "data": function (data, type, full, meta) {
+                    if (data != null) {
+                        return '<span class="badge badge-danger">' + data + '</span>';
+                    }else{
+                        return '<input class="form-control" type="date" placeholder="未分配处理人" id="" name="">'
+                    }
+                }
+            }
         ],
         language: {
             "url": context + "/plugins/dataTable/datatables_language.json"

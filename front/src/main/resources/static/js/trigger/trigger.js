@@ -71,10 +71,12 @@ function initDataTable() {
             {
                 "data": "grade",
                 "render": function (data, type, full, meta) {
-                    if (data == "1") return '<span class="badge badge-danger">一级</span>';
-                    if (data == "2") return '<span class="badge badge-success">二级</span>';
-                    if (data == "3") return '<span class="badge badge-success">三级</span>';
-
+                    if (data == "0") return '<span class="badge badge-success">未分类</span>';
+                    if (data == "1") return '<span class="badge badge-danger">信息</span>';
+                    if (data == "2") return '<span class="badge badge-success">一般</span>';
+                    if (data == "3") return '<span class="badge badge-success">警告</span>';
+                    if (data == "4") return '<span class="badge badge-success">严重</span>';
+                    if (data == "5") return '<span class="badge badge-success">灾难</span>';
                 },
                 "className": "text-center"
             },
@@ -97,12 +99,16 @@ function addTrigger() {
         "dataType": "json",
         "type": "POST",
         "data": function (data) {
-            data.name = $('#create_triggerName').val();
+            data.triggerName = $('#create_triggerName').val();
+            alert(data.triggerName);
             data.grade = $('#create_grade').val();
             data.equip = $('#create_equip').val();
             data.data = $('#create_data').val();
-            data.le_value = $('#le_value').val();
-            data.ge_value = $('#ge_value').val();
+            data.leValue = $('#le_value').val();
+            data.geValue = $('#ge_value').val();
+            data.desc = $('#create_desc').val();
+            alert(data);
+            console.log(data);
         },
         success: function chegong(data) {
             alert("添加触发器成功！");
@@ -135,18 +141,20 @@ function sensor() {
                     options += "<option value='" + data[i].sensor + "'>" + data[i].name + "</option>";
                 }
                 $("#create_equip").html(options);
-                var create_data_options = "<option>--请选择传感器数据项--</option>";
                 //活动名称下拉选改变事件：
                 $("#create_equip").change(function () {
+                    var create_data_options = "<option>--请选择传感器数据项--</option>";
                     var selectedIndex = $(this).get(0).selectedIndex;
                     if (selectedIndex == 0) {
                         console.log("没有进行选择");
                     } else {
-                        var trigger_data = data[selectedIndex].trigger_data;
+                        // console.log(selectedIndex);
+                        var trigger_data = data[selectedIndex - 1].trigger_data;
+                        // console.log(trigger_data);
                         for (var i = 0; i < trigger_data.length; i++) {
                             create_data_options += "<option value='" + trigger_data[i] + "'>" + trigger_data[i] + "</option>";
                         }
-                        console.log(create_data_options);
+                        //  console.log(create_data_options);
                         $("#create_data").html(create_data_options);
                     }
                 });

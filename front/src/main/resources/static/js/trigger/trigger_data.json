@@ -1,13 +1,13 @@
 [
   {
-    "sensor": "angle",
+    "sensor": "msg_angle",
     "name": "角度传感器",
     "trigger_data": [
       "value"
     ]
   },
   {
-    "sensor": "tilt",
+    "sensor": "msg_tilt",
     "name": "倾斜传感器",
     "trigger_data": [
       "val1X",
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "sensor": "vbration",
+    "sensor": "msg_vibration",
     "name": "垂直传感器",
     "trigger_data": [
       "valueH",
@@ -25,14 +25,14 @@
     ]
   },
   {
-    "sensor": "water_level",
+    "sensor": "msg_water_level",
     "name": "水位传感器",
     "trigger_data": [
       "value"
     ]
   },
   {
-    "sensor": "weather_general",
+    "sensor": "msg_weather_general",
     "name": "天气传感器",
     "trigger_data": [
       "temperature",
@@ -43,14 +43,14 @@
     ]
   },
   {
-    "sensor": "weather_rainfall",
+    "sensor": "msg_weather_rainfall",
     "name": "降雨量传感器",
     "trigger_data": [
       "value"
     ]
   },
   {
-    "sensor": "weather_visibility",
+    "sensor": "msg_weather_visibility",
     "name": "可视度传感器",
     "trigger_data": [
       "value"

@@ -37,7 +37,6 @@ import java.util.List;
 @Controller
 @Slf4j
 @RequestMapping("/export")
-@ApiIgnore
 public class OutputController {
     @Autowired
     private OutPutService outPutService;

@@ -12,10 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
@@ -26,10 +23,8 @@ import java.util.List;
  * @create 2019-12-02 9:35
  * @description: 告警
  */
-@Controller
+@RestController
 @Slf4j
-@RequestMapping("/trigger")
-@ApiIgnore
 public class TriggerController {
     @Autowired
     private TriggerService triggerService;
@@ -44,9 +39,10 @@ public class TriggerController {
      **/
     @ApiOperation(value = "添加新的告警")
     @ApiImplicitParam(name = "告警实体", required = true)
-    @PostMapping("/createTrigger")
+    @PostMapping("trigger/createTrigger")
     @ResponseBody
-    public R createTrigger(@RequestParam Trigger trigger) {
+    public R createTrigger(Trigger trigger) {
+        System.out.println(trigger);
         int result = this.triggerService.createTrigger(trigger);
         if (result == 0) {
             return R.failed("添加新的告警失败!");

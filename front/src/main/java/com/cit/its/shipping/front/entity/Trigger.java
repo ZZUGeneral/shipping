@@ -46,11 +46,11 @@ public class Trigger {
     //阈值
     @ApiModelProperty("触发数据项较小值")
     @TableField("le_value")
-    private int le_value;
+    private int leValue;
 
     @ApiModelProperty("触发器数据项较大值")
     @TableField("ge_value")
-    private int ge_value;
+    private int geValue;
     //创建时间
     @ApiModelProperty("触发器创建时间")
     @TableField("create_time")

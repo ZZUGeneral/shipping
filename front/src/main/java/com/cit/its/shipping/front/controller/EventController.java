@@ -24,7 +24,6 @@ import java.util.List;
  * @create 2019-12-02 14:19
  * @description: 触发事件的处理
  */
-@ApiIgnore
 @Controller
 @Slf4j
 @RequestMapping("/event")
