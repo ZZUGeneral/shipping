@@ -67,7 +67,8 @@
         </div>
         <!-- /.col -->
         <div class="popup"
-             style="width:500px;height:400px ;background-color:#f3f3f3;border:2px solid #dadde2;margin-left:260px;position:relative" id="id">
+             style="width:500px;height:400px ;background-color:#f3f3f3;border:2px solid #dadde2;margin-left:260px;position:relative"
+             id="id">
 
             <div class="popup-head">
                 <!-- 标题 -->
@@ -80,38 +81,40 @@
             <div class="popup-body" style="margin-left:35px;width:90%;padding:0px;">
                 <div class="popup-body main">
                     <ul class="popup-body list" style="list-style:none">
-                        <li style="margin-top:6px;">触发器名称 : <input class="" type="text" placeholder="触发器名称" id="create_triggerName"
-                                   name="create_triggerName" style="width:190px;height:30px"></li>
+                        <li style="margin-top:6px;">触发器名称 : <input class="" type="text" placeholder="触发器名称"
+                                                                   id="creatTriggerName"
+                                                                   name="createTriggerName"
+                                                                   style="width:190px;height:30px"></li>
                         <li style="margin-top:6px;">
-                            触发器级别 : <select class=" " type="text" placeholder="触发器级别" id="create_grade"
-                                    name="create_grade" style="width:190px;height:30px">
-                                <option value="0">未分类</option>
-                                <option value="1">信息</option>
-                                <option value="2">一般</option>
-                                <option value="3">警告</option>
-                                <option value="4">严重</option>
-                                <option value="5">灾难</option>
-                            </select>
+                            触发器级别 : <select class=" " type="text" placeholder="触发器级别" id="createGrade"
+                                            name="createGrade" style="width:190px;height:30px">
+                            <option value="0">未分类</option>
+                            <option value="1">信息</option>
+                            <option value="2">一般</option>
+                            <option value="3">警告</option>
+                            <option value="4">严重</option>
+                            <option value="5">灾难</option>
+                        </select>
                         </li>
                         <li style="margin-top:6px;">
-                            触 发 设 备 : <select class="" type="text" placeholder="设备" id="create_equip"
-                                    name="create_equip" style="width:190px;height:30px">
-                            </select>
+                            触 发 设 备 : <select class="" type="text" placeholder="设备" id="createEquip"
+                                              name="createEquip" style="width:190px;height:30px">
+                        </select>
 
                         </li>
                         <li style="margin-top:6px;">
-                            触发数据项 : <select class="" type="text" placeholder="设备" id="create_data"
-                                    name="create_data" style="width:190px;height:30px">
-                            </select>
+                            触发数据项 : <select class="" type="text" placeholder="设备" id="createData"
+                                            name="createData" style="width:190px;height:30px">
+                        </select>
                         </li>
                         <li style="margin-top:6px;">
-                            触发值区域 : <input class="" type="text" placeholder="较小值" id="le_value" name="le_value"
-                                   style="width:190px;height:30px"><br>
-                            <input class="form-control" type="text" placeholder="较大值" id="ge_value" name="ge_value"
+                            触发值区域 : <input class="" type="text" placeholder="较小值" id="leValue" name="leValue"
+                                           style="width:190px;height:30px"><br>
+                            <input class="form-control" type="text" placeholder="较大值" id="geValue" name="geValue"
                                    style="width:190px;height:30px;margin-left:93px;margin-top:6px">
                         </li>
                         <li style="margin-top:6px;">
-                            触发值区域 : <input class="" type="text" placeholder="描述" id="create_desc" name="create_desc"
+                            触发值区域 : <input class="" type="text" placeholder="描述" id="createDesc" name="createDesc"
                                            style="width:190px;height:30px"><br>
                         </li>
                     </ul>

@@ -99,14 +99,14 @@ function addTrigger() {
         "dataType": "json",
         "type": "POST",
         "data": function (data) {
-            data.triggerName = $('#create_triggerName').val();
+            data.triggerName = $('#createTriggerName').val();
             alert(data.triggerName);
-            data.grade = $('#create_grade').val();
-            data.equip = $('#create_equip').val();
-            data.data = $('#create_data').val();
-            data.leValue = $('#le_value').val();
-            data.geValue = $('#ge_value').val();
-            data.desc = $('#create_desc').val();
+            data.grade = $('#createGrade').val();
+            data.equip = $('#createEquip').val();
+            data.data = $('#createData').val();
+            data.leValue = $('#leValue').val();
+            data.geValue = $('#geValue').val();
+            data.desc = $('#createDesc').val();
             alert(data);
             console.log(data);
         },
