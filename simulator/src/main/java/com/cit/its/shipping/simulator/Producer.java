@@ -16,10 +16,10 @@ public class Producer {
     public static void main(String[] args) {
 
         waterLevel();
-//        tilt();
-//        angle();
-//        vibration();
-//        weather();
+        tilt();
+        angle();
+        vibration();
+        weather();
     }
 
 

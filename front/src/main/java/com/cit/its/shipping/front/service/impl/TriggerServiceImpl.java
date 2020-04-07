@@ -31,6 +31,9 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
 
     @Override
     public int createTrigger(Trigger trigger) {
+        if (ObjectUtil.isNull(trigger)){
+            return 0;
+        }
         int rs = triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getGrade().getValue(), trigger.getLeValue(), trigger.getGeValue(), trigger.getDesc());
         if (rs == 0) {
             return 0;

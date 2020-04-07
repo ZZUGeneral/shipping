@@ -41,7 +41,7 @@ public class MyMqttCallback implements MqttCallback {
         } else {
             template.convertAndSend("/realtime/" + topic, jsonContent);
         }
-//        log.info("mqtt 接收到新消息 ---->  topic : {} ------> content : {}",topic, jsonContent);
+        log.info("mqtt 接收到新消息 ---->  topic : {} ------> content : {}",topic, jsonContent);
     }
 
     @Override

@@ -48,7 +48,7 @@ public class Event {
     private long dealNo;
 
     @ApiModelProperty("事件描述")
-    @TableField("event_des")
+    @TableField("event_desc")
     private String eventDesc;
 
 }

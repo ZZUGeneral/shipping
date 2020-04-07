@@ -12,6 +12,7 @@ import com.cit.its.shipping.front.dao.EventMapper;
 import com.cit.its.shipping.front.entity.Event;
 import com.cit.its.shipping.front.entity.WaterLevel;
 import com.cit.its.shipping.front.service.EventService;
+import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,25 +35,21 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
     @Override
     public List<Event> eventPageData(String beginDateTime, String endDateTime, int grade, Integer currentPage, Integer size) {
         Page page = new Page(currentPage, size);
-        LocalDateTime beginTime = LocalDateTime.parse(beginDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LocalDateTime endTime = LocalDateTime.parse(endDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LambdaQueryWrapper<Event> wrapper = queryCondition(grade, beginTime, endTime);
+        LambdaQueryWrapper<Event> wrapper = Wrappers.lambdaQuery();
+        if (StrUtil.isNotEmpty(beginDateTime)) {
+            LocalDateTime beginTime = LocalDateTime.parse(beginDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            wrapper.ge(Event::getCreaeteTime, beginTime);
+        }
+        if (StrUtil.isNotEmpty(endDateTime)) {
+            LocalDateTime endTime = LocalDateTime.parse(endDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            wrapper.ge(Event::getCreaeteTime, endTime);
+        }
+        if (grade == 0) {
+            wrapper.eq(Event::getGrade, grade);
+        }
         wrapper.orderByAsc(Event::getCreaeteTime);
         IPage<Event> iPage = eventMapper.selectPage(page, wrapper);
         return iPage.getRecords();
     }
 
-    private LambdaQueryWrapper queryCondition(int grade, LocalDateTime beginDateTime, LocalDateTime endDateTime) {
-        LambdaQueryWrapper<Event> wrapper = Wrappers.lambdaQuery();
-        if (grade == 0) {
-            wrapper.eq(Event::getGrade, grade);
-        }
-        if (beginDateTime != null) {
-            wrapper.ge(Event::getCreaeteTime, beginDateTime.toEpochSecond(ZoneOffset.of("+8")));
-        }
-        if (endDateTime != null) {
-            wrapper.le(Event::getCreaeteTime, endDateTime.toEpochSecond(ZoneOffset.of("+8")));
-        }
-        return wrapper;
-    }
 }
