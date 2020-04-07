@@ -33,7 +33,7 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
     EventMapper eventMapper;
 
     @Override
-    public List<Event> eventPageData(String beginDateTime, String endDateTime, int grade, Integer currentPage, Integer size) {
+    public IPage<Event> eventPageData(String beginDateTime, String endDateTime, int grade, Integer currentPage, Integer size) {
         Page page = new Page(currentPage, size);
         LambdaQueryWrapper<Event> wrapper = Wrappers.lambdaQuery();
         if (StrUtil.isNotEmpty(beginDateTime)) {
@@ -49,7 +49,7 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
         }
         wrapper.orderByAsc(Event::getCreaeteTime);
         IPage<Event> iPage = eventMapper.selectPage(page, wrapper);
-        return iPage.getRecords();
+        return iPage;
     }
 
 }

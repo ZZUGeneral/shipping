@@ -31,14 +31,11 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
 
     @Override
     public int createTrigger(Trigger trigger) {
-        if (ObjectUtil.isNull(trigger)){
+        if (ObjectUtil.isNull(trigger)) {
             return 0;
         }
-        int rs = triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getGrade().getValue(), trigger.getLeValue(), trigger.getGeValue(), trigger.getDesc());
-        if (rs == 0) {
-            return 0;
-        }
-        return rs;
+        triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getGrade().getValue(), trigger.getLeValue(), trigger.getGeValue(), trigger.getDesc());
+        return 1;
     }
 
     @Override
@@ -47,12 +44,14 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
     }
 
     @Override
-    public int dropTrigger(int trigger_id) {
+    public int dropTrigger(int triggerId) {
+        String triggerName = triggerMapper.selectById(triggerId).getTriggerName();
+        triggerMapper.dropTrigger(triggerName);
         return 0;
     }
 
     @Override
-    public List<Trigger> triggerPageData(Trigger trigger, int currentPage, int size) {
+    public IPage<Trigger> triggerPageData(Trigger trigger, int currentPage, int size) {
         Page page = new Page(currentPage, size);
         QueryWrapper<Trigger> queryWrapper = new QueryWrapper<>();
         if (StrUtil.isNotEmpty(trigger.getTriggerName())) {
@@ -69,6 +68,6 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
         }
         queryWrapper.orderByAsc("grade", "trigger_name");
         IPage<Trigger> iPage = triggerMapper.selectPage(page, queryWrapper);
-        return iPage.getRecords();
+        return iPage;
     }
 }

@@ -1,5 +1,6 @@
 package com.cit.its.shipping.front.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cit.its.shipping.front.entity.Event;
 
@@ -14,5 +15,5 @@ import java.util.List;
  */
 public interface EventService extends IService<Event> {
 
-    List<Event> eventPageData(String beginDateTime, String endDateTime, int grade, Integer currentPage, Integer size);
+    IPage<Event> eventPageData(String beginDateTime, String endDateTime, int grade, Integer currentPage, Integer size);
 }
