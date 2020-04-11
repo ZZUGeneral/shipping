@@ -101,7 +101,6 @@ function addTrigger() {
         "type": "POST",
         "data": function (data) {
             data = {
-                triggerId: 0,
                 triggerNmae: $('#createTriggerName').val(),
                 grade: $('#createGrade').val(),
                 equip: $('#createEquip').val(),

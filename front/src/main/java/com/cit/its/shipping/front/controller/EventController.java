@@ -31,7 +31,7 @@ public class EventController {
     @Autowired
     EventService eventService;
 
-    @ApiOperation(value = "触发事件详情列表", notes = "根据不同的判断条件(等级,开始时间,结束时间,页数)筛选出事件列表")
+    /*@ApiOperation(value = "触发事件详情列表", notes = "根据不同的判断条件(等级,开始时间,结束时间,页数)筛选出事件列表")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "grade", value = "告警级别", dataType = "int", required = false),
             @ApiImplicitParam(name = "beginDateStr", value = "事件触发时间范围起始时间", dataType = "String", required = false),
@@ -44,7 +44,7 @@ public class EventController {
     public R selectDetailByFactors(@RequestParam int grade, @RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         List<Event> detailList = this.eventService.eventPageData(beginDateStr, endDateStr, grade, page, size);
         return R.ok(detailList);
-    }
+    }*/
 
     @ApiOperation(value = "分配人员处理事件", notes = "根据事件ID分配人员(编号)处理事件")
     @ApiImplicitParams({

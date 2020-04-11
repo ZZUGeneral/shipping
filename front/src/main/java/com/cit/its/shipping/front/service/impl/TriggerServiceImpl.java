@@ -34,8 +34,14 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
         if (ObjectUtil.isNull(trigger)) {
             return 0;
         }
-        triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getGrade().getValue(), trigger.getLeValue(), trigger.getGeValue(), trigger.getDesc());
-        return 1;
+        try {
+            triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getGrade().getValue(), trigger.getLeValue(), trigger.getGeValue(), trigger.getDesc());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+        int rs = triggerMapper.insert(trigger);
+        return rs;
     }
 
     @Override
@@ -47,7 +53,8 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
     public int dropTrigger(int triggerId) {
         String triggerName = triggerMapper.selectById(triggerId).getTriggerName();
         triggerMapper.dropTrigger(triggerName);
-        return 0;
+        int rs = triggerMapper.deleteById(triggerId);
+        return rs;
     }
 
     @Override
