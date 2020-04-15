@@ -138,105 +138,105 @@ public class IndexController {
 //        return Result.success(dataMap);
 //    }
 
-    @PostMapping("history/tilt")
-    public Result historyTiltData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
-        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        List<Tilt> tiltList = tiltService.tiltHistory(null, beginDateTime, endDateTime);
-//        tiltList = tiltList.subList(0, 1000);
-        Map<String, List<Tilt>> tiltMap = tiltList.stream().collect(Collectors.groupingBy(Tilt::getTopic));
-        TiltStatisticsDto x1TiltStatisticsDto = tiltService.x1TiltStatistics(null, beginDateTime, endDateTime);
-        TiltStatisticsDto y1TiltStatisticsDto = tiltService.y1TiltStatistics(null, beginDateTime, endDateTime);
-        TiltStatisticsDto x2TiltStatisticsDto = tiltService.x2TiltStatistics(null, beginDateTime, endDateTime);
-        TiltStatisticsDto y2TiltStatisticsDto = tiltService.y2TiltStatistics(null, beginDateTime, endDateTime);
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("tilt", tiltMap);
-        dataMap.put("sta_x1", x1TiltStatisticsDto);
-        dataMap.put("sta_y1", y1TiltStatisticsDto);
-        dataMap.put("sta_x2", x2TiltStatisticsDto);
-        dataMap.put("sta_y2", y2TiltStatisticsDto);
-        return Result.success(dataMap);
-    }
-
-    @PostMapping("history/vibration")
-    public Result historyVibrationData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
-        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        List<Vibration> vibrationList = vibrationService.vibrationHistory(null, beginDateTime, endDateTime);
-//        vibrationList = vibrationList.subList(0, 1000);
-        System.out.println(vibrationList.toString());
-        Map<String, List<Vibration>> vibrationMap = vibrationList.stream().collect(Collectors.groupingBy(Vibration::getTopic));
-        VibrationStatisticsDto vVibrationStatisticsDto = vibrationService.vVibrationStatistics(null, beginDateTime, endDateTime);
-        VibrationStatisticsDto hVibrationStatisticsDto = vibrationService.hVibrationStatistics(null, beginDateTime, endDateTime);
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("vibration", vibrationMap);
-        dataMap.put("sta_v", vVibrationStatisticsDto);
-        dataMap.put("sta_h", hVibrationStatisticsDto);
-        return Result.success(dataMap);
-    }
-
-    @PostMapping("history/angle")
-    public Result historyAngleData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
-        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        List<Angle> angleList = angleService.angleHistory(null, beginDateTime, endDateTime);
-//        angleList = angleList.subList(0, 1000);
-        Map<String, List<Angle>> angleMap = angleList.stream().collect(Collectors.groupingBy(Angle::getTopic));
-        AngleStatisticsDto angleStatisticsDto = angleService.angleStatistics(null, beginDateTime, endDateTime);
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("angle", angleMap);
-        dataMap.put("sta", angleStatisticsDto);
-        return Result.success(dataMap);
-    }
-
-    @PostMapping("history/weather_general")
-    public Result historyWeatherGeneralData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
-        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        List<WeatherGeneral> weatherGeneralList = weatherGeneralService.weatherGeneralHistory(null, beginDateTime, endDateTime);
-//        angleList = angleList.subList(0, 1000);
-        Map<String, List<WeatherGeneral>> weatherGeneralMap = weatherGeneralList.stream().collect(Collectors.groupingBy(WeatherGeneral::getTopic));
-        WeatherGeneralStatisticsDto temperatureStatisticsDto = weatherGeneralService.temperatureStatistics(null, beginDateTime, endDateTime);
-        WeatherGeneralStatisticsDto humidityStatisticsDto = weatherGeneralService.humidityStatistics(null, beginDateTime, endDateTime);
-        WeatherGeneralStatisticsDto airPressureStatisticsDto = weatherGeneralService.airPressureStatistics(null, beginDateTime, endDateTime);
-        WeatherGeneralStatisticsDto windSpeedStatisticsDto = weatherGeneralService.windSpeedStatistics(null, beginDateTime, endDateTime);
-        WeatherGeneralStatisticsDto windDirectionStatisticsDto = weatherGeneralService.windDirectionStatistics(null, beginDateTime, endDateTime);
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("weatherGeneral", weatherGeneralMap);
-        dataMap.put("sta_temperature", temperatureStatisticsDto);
-        dataMap.put("sta_humidity", humidityStatisticsDto);
-        dataMap.put("sta_airPressure", airPressureStatisticsDto);
-        dataMap.put("sta_windSpeed", windSpeedStatisticsDto);
-        dataMap.put("sta_windDirection", windDirectionStatisticsDto);
-        return Result.success(dataMap);
-    }
-
-    @PostMapping("history/weather_rainfall")
-    public Result historyWeatherRainfallData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
-        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        List<WeatherRainfall> weatherRainfallList = weatherRainfallService.weatherRainfallHistory(null, beginDateTime, endDateTime);
-//        angleList = angleList.subList(0, 1000);
-        Map<String, List<WeatherRainfall>> weatherRainfallMap = weatherRainfallList.stream().collect(Collectors.groupingBy(WeatherRainfall::getTopic));
-        WeatherRainfallStatisticsDto weatherRainfallStatisticsDto = weatherRainfallService.weatherRainfallStatistics(null, beginDateTime, endDateTime);
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("weatherRainfall", weatherRainfallMap);
-        dataMap.put("sta", weatherRainfallStatisticsDto);
-        return Result.success(dataMap);
-    }
-
-    @PostMapping("history/weather_visibility")
-    public Result historyWeatherVisibilityData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
-        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        List<WeatherVisibility> weatherVisibilityList = weatherVisibilityService.weatherVisibilityHistory(null, beginDateTime, endDateTime);
-//        angleList = angleList.subList(0, 1000);
-        Map<String, List<WeatherVisibility>> weatherVisibilityMap = weatherVisibilityList.stream().collect(Collectors.groupingBy(WeatherVisibility::getTopic));
-        WeatherVisibilityStatisticsDto weatherVisibilityStatisticsDto = weatherVisibilityService.weatherVisibilityStatistics(null, beginDateTime, endDateTime);
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("weatherVisibility", weatherVisibilityMap);
-        dataMap.put("sta", weatherVisibilityStatisticsDto);
-        return Result.success(dataMap);
-    }
+//    @PostMapping("history/tilt")
+//    public Result historyTiltData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
+//        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        List<Tilt> tiltList = tiltService.tiltHistory(null, beginDateTime, endDateTime);
+////        tiltList = tiltList.subList(0, 1000);
+//        Map<String, List<Tilt>> tiltMap = tiltList.stream().collect(Collectors.groupingBy(Tilt::getTopic));
+//        TiltStatisticsDto x1TiltStatisticsDto = tiltService.x1TiltStatistics(null, beginDateTime, endDateTime);
+//        TiltStatisticsDto y1TiltStatisticsDto = tiltService.y1TiltStatistics(null, beginDateTime, endDateTime);
+//        TiltStatisticsDto x2TiltStatisticsDto = tiltService.x2TiltStatistics(null, beginDateTime, endDateTime);
+//        TiltStatisticsDto y2TiltStatisticsDto = tiltService.y2TiltStatistics(null, beginDateTime, endDateTime);
+//        Map<String, Object> dataMap = new HashMap<>();
+//        dataMap.put("tilt", tiltMap);
+//        dataMap.put("sta_x1", x1TiltStatisticsDto);
+//        dataMap.put("sta_y1", y1TiltStatisticsDto);
+//        dataMap.put("sta_x2", x2TiltStatisticsDto);
+//        dataMap.put("sta_y2", y2TiltStatisticsDto);
+//        return Result.success(dataMap);
+//    }
+//
+//    @PostMapping("history/vibration")
+//    public Result historyVibrationData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
+//        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        List<Vibration> vibrationList = vibrationService.vibrationHistory(null, beginDateTime, endDateTime);
+////        vibrationList = vibrationList.subList(0, 1000);
+//        System.out.println(vibrationList.toString());
+//        Map<String, List<Vibration>> vibrationMap = vibrationList.stream().collect(Collectors.groupingBy(Vibration::getTopic));
+//        VibrationStatisticsDto vVibrationStatisticsDto = vibrationService.vVibrationStatistics(null, beginDateTime, endDateTime);
+//        VibrationStatisticsDto hVibrationStatisticsDto = vibrationService.hVibrationStatistics(null, beginDateTime, endDateTime);
+//        Map<String, Object> dataMap = new HashMap<>();
+//        dataMap.put("vibration", vibrationMap);
+//        dataMap.put("sta_v", vVibrationStatisticsDto);
+//        dataMap.put("sta_h", hVibrationStatisticsDto);
+//        return Result.success(dataMap);
+//    }
+//
+//    @PostMapping("history/angle")
+//    public Result historyAngleData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
+//        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        List<Angle> angleList = angleService.angleHistory(null, beginDateTime, endDateTime);
+////        angleList = angleList.subList(0, 1000);
+//        Map<String, List<Angle>> angleMap = angleList.stream().collect(Collectors.groupingBy(Angle::getTopic));
+//        AngleStatisticsDto angleStatisticsDto = angleService.angleStatistics(null, beginDateTime, endDateTime);
+//        Map<String, Object> dataMap = new HashMap<>();
+//        dataMap.put("angle", angleMap);
+//        dataMap.put("sta", angleStatisticsDto);
+//        return Result.success(dataMap);
+//    }
+//
+//    @PostMapping("history/weather_general")
+//    public Result historyWeatherGeneralData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
+//        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        List<WeatherGeneral> weatherGeneralList = weatherGeneralService.weatherGeneralHistory(null, beginDateTime, endDateTime);
+////        angleList = angleList.subList(0, 1000);
+//        Map<String, List<WeatherGeneral>> weatherGeneralMap = weatherGeneralList.stream().collect(Collectors.groupingBy(WeatherGeneral::getTopic));
+//        WeatherGeneralStatisticsDto temperatureStatisticsDto = weatherGeneralService.temperatureStatistics(null, beginDateTime, endDateTime);
+//        WeatherGeneralStatisticsDto humidityStatisticsDto = weatherGeneralService.humidityStatistics(null, beginDateTime, endDateTime);
+//        WeatherGeneralStatisticsDto airPressureStatisticsDto = weatherGeneralService.airPressureStatistics(null, beginDateTime, endDateTime);
+//        WeatherGeneralStatisticsDto windSpeedStatisticsDto = weatherGeneralService.windSpeedStatistics(null, beginDateTime, endDateTime);
+//        WeatherGeneralStatisticsDto windDirectionStatisticsDto = weatherGeneralService.windDirectionStatistics(null, beginDateTime, endDateTime);
+//        Map<String, Object> dataMap = new HashMap<>();
+//        dataMap.put("weatherGeneral", weatherGeneralMap);
+//        dataMap.put("sta_temperature", temperatureStatisticsDto);
+//        dataMap.put("sta_humidity", humidityStatisticsDto);
+//        dataMap.put("sta_airPressure", airPressureStatisticsDto);
+//        dataMap.put("sta_windSpeed", windSpeedStatisticsDto);
+//        dataMap.put("sta_windDirection", windDirectionStatisticsDto);
+//        return Result.success(dataMap);
+//    }
+//
+//    @PostMapping("history/weather_rainfall")
+//    public Result historyWeatherRainfallData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
+//        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        List<WeatherRainfall> weatherRainfallList = weatherRainfallService.weatherRainfallHistory(null, beginDateTime, endDateTime);
+////        angleList = angleList.subList(0, 1000);
+//        Map<String, List<WeatherRainfall>> weatherRainfallMap = weatherRainfallList.stream().collect(Collectors.groupingBy(WeatherRainfall::getTopic));
+//        WeatherRainfallStatisticsDto weatherRainfallStatisticsDto = weatherRainfallService.weatherRainfallStatistics(null, beginDateTime, endDateTime);
+//        Map<String, Object> dataMap = new HashMap<>();
+//        dataMap.put("weatherRainfall", weatherRainfallMap);
+//        dataMap.put("sta", weatherRainfallStatisticsDto);
+//        return Result.success(dataMap);
+//    }
+//
+//    @PostMapping("history/weather_visibility")
+//    public Result historyWeatherVisibilityData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
+//        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        List<WeatherVisibility> weatherVisibilityList = weatherVisibilityService.weatherVisibilityHistory(null, beginDateTime, endDateTime);
+////        angleList = angleList.subList(0, 1000);
+//        Map<String, List<WeatherVisibility>> weatherVisibilityMap = weatherVisibilityList.stream().collect(Collectors.groupingBy(WeatherVisibility::getTopic));
+//        WeatherVisibilityStatisticsDto weatherVisibilityStatisticsDto = weatherVisibilityService.weatherVisibilityStatistics(null, beginDateTime, endDateTime);
+//        Map<String, Object> dataMap = new HashMap<>();
+//        dataMap.put("weatherVisibility", weatherVisibilityMap);
+//        dataMap.put("sta", weatherVisibilityStatisticsDto);
+//        return Result.success(dataMap);
+//    }
 
 }
