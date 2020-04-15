@@ -5,7 +5,7 @@ package com.cit.its.shipping.front.common;
  */
 public class Const {
     /** EMQ broker **/
-    public static final String MQTT_BROKER = "tcp://192.168.253.4:1883";
+    public static final String MQTT_BROKER = "tcp://221.131.113.43:6408";
     /** 默认QOS **/
     public static final int DEFAULT_QOS = 1;
     /** 代码终端ClientId **/
