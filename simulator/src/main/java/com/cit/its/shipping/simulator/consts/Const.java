@@ -2,7 +2,7 @@ package com.cit.its.shipping.simulator.consts;
 
 public class Const {
 
-    public static final String BROKER = "tcp://192.168.253.4:1883";
+    public static final String BROKER = "tcp://221.131.113.43:6408";
 
     public static final int DEFAULT_QOS = 1;
 
