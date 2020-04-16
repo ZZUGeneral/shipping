@@ -18,7 +18,10 @@
                 <div class="card-header">
                     <h3 class="card-title">触发器列表</h3>
                     <h3 class="card-title" align="left" id="button">
-                        <button>添加触发器</button>
+                        <select class="" type="text" name="equip" style="width:190px;height:30px">
+                            <option id="addTrigger">添加触发器</option>
+                            <option id="dropTrigger">删除触发器</option>
+                        </select>
                     </h3>
                 </div>
                 <!-- /.card-header -->
@@ -32,11 +35,13 @@
                             <input class="form-control" type="text" placeholder="级别" id="grade" name="grade">
                         </div>
                         <div class="col-md-2">
-                            <input class="form-control" type="text" placeholder="设备" id="equip" name="equip">
+                            <select class="" type="text" placeholder="设备" id="equip"
+                                    name="equip" style="width:190px;height:30px"></select>
                         </div>
                         <div class="col-md-2">
 
-                            <input class="form-control" type="text" placeholder="数据项" id="data" name="data">
+                            <select class="" type="text" placeholder="设备" id="data"
+                                    name="data" style="width:190px;height:30px"></select>
                         </div>
                         <div class="col-md-2 ml-5">
                             <button type="button" class="btn btn-danger col-md-3" onclick="clientReset()"><i

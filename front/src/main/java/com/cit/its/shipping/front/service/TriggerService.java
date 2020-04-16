@@ -21,7 +21,8 @@ public interface TriggerService extends IService<Trigger> {
     int replaceTrigger(Trigger trigger);
 
     //删除触发器
-    int dropTrigger(int triggerId);
+    int dropTrigger(String triggerName);
+    int selectTrigger(String triggerName);
 
     public IPage<Trigger> triggerPageData(Trigger trigger, int page, int size);
 }

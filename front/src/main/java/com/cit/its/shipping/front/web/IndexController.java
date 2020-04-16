@@ -87,20 +87,6 @@ public class IndexController {
         return Result.success(pageVo);
     }
 
-    @PostMapping("/trigger/pageData")
-    public Result triggerPageData(Trigger trigger, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
-        IPage<Trigger> triggerIPage = this.triggerService.triggerPageData(trigger, page, size);
-        PageVo<Trigger> pageVo = new PageVo<Trigger>(page, size, triggerIPage.getTotal(), triggerIPage.getRecords());
-        return Result.success(pageVo);
-    }
-
-    @PostMapping("/event/pageData")
-    public Result eventPageData(@RequestParam String beginTime, @RequestParam String endTime, @RequestParam int grade, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
-        IPage<Event> eventIPage = this.eventService.eventPageData(beginTime, endTime, grade, page, size);
-        PageVo<Event> pageVo = new PageVo<Event>(page, size, eventIPage.getTotal(), eventIPage.getRecords());
-        return Result.success(pageVo);
-    }
-
 
     @GetMapping("/devices/state")
     public Result devicesStatus() {

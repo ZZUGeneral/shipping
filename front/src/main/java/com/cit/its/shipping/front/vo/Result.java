@@ -17,7 +17,7 @@ public class Result<T> {
         return success(null);
     }
 
-    public static<T> Result success(T data) {
+    public static <T> Result success(T data) {
         return new Result(0, null, data);
     }
 
@@ -25,4 +25,5 @@ public class Result<T> {
     public static Result fail(Integer code, String message) {
         return new Result(code, message, null);
     }
+    
 }

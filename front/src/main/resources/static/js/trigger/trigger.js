@@ -2,8 +2,16 @@ var datatable;
 $(function () {
 
     initDataTable();
+    selectTrigger
+    addTriggerInput();
+    dropTrigger();
+    sensor();
+    connect();
+})
+
+function addTriggerInput() {
     $('#id').hide();
-    $('#button').click(function () {
+    $('#addTrigger').change(function () {
         $('#id').show();
         $('#id').animate({
             // height:'300px',
@@ -18,9 +26,53 @@ $(function () {
         $('#id').hide();
 
     });
-    sensor();
-    connect();
-})
+
+}
+
+function dropTrigger() {
+    $('dropTrigger').change(function () {
+        var triggerName = prompt("请输入删除的触发器名称：", "");
+        if (triggerName != null && triggerName != "") {
+            $.ajax({
+                "url": context + '/trigger/dropTrigger',
+                contentType: "application/json",
+                "dataType": "json",
+                "type": "POST",
+                "data": triggerName,
+                success: function success(data) {
+                    alert(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            });
+        }
+    });
+}
+
+function selectTrigger() {
+    $('createTriggerName').blur(function () {
+        var triggerName = $("createTriggerName").val();
+        $.ajax({
+            "url": context + '/trigger/selectTrigger',
+            contentType: "application/json",
+            "dataType": "json",
+            "type": "POST",
+            "data": triggerName,
+            success: function success(data) {
+                if (data == 1) alert("触发器已存在，请重新命名。");
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
+
+    });
+}
 
 function clientReset() {
     $('#client_form')[0].reset();
@@ -96,7 +148,7 @@ function initDataTable() {
 function addTrigger() {
     $.ajax({
         "url": context + '/trigger/createTrigger',
-        contentType:"application/json",
+        contentType: "application/json",
         "dataType": "json",
         "type": "POST",
         "data": function (data) {
@@ -159,6 +211,23 @@ function sensor() {
                         $("#createData").html(create_data_options);
                     }
                 });
+                $("#equip").change(function () {
+                    var create_data_options = "<option>--请选择传感器数据项--</option>";
+                    var selectedIndex = $(this).get(0).selectedIndex;
+                    if (selectedIndex == 0) {
+                        console.log("没有进行选择");
+                    } else {
+                        // console.log(selectedIndex);
+                        var trigger_data = data[selectedIndex - 1].trigger_data;
+                        // console.log(trigger_data);
+                        for (var i = 0; i < trigger_data.length; i++) {
+                            create_data_options += "<option value='" + trigger_data[i] + "'>" + trigger_data[i] + "</option>";
+                        }
+                        //  console.log(create_data_options);
+                        $("#data").html(create_data_options);
+                    }
+                });
+
             } else {
                 console.log("获取数据失败");
             }

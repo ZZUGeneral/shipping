@@ -50,11 +50,28 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
     }
 
     @Override
-    public int dropTrigger(int triggerId) {
-        String triggerName = triggerMapper.selectById(triggerId).getTriggerName();
-        triggerMapper.dropTrigger(triggerName);
-        int rs = triggerMapper.deleteById(triggerId);
+    public int dropTrigger(String triggerName) {
+        try {
+            triggerMapper.dropTrigger(triggerName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+        QueryWrapper<Trigger> wrapper = new QueryWrapper<>();
+        wrapper.eq("triggerName", triggerName);
+        int rs = triggerMapper.delete(wrapper);
         return rs;
+    }
+
+    @Override
+    public int selectTrigger(String triggerName) {
+        QueryWrapper<Trigger> wrapper = new QueryWrapper<>();
+        wrapper.eq("triggerName", triggerName);
+        Trigger trigger = triggerMapper.selectOne(wrapper);
+        if(ObjectUtil.isNull(trigger)){
+            return 0;
+        }
+        return 1;
     }
 
     @Override
@@ -73,7 +90,7 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
         if (StrUtil.isNotEmpty(trigger.getData())) {
             queryWrapper.like("data", trigger.getData());
         }
-        queryWrapper.orderByAsc("grade", "trigger_name");
+        queryWrapper.orderByAsc("createTime", "grade", "trigger_name");
         IPage<Trigger> iPage = triggerMapper.selectPage(page, queryWrapper);
         return iPage;
     }
