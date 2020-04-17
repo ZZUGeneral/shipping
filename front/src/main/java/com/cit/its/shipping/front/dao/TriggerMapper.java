@@ -18,4 +18,5 @@ public interface TriggerMapper extends BaseMapper<Trigger> {
     int replaceTrigger(String trigger_name, String equip, String val_name, String relation, int value);
 
     int dropTrigger(@Param("trigger_namae") String trigger_name);
+
 }

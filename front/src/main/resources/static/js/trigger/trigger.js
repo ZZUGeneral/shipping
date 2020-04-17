@@ -2,14 +2,6 @@ var datatable;
 $(function () {
 
     initDataTable();
-    selectTrigger
-    addTriggerInput();
-    dropTrigger();
-    sensor();
-    connect();
-})
-
-function addTriggerInput() {
     $('#id').hide();
     $('#addTrigger').change(function () {
         $('#id').show();
@@ -22,12 +14,11 @@ function addTriggerInput() {
             top: '200px'
         }, 10)
     });
-    $('#header-right_create').click(function () {
-        $('#id').hide();
+    selectTrigger
+    sensor();
+    connect();
+})
 
-    });
-
-}
 
 function dropTrigger() {
     $('dropTrigger').change(function () {

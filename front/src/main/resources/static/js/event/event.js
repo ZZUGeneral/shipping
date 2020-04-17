@@ -1,16 +1,16 @@
 var datatable;
 $(function () {
     initDataTable();
-    $(function () {
-        $(".form_datetime").datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
-            autoclose: true,
-            todayBtn: true,
-            minuteStep: 1,
-            language: 'zh-CN'
-        });
-        initWaterLevelChart();
+
+    $(".form_datetime").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        autoclose: true,
+        todayBtn: true,
+        minuteStep: 1,
+        language: 'zh-CN'
     });
+    initWaterLevelChart();
+
     connect();
 })
 
@@ -78,8 +78,8 @@ function initDataTable() {
                 "data": function (data, type, full, meta) {
                     if (data != null) {
                         return '<span class="badge badge-danger">' + data + '</span>';
-                    }else{
-                        return '<input class="form-control" type="date" placeholder="未分配处理人" id="" name="">'
+                    } else {
+                        return '<span class="badge badge-danger">分配</span>'
                     }
                 }
             }

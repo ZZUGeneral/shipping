@@ -66,7 +66,7 @@ public class TriggerController {
 
     @ApiOperation(value = "查找触发器", notes = "根据触发器ID查找触发器")
     @ApiImplicitParam(name = "triggerName", value = "触发器名称", dataType = "String", required = true)
-    @RequestMapping("/deleteTrigger")
+    @RequestMapping("/selectTrigger")
     public Result selectTrigger(@RequestParam String triggerName) {
         int result = this.triggerService.dropTrigger(triggerName);
         if (result == 1) {
