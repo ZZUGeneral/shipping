@@ -17,11 +17,11 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">触发器列表</h3>
-                    <h3 class="card-title" align="left" id="button">
-                        <select class="" type="text" name="triggerOperate" style="width:190px;height:30px">
-                            <option id="addTrigger">添加</option>
-                            <option id="dropTrigger">删除</option>
-                        </select>
+                    <h3 class="card-title" align="left">
+                        <button id="addTrigger" name="addTrigger" onclick="triggerShow()">添加</button>
+                    </h3>
+                    <h3 class="card-title" align="left">
+                        <button id="dropTrigger" name="dropTrigger" onclick="dropTrigger()">删除</button>
                     </h3>
                 </div>
                 <!-- /.card-header -->
@@ -133,7 +133,7 @@
                 </button>
                 <button type="button" class="btn btn-primary col-md-3" onclick="cancelTrigger()"
                         style="width:80px;height:30px"><i
-                        class="fa fa-search"></i>删除
+                        class="fa fa-search"></i>取消
                 </button>
             </div>
 
