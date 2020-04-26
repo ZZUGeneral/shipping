@@ -1,19 +1,4 @@
 var datatable;
-$(function () {
-    initDataTable();
-
-    $(".form_datetime").datetimepicker({
-        format: 'yyyy-mm-dd hh:ii',
-        autoclose: true,
-        todayBtn: true,
-        minuteStep: 1,
-        language: 'zh-CN'
-    });
-    initWaterLevelChart();
-
-    connect();
-})
-
 
 function clientReset() {
     $('#client_form')[0].reset();
@@ -58,8 +43,8 @@ function initDataTable() {
             }
         },
         "columns": [
-            {"data": "event_id"},
-            {"data": "creaeteTime"},
+            {"data": "eventId"},
+            {"data": "triggerName"},
             {
                 "data": "grade",
                 "render": function (data, type, full, meta) {
@@ -73,7 +58,11 @@ function initDataTable() {
                 },
                 "className": "text-center"
             },
-            {"data": "desc"},
+            {
+                "data": "createTime"
+            }, {
+                "data": "eventDesc"
+            },
             {
                 "data": function (data, type, full, meta) {
                     if (data != null) {

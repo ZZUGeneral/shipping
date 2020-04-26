@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cit.its.shipping.front.dao.TriggerMapper">
 
-    <insert id="createTrigger">
+    <insert id="createTrigger" statementType="STATEMENT">
         create trigger ${trigger_name }
         after insert on ${equip }
         for each row
@@ -26,6 +26,6 @@
 
     </update>
     <delete id="dropTrigger">
-        drop trigger if exit ${trigger_name }
+        drop trigger if exit ${triggerName }
     </delete>
 </mapper>

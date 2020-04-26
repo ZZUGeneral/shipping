@@ -19,7 +19,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("msg_triggert")
+@TableName("msg_trigger")
 @ApiModel("触发器")
 public class Trigger {
     //告警编号
@@ -65,6 +65,6 @@ public class Trigger {
     //告警描述
     @TableField("trigger_desc")
     @ApiModelProperty("触发事件描述")
-    private String desc;
+    private String triggerDesc;
 
 }

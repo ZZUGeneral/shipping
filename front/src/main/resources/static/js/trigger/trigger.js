@@ -25,13 +25,12 @@ function dropTrigger() {
     var triggerName = prompt("请输入删除的触发器名称：", "");
     if (triggerName != null && triggerName != "") {
         $.ajax({
-            "url": context + '/trigger/dropTrigger',
-            contentType: "application/json",
-            "dataType": "json",
-            "type": "POST",
-            "data": triggerName,
-            success: function success(data) {
-                alert(data);
+            url: context + '/trigger/dropTrigger',
+            type: "POST",
+            dataType: 'json',
+            data: {"triggerName": triggerName},
+            success: function (data) {
+                alert("删除成攻");
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert(XMLHttpRequest.status);
@@ -47,10 +46,9 @@ function selectTrigger() {
         var triggerName = $("createTriggerName").val();
         $.ajax({
             "url": context + '/trigger/selectTrigger',
-            contentType: "application/json",
             "dataType": "json",
             "type": "POST",
-            "data": triggerName,
+            "data": {"triggerName": triggerName},
             success: function success(data) {
                 if (data == 1) alert("触发器已存在，请重新命名。");
             },
@@ -74,6 +72,9 @@ function clientSearch() {
 }
 
 function initDataTable() {
+    $('#trigger_table').DataTable(
+
+    );
     datatable = $('#trigger_table').DataTable({
         "serverSide": true,
         "ordering": false,
@@ -124,9 +125,9 @@ function initDataTable() {
             },
             {"data": "equip"},
             {"data": "data"},
-            {"data": "relation"},
-            {"data": "value"},
-            {"data": "desc"},
+            {"data": "leValue"},
+            {"data": "geValue"},
+            {"data": "createTime"},
 
         ],
         language: {
@@ -143,18 +144,20 @@ function addTrigger() {
         "type": "POST",
         "data": function (data) {
             data = {
-                triggerNmae: $('#createTriggerName').val(),
+                triggerName: $('#createTriggerName').val(),
                 grade: $('#createGrade').val(),
                 equip: $('#createEquip').val(),
                 data: $('#createData').val(),
                 leValue: $('#leValue').val(),
                 geValue: $('#geValue').val(),
-                desc: $('#createDesc').val(),
+                triggerDesc: $('#createDesc').val(),
             };
             return JSON.stringify(data);
         }(),
         success: function success(data) {
-            alert(data.toString());
+            alert("添加成功");
+            $('#id').hide();
+            datatable.ajax.reload();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(XMLHttpRequest.status);

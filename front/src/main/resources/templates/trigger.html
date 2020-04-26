@@ -35,12 +35,12 @@
                             <input class="form-control" type="text" placeholder="级别" id="grade" name="grade">
                         </div>
                         <div class="col-md-2">
-                            <select class="" type="text" placeholder="设备" id="equip"
+                            <select class="custom-select" type="text" placeholder="设备" id="equip"
                                     name="equip" style="width:190px;height:30px"></select>
                         </div>
                         <div class="col-md-2">
 
-                            <select class="" type="text" placeholder="设备" id="data"
+                            <select class="custom-select" type="text" placeholder="设备" id="data"
                                     name="data" style="width:190px;height:30px"></select>
                         </div>
                         <div class="col-md-2 ml-5">
@@ -52,14 +52,16 @@
                     </form>
 
                     <table id="trigger_table" class="table table-bordered table-hover dataTable">
-
                         <thead>
                         <tr>
-                            <th>设备ID</th>
-                            <th>设备名称</th>
-                            <th>状态</th>
-                            <th>上线时间</th>
-                            <th>下线时间</th>
+                            <th>触发器ID</th>
+                            <th>触发器名称</th>
+                            <th>触发级别</th>
+                            <th>触发设备</th>
+                            <th>数据项</th>
+                            <th>较小值</th>
+                            <th>较大值</th>
+                            <th>创建时间</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -43,8 +43,9 @@
                             <thead>
                             <tr>
                                 <th>事件ID</th>
-                                <th>触发时间</th>
+                                <th>触发器名称</th>
                                 <th>事件等级</th>
+                                <th>触发时间</th>
                                 <th>事件描述</th>
                                 <th>处理人</th>
                             </tr>
@@ -68,10 +69,13 @@
 <footer th:fragment="js-footer">
     <script th:src="@{/plugins/dataTable/jquery.dataTables.min.js}"></script>
     <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+    <script th:src="@{/plugins/datetimePicker/js/bootstrap-datetimepicker.js}"></script>
+    <script th:src="@{/plugins/datetimePicker/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
     <script th:src="@{/plugins/moment/moment.min.js}"></script>
     <script th:src="@{/plugins/websocket/sockjs.min.js}"></script>
     <script th:src="@{/plugins/websocket/stomp.min.js}"></script>
     <script th:src="@{/js/event/event.js}"></script>
+    <script th:src="@{/js/event/eventDate.js}"></script>
 </footer>
 
 </html>

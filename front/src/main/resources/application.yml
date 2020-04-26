@@ -10,7 +10,11 @@ spring:
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+logging:
+  level:
+    root: INFO
 mybatis-plus:
   type-enums-package: "com.cit.its.shipping.front.enums"
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:/mapper/**/*.xml

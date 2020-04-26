@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -35,11 +36,13 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
             return 0;
         }
         try {
-            triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getGrade().getValue(), trigger.getLeValue(), trigger.getGeValue(), trigger.getDesc());
+            triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getGrade().getValue(), trigger.getLeValue(), trigger.getGeValue(), trigger.getTriggerDesc());
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        trigger.setCreateTime(timestamp);
         int rs = triggerMapper.insert(trigger);
         return rs;
     }
@@ -68,7 +71,7 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
         QueryWrapper<Trigger> wrapper = new QueryWrapper<>();
         wrapper.eq("triggerName", triggerName);
         Trigger trigger = triggerMapper.selectOne(wrapper);
-        if(ObjectUtil.isNull(trigger)){
+        if (ObjectUtil.isNull(trigger)) {
             return 0;
         }
         return 1;
@@ -77,20 +80,20 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
     @Override
     public IPage<Trigger> triggerPageData(Trigger trigger, int currentPage, int size) {
         Page page = new Page(currentPage, size);
-        QueryWrapper<Trigger> queryWrapper = new QueryWrapper<>();
+        LambdaQueryWrapper<Trigger> queryWrapper = new LambdaQueryWrapper<>();
         if (StrUtil.isNotEmpty(trigger.getTriggerName())) {
-            queryWrapper.like("trigger_name", trigger.getTriggerName());
+            queryWrapper.like(Trigger::getTriggerName, trigger.getTriggerName());
         }
         if (ObjectUtil.isNotNull(trigger.getGrade())) {
-            queryWrapper.eq("grade", trigger.getGrade());
+            queryWrapper.eq(Trigger::getGrade, trigger.getGrade());
         }
         if (StrUtil.isNotEmpty(trigger.getEquip())) {
-            queryWrapper.like("equip", trigger.getEquip());
+            queryWrapper.like(Trigger::getEquip, trigger.getEquip());
         }
         if (StrUtil.isNotEmpty(trigger.getData())) {
-            queryWrapper.like("data", trigger.getData());
+            queryWrapper.like(Trigger::getData, trigger.getData());
         }
-        queryWrapper.orderByAsc("createTime", "grade", "trigger_name");
+        queryWrapper.orderByAsc(Trigger::getCreateTime, Trigger::getGrade);
         IPage<Trigger> iPage = triggerMapper.selectPage(page, queryWrapper);
         return iPage;
     }

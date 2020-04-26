@@ -55,8 +55,8 @@ public class TriggerController {
 
     @ApiOperation(value = "删除触发器", notes = "根据触发器ID删除触发器")
     @ApiImplicitParam(name = "triggerName", value = "触发器名称", dataType = "String", required = true)
-    @RequestMapping("/deleteTrigger")
-    public Result deleteTrigger(@RequestParam String triggerName) {
+    @RequestMapping("/dropTrigger")
+    public Result dropTrigger(@RequestParam String triggerName) {
         int result = this.triggerService.dropTrigger(triggerName);
         if (result == 0) {
             return Result.fail(400, "删除触发器失败!");
@@ -92,7 +92,7 @@ public class TriggerController {
             @ApiImplicitParam(name = "page", value = "页码", dataType = "Integer", required = true),
             @ApiImplicitParam(name = "size", value = "每页数据量", dataType = "Integer", required = true),
     })
-    @PostMapping("/trigger/pageData")
+    @PostMapping("/pageData")
     public Result triggerPageData(Trigger trigger, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         IPage<Trigger> triggerIPage = this.triggerService.triggerPageData(trigger, page, size);
         PageVo<Trigger> pageVo = new PageVo<Trigger>(page, size, triggerIPage.getTotal(), triggerIPage.getRecords());
