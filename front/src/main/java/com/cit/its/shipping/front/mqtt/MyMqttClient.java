@@ -41,7 +41,7 @@ public class MyMqttClient {
     private void disconnect() throws MqttException {
         if (sampleClient != null && sampleClient.isConnected()) {
             sampleClient.disconnect();
-//            log.info("mqtt client disconnected !");
+            log.info("mqtt client disconnected !");
         }
     }
 
