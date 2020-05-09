@@ -72,9 +72,6 @@ function clientSearch() {
 }
 
 function initDataTable() {
-    $('#trigger_table').DataTable(
-
-    );
     datatable = $('#trigger_table').DataTable({
         "serverSide": true,
         "ordering": false,
