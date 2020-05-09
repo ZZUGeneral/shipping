@@ -131,6 +131,291 @@
                         <!-- ./card-body -->
                     </div>
                     <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">角度传感器</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <form id="angle_form">
+                                        <div class="form-group">
+                                            <label for="beginDateTime">开始时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="beginDateTime" name="beginDateTime">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endDateTime">结束时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="endDateTime" name="endDateTime">
+                                        </div>
+                                        <div class="from-group text-right">
+                                            <button type="button" class="btn btn-danger col-md-3" onclick="waterLevelReset()"><i
+                                                    class="fa fa-undo"></i></button>
+                                            <button type="button" class="btn btn-primary col-md-3" onclick="waterLevelHistory()"><i
+                                                    class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="chart" id="angle_chart" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+
+                                <div class="row col-md-2 align-items-center">
+                                    <ul>
+                                        <li class="text-muted">最大值：<span id="ag_max"></span></li>
+                                        <li class="text-muted">最小值：<span id="ag_min"></span></li>
+                                        <li class="text-muted">平均值：<span id="ag_avg"></span></li>
+                                        <li class="text-muted">总体方差：<span id="ag_vpop"></span></li>
+                                        <li class="text-muted">总体标准差：<span id="ag_spop"></span></li>
+                                        <li class="text-muted">样本方差：<span id="ag_vsamp"></span></li>
+                                        <li class="text-muted">样本标准差：<span id="ag_ssamp"></span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">振动传感器</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <form id="vibration_form">
+                                        <div class="form-group">
+                                            <label for="beginDateTime">开始时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="beginDateTime" name="beginDateTime">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endDateTime">结束时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="endDateTime" name="endDateTime">
+                                        </div>
+                                        <div class="from-group text-right">
+                                            <button type="button" class="btn btn-danger col-md-3" onclick="waterLevelReset()"><i
+                                                    class="fa fa-undo"></i></button>
+                                            <button type="button" class="btn btn-primary col-md-3" onclick="waterLevelHistory()"><i
+                                                    class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="chart" id="vibration_chart" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+
+                                <div class="row col-md-2 align-items-center">
+                                    <ul>
+                                        <li class="text-muted">最大值：<span id="vb_max"></span></li>
+                                        <li class="text-muted">最小值：<span id="vb_min"></span></li>
+                                        <li class="text-muted">平均值：<span id="vb_avg"></span></li>
+                                        <li class="text-muted">总体方差：<span id="vb_vpop"></span></li>
+                                        <li class="text-muted">总体标准差：<span id="vb_spop"></span></li>
+                                        <li class="text-muted">样本方差：<span id="vb_vsamp"></span></li>
+                                        <li class="text-muted">样本标准差：<span id="vb_ssamp"></span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">气象传感器-常规数据</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <form id="weather_general_form">
+                                        <div class="form-group">
+                                            <label for="beginDateTime">开始时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="beginDateTime" name="beginDateTime">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endDateTime">结束时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="endDateTime" name="endDateTime">
+                                        </div>
+                                        <div class="from-group text-right">
+                                            <button type="button" class="btn btn-danger col-md-3" onclick="waterLevelReset()"><i
+                                                    class="fa fa-undo"></i></button>
+                                            <button type="button" class="btn btn-primary col-md-3" onclick="waterLevelHistory()"><i
+                                                    class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="chart" id="weather_general_chart" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+
+                                <div class="row col-md-2 align-items-center">
+                                    <ul>
+                                        <li class="text-muted">最大值：<span id="wg_max"></span></li>
+                                        <li class="text-muted">最小值：<span id="wg_min"></span></li>
+                                        <li class="text-muted">平均值：<span id="wg_avg"></span></li>
+                                        <li class="text-muted">总体方差：<span id="wg_vpop"></span></li>
+                                        <li class="text-muted">总体标准差：<span id="wg_spop"></span></li>
+                                        <li class="text-muted">样本方差：<span id="wg_vsamp"></span></li>
+                                        <li class="text-muted">样本标准差：<span id="wg_ssamp"></span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">气象传感器-雨量值</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <form id="weather_rainfall_form">
+                                        <div class="form-group">
+                                            <label for="beginDateTime">开始时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="beginDateTime" name="beginDateTime">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endDateTime">结束时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="endDateTime" name="endDateTime">
+                                        </div>
+                                        <div class="from-group text-right">
+                                            <button type="button" class="btn btn-danger col-md-3" onclick="waterLevelReset()"><i
+                                                    class="fa fa-undo"></i></button>
+                                            <button type="button" class="btn btn-primary col-md-3" onclick="waterLevelHistory()"><i
+                                                    class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="chart" id="weather_rainfall_chart" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+
+                                <div class="row col-md-2 align-items-center">
+                                    <ul>
+                                        <li class="text-muted">最大值：<span id="wr_max"></span></li>
+                                        <li class="text-muted">最小值：<span id="wr_min"></span></li>
+                                        <li class="text-muted">平均值：<span id="wr_avg"></span></li>
+                                        <li class="text-muted">总体方差：<span id="wr_vpop"></span></li>
+                                        <li class="text-muted">总体标准差：<span id="wr_spop"></span></li>
+                                        <li class="text-muted">样本方差：<span id="wr_vsamp"></span></li>
+                                        <li class="text-muted">样本标准差：<span id="wr_ssamp"></span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">气象传感器-能见度</h5>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <form id="weather_visibility_form">
+                                        <div class="form-group">
+                                            <label for="beginDateTime">开始时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="beginDateTime" name="beginDateTime">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endDateTime">结束时间</label>
+                                            <input type="text" readonly class="form_datetime form-control" id="endDateTime" name="endDateTime">
+                                        </div>
+                                        <div class="from-group text-right">
+                                            <button type="button" class="btn btn-danger col-md-3" onclick="waterLevelReset()"><i
+                                                    class="fa fa-undo"></i></button>
+                                            <button type="button" class="btn btn-primary col-md-3" onclick="waterLevelHistory()"><i
+                                                    class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="chart" id="weather_visibility_chart" style="height: 300px;">
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+
+                                <div class="row col-md-2 align-items-center">
+                                    <ul>
+                                        <li class="text-muted">最大值：<span id="wv_max"></span></li>
+                                        <li class="text-muted">最小值：<span id="wv_min"></span></li>
+                                        <li class="text-muted">平均值：<span id="wv_avg"></span></li>
+                                        <li class="text-muted">总体方差：<span id="wv_vpop"></span></li>
+                                        <li class="text-muted">总体标准差：<span id="wv_spop"></span></li>
+                                        <li class="text-muted">样本方差：<span id="wv_vsamp"></span></li>
+                                        <li class="text-muted">样本标准差：<span id="wv_ssamp"></span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- ./card-body -->
+                    </div>
+                    <!-- /.card -->
                 </div>
                 <!-- /.col -->
             </div>
