@@ -44,6 +44,7 @@ public class EventController {
             @ApiImplicitParam(name = "size", value = "数据项数", dataType = "Integer", required = true)
     })
     @PostMapping("/pageData")
+    @ResponseBody
     public Result eventPageData(@RequestParam String beginTime, @RequestParam String endTime, @RequestParam int grade, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         IPage<Event> eventIPage = this.eventService.eventPageData(beginTime, endTime, grade, page, size);
         PageVo<Event> pageVo = new PageVo<Event>(page, size, eventIPage.getTotal(), eventIPage.getRecords());

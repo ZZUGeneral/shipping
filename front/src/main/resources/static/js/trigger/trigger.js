@@ -3,7 +3,6 @@ $(function () {
 
     initDataTable();
     $('#id').hide();
-    selectTrigger
     sensor();
     connect();
 })
@@ -93,6 +92,7 @@ function initDataTable() {
                 data.grade = $('#grade').val();
                 data.equip = $('#equip').val();
                 data.data = $('#data').val();
+                console.log(data);
                 delete data['start'];
                 delete data['length'];
             },

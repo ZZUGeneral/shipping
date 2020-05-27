@@ -16,10 +16,10 @@ public class Producer {
     public static void main(String[] args) {
 
         waterLevel();
-//        tilt();
-//        angle();
-//        vibration();
-//        weather();
+/*        tilt();
+        angle();
+        vibration();
+        weather();*/
     }
 
 
@@ -101,14 +101,14 @@ public class Producer {
 
     public static void weather() {
         Timer timer = new Timer();
-        WeatherGeneralMessage waterLevelMessage = new WeatherGeneralMessage();
+        WeatherGeneralMessage weatherGeneralMessage = new WeatherGeneralMessage();
         WeatherRainfallMessage weatherRainfallMessage = new WeatherRainfallMessage();
         WeatherVisibilityMessage weatherVisibilityMessage = new WeatherVisibilityMessage();
         try {
             MqttClient wlc1 = ClientFactory.getClient(Const.CLIENT_ID_WEATHER1);
             MqttClient wlc2 = ClientFactory.getClient(Const.CLIENT_ID_WEATHER2);
             MqttClient wlc3 = ClientFactory.getClient(Const.CLIENT_ID_WEATHER3);
-            timer.schedule(new SendTask(wlc1, waterLevelMessage, Const.TOPIC_WEATHER1), 0, 1000);
+            timer.schedule(new SendTask(wlc1, weatherGeneralMessage, Const.TOPIC_WEATHER1), 0, 1000);
             timer.schedule(new SendTask(wlc2, weatherRainfallMessage, Const.TOPIC_WEATHER2), 0, 1000);
             timer.schedule(new SendTask(wlc3, weatherVisibilityMessage, Const.TOPIC_WEATHER3), 0, 1000);
         } catch (MqttException e) {

@@ -36,7 +36,7 @@ public class Trigger {
     //告警等级
     @ApiModelProperty("触发器等级")
     @TableField("grade")
-    private TriggerGradeEnum grade;
+    private Integer grade;
 
     //该告警的设备
     @ApiModelProperty("触发器对应的传感器名称")

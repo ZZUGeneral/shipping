@@ -35,15 +35,17 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
         if (ObjectUtil.isNull(trigger)) {
             return 0;
         }
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        trigger.setCreateTime(timestamp);
+        int rs = triggerMapper.insert(trigger);
+        int id = trigger.getTriggerId();
         try {
-            triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getGrade().getValue(), trigger.getLeValue(), trigger.getGeValue(), trigger.getTriggerDesc());
+            triggerMapper.createTrigger(trigger.getTriggerId(), trigger.getEquip(), trigger.getData(), trigger.getGrade(), trigger.getLeValue(), trigger.getGeValue(), trigger.getTriggerDesc());
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        trigger.setCreateTime(timestamp);
-        int rs = triggerMapper.insert(trigger);
+
         return rs;
     }
 
