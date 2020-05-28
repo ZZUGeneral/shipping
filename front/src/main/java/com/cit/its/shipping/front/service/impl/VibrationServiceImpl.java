@@ -11,12 +11,14 @@ import com.cit.its.shipping.front.entity.Vibration;
 import com.cit.its.shipping.front.service.VibrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
+@Transactional
 public class VibrationServiceImpl extends ServiceImpl<VibrationMapper, Vibration> implements VibrationService {
 
     @Autowired

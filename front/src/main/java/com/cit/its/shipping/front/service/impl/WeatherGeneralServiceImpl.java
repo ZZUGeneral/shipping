@@ -15,12 +15,14 @@ import com.cit.its.shipping.front.service.WaterLevelService;
 import com.cit.its.shipping.front.service.WeatherGeneralService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
+@Transactional
 public class WeatherGeneralServiceImpl extends ServiceImpl<WeatherGeneralMapper, WeatherGeneral> implements WeatherGeneralService {
 
     @Autowired

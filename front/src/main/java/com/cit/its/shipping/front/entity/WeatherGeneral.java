@@ -35,15 +35,15 @@ public class WeatherGeneral {
     private Float humidity;
 
     @ApiModelProperty("气压")
-    @TableField("airPressure")
+    @TableField("air_pressure")
     private Float airPressure;
 
     @ApiModelProperty("风速")
-    @TableField("windSpeed")
+    @TableField("wind_speed")
     private Float windSpeed;
 
     @ApiModelProperty("风向")
-    @TableField("windDirection")
+    @TableField("wind_direction")
     private Float windDirection;
 
     @ApiModelProperty("mqtt 主题")

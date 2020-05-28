@@ -12,12 +12,14 @@ import com.cit.its.shipping.front.entity.WeatherRainfall;
 import com.cit.its.shipping.front.service.WeatherRainfallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
+@Transactional
 public class WeatherRainfallServiceImpl extends ServiceImpl<WeatherRainfallMapper, WeatherRainfall> implements WeatherRainfallService {
 
     @Autowired

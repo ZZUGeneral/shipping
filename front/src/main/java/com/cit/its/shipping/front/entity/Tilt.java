@@ -31,19 +31,19 @@ public class Tilt {
     private Long time;
 
     @ApiModelProperty("中轴线左侧x轴倾斜角度值")
-    @TableField("val_1x")
+    @TableField("value_1x")
     private Float val1X;
 
     @ApiModelProperty("中轴线左侧y轴倾斜角度值")
-    @TableField("val_1y")
+    @TableField("value_1y")
     private Float val1Y;
 
     @ApiModelProperty("中轴线右侧x轴倾斜角度值")
-    @TableField("val_2x")
+    @TableField("value_2x")
     private Float val2X;
 
     @ApiModelProperty("中轴线右侧y轴倾斜角度值")
-    @TableField("val_2y")
+    @TableField("value_2y")
     private Float val2Y;
 
     @ApiModelProperty("mqtt主题")

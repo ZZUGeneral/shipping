@@ -15,6 +15,7 @@ import com.cit.its.shipping.front.service.EventService;
 import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -28,6 +29,7 @@ import java.util.List;
  * @description:
  */
 @Service
+@Transactional
 public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements EventService {
     @Autowired
     EventMapper eventMapper;
