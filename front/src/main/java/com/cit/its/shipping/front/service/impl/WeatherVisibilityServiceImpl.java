@@ -1,6 +1,7 @@
 package com.cit.its.shipping.front.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -41,6 +42,16 @@ public class WeatherVisibilityServiceImpl extends ServiceImpl<WeatherVisibilityM
         dto.setBeginDateTime(beginDateTime);
         dto.setEndDateTime(endDateTime);
         return dto;
+    }
+
+    @Override
+    public void insertWeatherVisibility(String topic, String jsonContent) {
+        JSONObject jsonObject = new JSONObject(jsonContent);
+        WeatherVisibility weatherVisibility = new WeatherVisibility();
+        weatherVisibility.setTime(Long.parseLong(jsonObject.get("time").toString()));
+        weatherVisibility.setValue(Float.parseFloat(jsonObject.get("val").toString()));
+        weatherVisibility.setTopic(topic);
+        int id = weatherVisibilityMapper.insert(weatherVisibility);
     }
 
 

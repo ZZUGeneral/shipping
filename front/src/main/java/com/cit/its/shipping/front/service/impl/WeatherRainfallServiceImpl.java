@@ -1,11 +1,13 @@
 package com.cit.its.shipping.front.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cit.its.shipping.front.dao.WeatherRainfallMapper;
 import com.cit.its.shipping.front.dto.WeatherRainfallStatisticsDto;
+import com.cit.its.shipping.front.entity.Angle;
 import com.cit.its.shipping.front.entity.WeatherRainfall;
 import com.cit.its.shipping.front.service.WeatherRainfallService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,16 @@ public class WeatherRainfallServiceImpl extends ServiceImpl<WeatherRainfallMappe
         dto.setBeginDateTime(beginDateTime);
         dto.setEndDateTime(endDateTime);
         return dto;
+    }
+
+    @Override
+    public void insertWeatherRainfall(String topic, String jsonContent) {
+        JSONObject jsonObject = new JSONObject(jsonContent);
+        WeatherRainfall weatherRainfall = new WeatherRainfall();
+        weatherRainfall.setValue(Float.parseFloat(jsonObject.get("val").toString()));
+        weatherRainfall.setTopic(topic);
+        weatherRainfall.setTime(Long.parseLong(jsonObject.get("time").toString()));
+        int id = this.weatherRainfallMapper.insert(weatherRainfall);
     }
 
 

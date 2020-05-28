@@ -51,6 +51,12 @@ public class IndexController {
         return new ModelAndView("index");
     }
 
+    @GetMapping("/login")
+    public ModelAndView login() {
+
+        return new ModelAndView("index");
+    }
+
     @GetMapping("/devices")
     public ModelAndView devices(Model model) {
         ClientTypeEnum[] values = ClientTypeEnum.values();

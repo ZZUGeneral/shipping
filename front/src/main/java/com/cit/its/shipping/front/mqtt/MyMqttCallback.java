@@ -1,11 +1,20 @@
 package com.cit.its.shipping.front.mqtt;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
+import com.cit.its.shipping.front.dao.WaterLevelMapper;
+import com.cit.its.shipping.front.entity.WaterLevel;
+import com.cit.its.shipping.front.service.WaterLevelService;
+import com.cit.its.shipping.front.util.SpringContextUtil;
+import jdk.nashorn.internal.parser.JSONParser;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.util.StringUtil;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import springfox.documentation.spring.web.json.Json;
 
 import java.nio.charset.Charset;
 
@@ -28,6 +37,7 @@ public class MyMqttCallback implements MqttCallback {
 
     /**
      * 接收消息，并转发到STOMP
+     *
      * @param topic
      * @param mqttMessage
      * @throws Exception
@@ -40,12 +50,31 @@ public class MyMqttCallback implements MqttCallback {
             template.convertAndSend("/realtime/sensor", "");
         } else {
             template.convertAndSend("/realtime/" + topic, jsonContent);
+            insertMessage(topic, jsonContent);
         }
-        log.info("mqtt 接收到新消息 ---->  topic : {} ------> content : {}",topic, jsonContent);
+        //log.info("mqtt 接收到新消息 ---->  topic : {} ------> content : {}", topic, jsonContent);
     }
 
     @Override
     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
     }
 
+    public void insertMessage(String topic, String jsonContent) {
+        if (StrUtil.startWith(topic, "get/waterLevel/")) {
+            WaterLevelService waterLevelService = SpringContextUtil.getBean(WaterLevelService.class);
+            waterLevelService.insertWaterLevel(topic, jsonContent);
+        } else if (StrUtil.startWith(topic, "get/tilt/")) {
+
+        } else if (StrUtil.startWith(topic, "get/angle/")) {
+
+        } else if (StrUtil.startWith(topic, "get/vibration/")) {
+
+        } else if (StrUtil.startWith(topic, "get/weather/general")) {
+
+        } else if (StrUtil.startWith(topic, "get/weather/rainfall")) {
+
+        } else if (StrUtil.startWith(topic, "get/weather/visibility")) {
+
+        }
+    }
 }

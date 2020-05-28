@@ -13,4 +13,6 @@ public interface AngleService extends IService<Angle> {
 
     AngleStatisticsDto angleStatistics(String topic, LocalDateTime beginDateTime, LocalDateTime endDateTime);
 
+    void insertAngle(String topic, String jsonContent);
+
 }

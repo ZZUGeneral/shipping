@@ -13,6 +13,5 @@ public interface WeatherVisibilityService extends IService<WeatherVisibility> {
 
     WeatherVisibilityStatisticsDto weatherVisibilityStatistics(String topic, LocalDateTime beginDateTime, LocalDateTime endDateTime);
 
-
-
+    void insertWeatherVisibility(String topic, String jsonContent);
 }

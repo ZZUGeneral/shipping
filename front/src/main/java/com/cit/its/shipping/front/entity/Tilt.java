@@ -1,5 +1,6 @@
 package com.cit.its.shipping.front.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -21,8 +22,9 @@ import lombok.NoArgsConstructor;
 public class Tilt {
 
     @ApiModelProperty("ID，倾斜传感器数据主键")
-    @TableId
-    private String id;
+    @TableId(type = IdType.AUTO)
+    @TableField("id")
+    private Long id;
 
     @ApiModelProperty("记录数据时间")
     @TableField("time")

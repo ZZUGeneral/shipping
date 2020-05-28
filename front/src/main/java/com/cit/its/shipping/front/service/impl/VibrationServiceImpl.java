@@ -1,6 +1,7 @@
 package com.cit.its.shipping.front.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -38,6 +39,17 @@ public class VibrationServiceImpl extends ServiceImpl<VibrationMapper, Vibration
         dto.setBeginDateTime(beginDateTime);
         dto.setEndDateTime(endDateTime);
         return dto;
+    }
+
+    @Override
+    public void insertVibration(String topic, String jsonContent) {
+        JSONObject jsonObject = new JSONObject(jsonContent);
+        Vibration vibration = new Vibration();
+        vibration.setTime(Long.parseLong(jsonObject.get("time").toString()));
+        vibration.setTopic(topic);
+        vibration.setValueH(Float.parseFloat(jsonObject.get("val_h").toString()));
+        vibration.setValueV(Float.parseFloat(jsonObject.get("val_v").toString()));
+        int id = this.vibrationMapper.insert(vibration);
     }
 
     @Override

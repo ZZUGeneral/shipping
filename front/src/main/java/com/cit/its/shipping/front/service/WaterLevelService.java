@@ -13,6 +13,6 @@ public interface WaterLevelService extends IService<WaterLevel> {
 
     WaterLevelStatisticsDto waterLevelStatistics(String topic, LocalDateTime beginDateTime, LocalDateTime endDateTime);
 
-
+    void insertWaterLevel(String topic, String jsonContent);
 
 }

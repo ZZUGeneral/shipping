@@ -1,5 +1,6 @@
 package com.cit.its.shipping.front.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -17,8 +18,9 @@ import lombok.NoArgsConstructor;
 public class Vibration {
 
     @ApiModelProperty("振动数据项ID")
-    @TableId
-    private String id;
+    @TableId(type = IdType.AUTO)
+    @TableField("id")
+    private Long id;
 
     @ApiModelProperty("水平方向振动频率")
     @TableField("value_h")

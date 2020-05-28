@@ -1,6 +1,7 @@
 package com.cit.its.shipping.front.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -11,6 +12,7 @@ import com.cit.its.shipping.front.service.TiltService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.image.TileObserver;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
@@ -32,7 +34,7 @@ public class TiltServiceImpl extends ServiceImpl<TiltMapper, Tilt> implements Ti
     @Override
     public TiltStatisticsDto x1TiltStatistics(String topic, LocalDateTime beginDateTime, LocalDateTime endDateTime) {
         LambdaQueryWrapper wrapper = queryCondition(topic, beginDateTime, endDateTime);
-        TiltStatisticsDto dto  = tiltMapper.x1TiltStatistics(wrapper);
+        TiltStatisticsDto dto = tiltMapper.x1TiltStatistics(wrapper);
         dto.setTopic(topic);
         dto.setBeginDateTime(beginDateTime);
         dto.setEndDateTime(endDateTime);
@@ -67,6 +69,19 @@ public class TiltServiceImpl extends ServiceImpl<TiltMapper, Tilt> implements Ti
         dto.setBeginDateTime(beginDateTime);
         dto.setEndDateTime(endDateTime);
         return dto;
+    }
+
+    @Override
+    public void insertTilt(String topic, String jsonContent) {
+        JSONObject jsonObject = new JSONObject(jsonContent);
+        Tilt tilt = new Tilt();
+        tilt.setTopic(topic);
+        tilt.setTime(Long.parseLong(jsonObject.get("time").toString()));
+        tilt.setVal1X(Float.parseFloat(jsonObject.get("val_1x").toString()));
+        tilt.setVal1Y(Float.parseFloat(jsonObject.get("val_1y").toString()));
+        tilt.setVal2X(Float.parseFloat(jsonObject.get("val_2x").toString()));
+        tilt.setVal2Y(Float.parseFloat(jsonObject.get("val_2y").toString()));
+        int id = tiltMapper.insert(tilt);
     }
 
 

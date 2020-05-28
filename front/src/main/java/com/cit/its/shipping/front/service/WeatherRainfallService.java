@@ -13,6 +13,7 @@ public interface WeatherRainfallService extends IService<WeatherRainfall> {
 
     WeatherRainfallStatisticsDto weatherRainfallStatistics(String topic, LocalDateTime beginDateTime, LocalDateTime endDateTime);
 
+    void insertWeatherRainfall(String topic, String jsonContent);
 
 
 }

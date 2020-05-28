@@ -21,4 +21,5 @@ public interface WeatherGeneralService extends IService<WeatherGeneral> {
 
     WeatherGeneralStatisticsDto windDirectionStatistics(String topic, LocalDateTime beginDateTime, LocalDateTime endDateTime);
 
+    void insertWeatherGeneral(String topic, String jsonContent);
 }

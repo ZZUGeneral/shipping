@@ -1,6 +1,7 @@
 package com.cit.its.shipping.front.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -81,6 +82,20 @@ public class WeatherGeneralServiceImpl extends ServiceImpl<WeatherGeneralMapper,
         dto.setBeginDateTime(beginDateTime);
         dto.setEndDateTime(endDateTime);
         return dto;
+    }
+
+    @Override
+    public void insertWeatherGeneral(String topic, String jsonContent) {
+        JSONObject jsonObject = new JSONObject(jsonContent);
+        WeatherGeneral weatherGeneral = new WeatherGeneral();
+        weatherGeneral.setTime(Long.parseLong(jsonObject.get("time").toString()));
+        weatherGeneral.setTopic(topic);
+        weatherGeneral.setAirPressure(Float.parseFloat(jsonObject.get("airPressure").toString()));
+        weatherGeneral.setHumidity(Float.parseFloat(jsonObject.get("humidity").toString()));
+        weatherGeneral.setTemperature(Float.parseFloat(jsonObject.get("temperature").toString()));
+        weatherGeneral.setWindDirection(Float.parseFloat(jsonObject.get("windDirection").toString()));
+        weatherGeneral.setWindSpeed(Float.parseFloat(jsonObject.get("windSpeed").toString()));
+        int id = weatherGeneralMapper.insert(weatherGeneral);
     }
 
 

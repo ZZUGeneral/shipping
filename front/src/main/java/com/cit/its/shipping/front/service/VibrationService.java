@@ -14,4 +14,6 @@ public interface VibrationService extends IService<Vibration> {
     VibrationStatisticsDto hVibrationStatistics(String topic, LocalDateTime beginDateTime, LocalDateTime endDateTime);
 
     VibrationStatisticsDto vVibrationStatistics(String topic, LocalDateTime beginDateTime, LocalDateTime endDateTime);
+
+    void insertVibration(String topic, String jsonContent);
 }

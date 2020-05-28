@@ -19,4 +19,5 @@ public interface TiltService extends IService<Tilt> {
 
     TiltStatisticsDto y2TiltStatistics(String topic, LocalDateTime beginDateTime, LocalDateTime endDateTime);
 
+    void insertTilt(String topic, String jsonContent);
 }
