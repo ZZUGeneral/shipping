@@ -40,16 +40,16 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
         LambdaQueryWrapper<Event> wrapper = Wrappers.lambdaQuery();
         if (StrUtil.isNotEmpty(beginDateTime)) {
             LocalDateTime beginTime = LocalDateTime.parse(beginDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-            wrapper.ge(Event::getCreaeteTime, beginTime);
+            wrapper.ge(Event::getCreateTime, beginTime);
         }
         if (StrUtil.isNotEmpty(endDateTime)) {
             LocalDateTime endTime = LocalDateTime.parse(endDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-            wrapper.ge(Event::getCreaeteTime, endTime);
+            wrapper.ge(Event::getCreateTime, endTime);
         }
         if (grade == 0) {
             wrapper.eq(Event::getGrade, grade);
         }
-        wrapper.orderByAsc(Event::getCreaeteTime);
+        wrapper.orderByAsc(Event::getCreateTime);
         IPage<Event> iPage = eventMapper.selectPage(page, wrapper);
         return iPage;
     }

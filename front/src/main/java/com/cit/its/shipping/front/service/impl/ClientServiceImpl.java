@@ -2,6 +2,7 @@ package com.cit.its.shipping.front.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -14,6 +15,10 @@ import com.cit.its.shipping.front.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,6 +35,36 @@ public class ClientServiceImpl extends ServiceImpl<ClientMapper, Client> impleme
                 .gt(Client::getType, ClientTypeEnum.CODE_CLIENT.getCode())
                 .orderByDesc(true, Client::getState);
         return this.list(queryWrapper);
+    }
+
+    @Override
+    public void updateClientState(String topic, String jsonContent) {
+        JSONObject jsonObject = new JSONObject(jsonContent);
+        String clientId = jsonObject.get("clientid").toString();
+        QueryWrapper<Client> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("client_id", clientId);
+        System.out.println("*******************" + topic);
+        System.out.println("************************************************************" + StrUtil.endWith(topic, "disconnected"));
+        Client client = new Client();
+        if (StrUtil.endWith(topic, "disconnected")) {
+            System.out.println("------------------------------------------------------------");
+            client.setState(0);
+            Long time = Long.parseLong(jsonObject.get("disconnected_at").toString());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(time * 1000);
+            Date date = calendar.getTime();
+            client.setOfflineAt(date);
+        } else {
+            System.out.println("==============================================================");
+            client.setState(1);
+            Long time = Long.parseLong(jsonObject.get("connected_at").toString());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(time * 1000);
+            Date date = calendar.getTime();
+            System.out.println("===============" + time + "==============" + date.toString());
+            client.setOnlineAt(date);
+        }
+        clientMapper.update(client, queryWrapper);
     }
 
 

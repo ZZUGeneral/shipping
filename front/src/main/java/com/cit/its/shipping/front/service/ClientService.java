@@ -12,4 +12,5 @@ public interface ClientService extends IService<Client> {
 
     List<Client> sensorList();
 
+    void updateClientState(String topic, String jsonContent);
 }

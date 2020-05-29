@@ -18,7 +18,7 @@ import java.util.Date;
  */
 @Data
 @TableName(value = "mqtt_client")
-@Alias("client")
+//@Alias("client")
 @ApiModel("MQTT 连接终端")
 public class Client {
 
@@ -33,13 +33,14 @@ public class Client {
      * 终端ID
      */
     @ApiModelProperty(" 终端ID")
-    @TableField(value = "clientid")
+    @TableField("client_id")
     private String clientId;
 
     /**
      * 终端名称
      */
     @ApiModelProperty("终端名称")
+    @TableField("name")
     private String name;
 
     /**
@@ -48,29 +49,34 @@ public class Client {
      * 1： 在线
      */
     @ApiModelProperty("在线状态")
+    @TableField("state")
     private Integer state;
 
     /**
      * 接入点名称
      */
     @ApiModelProperty("接入点名称")
+    @TableField("node")
     private String node;
 
     /**
      * 上线时间
      */
     @ApiModelProperty("上线时间")
+    @TableField("online_at")
     private Date onlineAt;
 
     /**
      * 下线时间
      */
     @ApiModelProperty("下线时间")
+    @TableField("offline_at")
     private Date offlineAt;
 
     /**
      * 创建时间
      */
+    @TableField("created")
     @ApiModelProperty("创建时间")
     private Date created;
 
@@ -79,12 +85,14 @@ public class Client {
      *
      * @see ClientTypeEnum
      */
+    @TableField("type")
     @ApiModelProperty("终端类型")
     private ClientTypeEnum type;
 
     /**
      * 是否可用
      */
+    @TableField("valid")
     @ApiModelProperty("是否可用")
     private Boolean valid;
 }

@@ -41,7 +41,7 @@ public class Event {
 
     @ApiModelProperty("事件发生时间")
     @TableField("create_time")
-    private Timestamp creaeteTime;
+    private Timestamp createTime;
 
     @ApiModelProperty("处理人编号")
     @TableField("deal_no")
