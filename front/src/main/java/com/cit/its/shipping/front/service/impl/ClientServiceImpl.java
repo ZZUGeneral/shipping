@@ -43,11 +43,11 @@ public class ClientServiceImpl extends ServiceImpl<ClientMapper, Client> impleme
         String clientId = jsonObject.get("clientid").toString();
         QueryWrapper<Client> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("client_id", clientId);
-        System.out.println("*******************" + topic);
-        System.out.println("************************************************************" + StrUtil.endWith(topic, "disconnected"));
+      //  System.out.println("*******************" + topic);
+       // System.out.println("************************************************************" + StrUtil.endWith(topic, "disconnected"));
         Client client = new Client();
         if (StrUtil.endWith(topic, "disconnected")) {
-            System.out.println("------------------------------------------------------------");
+        //    System.out.println("------------------------------------------------------------");
             client.setState(0);
             Long time = Long.parseLong(jsonObject.get("disconnected_at").toString());
             Calendar calendar = Calendar.getInstance();
@@ -55,13 +55,13 @@ public class ClientServiceImpl extends ServiceImpl<ClientMapper, Client> impleme
             Date date = calendar.getTime();
             client.setOfflineAt(date);
         } else {
-            System.out.println("==============================================================");
+       //     System.out.println("==============================================================");
             client.setState(1);
             Long time = Long.parseLong(jsonObject.get("connected_at").toString());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time * 1000);
             Date date = calendar.getTime();
-            System.out.println("===============" + time + "==============" + date.toString());
+         //   System.out.println("===============" + time + "==============" + date.toString());
             client.setOnlineAt(date);
         }
         clientMapper.update(client, queryWrapper);

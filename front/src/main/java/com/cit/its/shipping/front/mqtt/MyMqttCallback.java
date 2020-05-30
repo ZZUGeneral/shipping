@@ -47,12 +47,11 @@ public class MyMqttCallback implements MqttCallback {
     public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
         byte[] payload = mqttMessage.getPayload();
         String jsonContent = new String(payload, Charset.forName("UTF-8"));
-        System.out.println("===================" + topic);
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++"+StrUtil.endWith(topic, "disconnected"));
+        // System.out.println("===================" + topic);
+        // System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++"+StrUtil.endWith(topic, "disconnected"));
         if (StrUtil.endWith(topic, "connected") || StrUtil.endWith(topic, "disconnected")) {
-            System.out.println("=========================================================");
+            // System.out.println("=========================================================");
             updateClient(topic, jsonContent);
-
             template.convertAndSend("/realtime/sensor", "");
         } else {
             template.convertAndSend("/realtime/" + topic, jsonContent);
@@ -94,7 +93,7 @@ public class MyMqttCallback implements MqttCallback {
         // topic : $SYS/brokers/emqx@127.0.0.1/clients/simulator_client_water_level_w4/connected ------> content : {"username":"undefined","ts":1590667457818,"sockport":1883,"proto_ver":4,"proto_name":"MQTT","keepalive":60,"ipaddress":"127.0.0.1","expiry_interval":0,"connected_at":1590667457,"connack":0,"clientid":"simulator_client_water_level_w4","clean_start":true}
         //  topic : $SYS/brokers/emqx@127.0.0.1/clients/simulator_client_weather_rainfall/disconnected ------> content : {"username":"undefined","ts":1590667565084,"reason":"tcp_closed","disconnected_at":1590667565,"clientid":"simulator_client_weather_rainfall"}
         ClientService clientService = SpringContextUtil.getBean(ClientService.class);
-        System.out.println("===========---------------------------------------------------------------------");
+        // System.out.println("===========---------------------------------------------------------------------");
         clientService.updateClientState(topic, jsonContent);
     }
 }

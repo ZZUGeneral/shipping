@@ -1,7 +1,7 @@
 var client = null;
 
 $(function () {
-   connect();
+    connect();
 });
 
 
@@ -24,30 +24,30 @@ function connect() {
         client.subscribe('/realtime/get/waterLevel/w4', function (data) {
             bindWaterLevelData('/realtime/get/waterLevel/w4', data.body);
         });
-        client.subscribe('/realtime/get/tilt/d1_1', function (data) {
-            bindTiltData('/realtime/get/tilt/d1_1', data.body);
+        client.subscribe('/realtime/get/tilt/d1', function (data) {
+            bindTiltData('/realtime/get/tilt/d1', data.body);
         });
-        client.subscribe('/realtime/get/tilt/d1_2', function (data) {
-            bindTiltData('/realtime/get/tilt/d1_2', data.body);
+        /* client.subscribe('/realtime/get/tilt/d1_2', function (data) {
+             bindTiltData('/realtime/get/tilt/d1_2', data.body);
+         });*/
+        client.subscribe('/realtime/get/tilt/d2', function (data) {
+            bindTiltData('/realtime/get/tilt/d2', data.body);
         });
-        client.subscribe('/realtime/get/tilt/d2_1', function (data) {
-            bindTiltData('/realtime/get/tilt/d2_1', data.body);
+        /* client.subscribe('/realtime/get/tilt/d2_2', function (data) {
+             bindTiltData('/realtime/get/tilt/d2_2', data.body);
+         });*/
+        client.subscribe('/realtime/get/tilt/d3', function (data) {
+            bindTiltData('/realtime/get/tilt/d3', data.body);
         });
-        client.subscribe('/realtime/get/tilt/d2_2', function (data) {
-            bindTiltData('/realtime/get/tilt/d2_2', data.body);
-        });
-        client.subscribe('/realtime/get/tilt/d3_1', function (data) {
-            bindTiltData('/realtime/get/tilt/d3_1', data.body);
-        });
-        client.subscribe('/realtime/get/tilt/d3_2', function (data) {
+        /*client.subscribe('/realtime/get/tilt/d3_2', function (data) {
             bindTiltData('/realtime/get/tilt/d3_2', data.body);
+        });*/
+        client.subscribe('/realtime/get/tilt/d4', function (data) {
+            bindTiltData('/realtime/get/tilt/d4', data.body);
         });
-        client.subscribe('/realtime/get/tilt/d4_1', function (data) {
-            bindTiltData('/realtime/get/tilt/d4_1', data.body);
-        });
-        client.subscribe('/realtime/get/tilt/d4_2', function (data) {
-            bindTiltData('/realtime/get/tilt/d4_2', data.body);
-        });
+        /* client.subscribe('/realtime/get/tilt/d4_2', function (data) {
+             bindTiltData('/realtime/get/tilt/d4_2', data.body);
+         });*/
         client.subscribe('/realtime/get/angle/d1', function (data) {
             bindAngleData('/realtime/get/angle/d1', data.body);
         });
