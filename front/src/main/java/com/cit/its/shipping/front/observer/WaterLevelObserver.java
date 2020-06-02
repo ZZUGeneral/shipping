@@ -1,8 +1,8 @@
 package com.cit.its.shipping.front.observer;
 
 
-import com.cit.its.shipping.front.RealTime.WaterLevelRealTime;
-import com.cit.its.shipping.front.common.WaterLevel;
+import com.cit.its.shipping.front.entity.WaterLevel;
+import com.cit.its.shipping.front.realTime.WaterLevelRealTime;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
