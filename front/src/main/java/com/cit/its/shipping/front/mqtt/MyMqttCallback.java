@@ -4,6 +4,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import com.cit.its.shipping.front.dao.WaterLevelMapper;
 import com.cit.its.shipping.front.entity.WaterLevel;
+import com.cit.its.shipping.front.observer.MyNotifier;
+import com.cit.its.shipping.front.observer.Notify;
 import com.cit.its.shipping.front.service.*;
 import com.cit.its.shipping.front.util.SpringContextUtil;
 import jdk.nashorn.internal.parser.JSONParser;
@@ -57,6 +59,12 @@ public class MyMqttCallback implements MqttCallback {
             //转发传感器发送的消息时
             template.convertAndSend("/realtime/" + topic, jsonContent);
             insertMessage(topic, jsonContent);
+
+            // 这里是实时计算观察者发送数据的地方
+            MyNotifier notifier = Notify.getNotifier();
+            jsonContent = notifier.post(topic, jsonContent);
+            template.convertAndSend("/realtime/" + topic, jsonContent);
+            System.out.println("+++++++++jsonContent测试++++++++++++++" + jsonContent);
         }
         log.info("mqtt 接收到新消息 ---->  topic : {} ------> content : {}", topic, jsonContent);
     }
