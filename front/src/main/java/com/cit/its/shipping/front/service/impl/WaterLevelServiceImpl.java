@@ -19,7 +19,6 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
-@Transactional
 public class WaterLevelServiceImpl extends ServiceImpl<WaterLevelMapper, WaterLevel> implements WaterLevelService {
 
     @Autowired

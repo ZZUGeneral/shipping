@@ -4,6 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -29,13 +30,12 @@ import java.util.List;
  * @description:
  */
 @Service
-@Transactional
 public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements EventService {
     @Autowired
     EventMapper eventMapper;
 
     @Override
-    public IPage<Event> eventPageData(String beginDateTime, String endDateTime, int grade, Integer currentPage, Integer size) {
+    public IPage<Event> eventPageData(String beginDateTime, String endDateTime, Integer grade, Integer currentPage, Integer size) {
         Page page = new Page(currentPage, size);
         LambdaQueryWrapper<Event> wrapper = Wrappers.lambdaQuery();
         if (StrUtil.isNotEmpty(beginDateTime)) {
@@ -46,12 +46,18 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
             LocalDateTime endTime = LocalDateTime.parse(endDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             wrapper.ge(Event::getCreateTime, endTime);
         }
-        if (grade == 0) {
+        if (ObjectUtil.isNotNull(grade)) {
             wrapper.eq(Event::getGrade, grade);
         }
         wrapper.orderByAsc(Event::getCreateTime);
         IPage<Event> iPage = eventMapper.selectPage(page, wrapper);
         return iPage;
+    }
+
+    @Override
+    public int updateDealNo(Long event_no, Long deal_no) {
+        int result = eventMapper.updateDealNo(event_no, deal_no);
+        return result;
     }
 
 }

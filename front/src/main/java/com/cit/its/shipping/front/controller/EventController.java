@@ -1,6 +1,9 @@
 package com.cit.its.shipping.front.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.cit.its.shipping.front.entity.Event;
@@ -45,7 +48,7 @@ public class EventController {
     })
     @PostMapping("/pageData")
     @ResponseBody
-    public Result eventPageData(@RequestParam String beginTime, @RequestParam String endTime, @RequestParam int grade, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    public Result eventPageData(@RequestParam String beginTime, @RequestParam String endTime, @RequestParam Integer grade, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         IPage<Event> eventIPage = this.eventService.eventPageData(beginTime, endTime, grade, page, size);
         PageVo<Event> pageVo = new PageVo<Event>(page, size, eventIPage.getTotal(), eventIPage.getRecords());
         return Result.success(pageVo);
@@ -57,13 +60,10 @@ public class EventController {
             @ApiImplicitParam(name = "event_no", value = "事件ID", dataType = "long", required = true),
             @ApiImplicitParam(name = "deal_no", value = "处理人员编号", dataType = "long", required = true)
     })
-    @RequestMapping("/dealEvent")
+    @PostMapping("/dealEvent")
     @ResponseBody
-    public R updateDealNoForEvent(@RequestParam long event_no, @RequestParam long deal_no) {
-        Event event = new Event();
-        event.setEventId(event_no);
-        event.setDealNo(deal_no);
-        int result = this.eventService.getBaseMapper().updateById(event);
+    public R updateDealNoForEvent(@RequestParam Long event_no, @RequestParam Long deal_no) {
+        int result = this.eventService.updateDealNo(event_no, deal_no);
         if (result == 0) {
             return R.failed("分配失败");
         }

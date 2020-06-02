@@ -18,7 +18,6 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
-@Transactional
 public class VibrationServiceImpl extends ServiceImpl<VibrationMapper, Vibration> implements VibrationService {
 
     @Autowired

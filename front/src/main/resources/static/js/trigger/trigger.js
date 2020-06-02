@@ -4,6 +4,7 @@ $(function () {
     initDataTable();
     $('#id').hide();
     sensor();
+    selectTrigger();
     connect();
 })
 
@@ -30,6 +31,8 @@ function dropTrigger() {
             data: {"triggerName": triggerName},
             success: function (data) {
                 alert("删除成攻");
+             //   datatable.ajax.reload();
+                location.reload();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert(XMLHttpRequest.status);
@@ -91,8 +94,7 @@ function initDataTable() {
                 data.trigger_name = $('#triggerName').val();
                 data.grade = $('#grade').val();
                 data.equip = $('#equip').val();
-                data.data = $('#data').val();
-                console.log(data);
+                //console.log(data);
                 delete data['start'];
                 delete data['length'];
             },
@@ -111,25 +113,60 @@ function initDataTable() {
             {
                 "data": "grade",
                 "render": function (data, type, full, meta) {
-                    if (data == "0") return '<span class="badge badge-success">未分类</span>';
-                    if (data == "1") return '<span class="badge badge-danger">信息</span>';
-                    if (data == "2") return '<span class="badge badge-success">一般</span>';
-                    if (data == "3") return '<span class="badge badge-success">警告</span>';
-                    if (data == "4") return '<span class="badge badge-success">严重</span>';
-                    if (data == "5") return '<span class="badge badge-success">灾难</span>';
+                    if (data == "0") return '<span class="badge badge-light">未分类</span>';
+                    if (data == "1") return '<span class="badge badge-success">信息</span>';
+                    if (data == "2") return '<span class="badge badge-info">一般</span>';
+                    if (data == "3") return '<span class="badge badge-warning">警告</span>';
+                    if (data == "4") return '<span class="badge badge-danger">严重</span>';
+                    if (data == "5") return '<span class="badge badge-dark">灾难</span>';
                 },
                 "className": "text-center"
             },
-            {"data": "equip"},
-            {"data": "data"},
-            {"data": "leValue"},
-            {"data": "geValue"},
-            {"data": "createTime"},
+            {
+                "data": "equip",
+                render:
+                    function (data, type, full, meta) {
+                        //console.log(data);
+                        if (data == "msg_angle") return "角度传感器";
+                        if (data == "msg_tilt") return "倾斜传感器";
+                        if (data == "msg_vibration") return "垂直传感器";
+                        if (data == "msg_water_level") return "水位传感器";
+                        else return "天气传感器";
+                    }
+            },
+            {
+                "data":
+                    "data"
+            }
+            ,
+            {
+                "data":
+                    "leValue"
+            }
+            ,
+            {
+                "data":
+                    "geValue"
+            }
+            ,
+            {
+                "data": "createTime",
+                render:
+
+                    function (data, type, full, meta) {
+                        //console.log(data);
+                        if (data == null) return '无';
+                        return moment(data).format("YYYY-MM-DD HH:mm:ss")
+                    }
+            }
+            ,
 
         ],
         language: {
-            "url": context + "/plugins/dataTable/datatables_language.json"
-        },
+            "url":
+                context + "/plugins/dataTable/datatables_language.json"
+        }
+        ,
     });
 }
 
@@ -154,7 +191,7 @@ function addTrigger() {
         success: function success(data) {
             alert("添加成功");
             $('#id').hide();
-            datatable.ajax.reload();
+            location.reload();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(XMLHttpRequest.status);
@@ -179,7 +216,7 @@ function sensor() {
             console.log(data);
             console.log(data.length);
             if (data.length > 0) {
-                var options = "<option>--请选择传感器--</option>";
+                var options = "<option value=''>--请选择传感器--</option>";
                 for (var i = 0; i < data.length; i++) {
                     options += "<option value='" + data[i].sensor + "'>" + data[i].name + "</option>";
                 }
@@ -187,22 +224,22 @@ function sensor() {
                 $("#equip").html(options);
                 //活动名称下拉选改变事件：
                 $("#createEquip").change(function () {
-                    var create_data_options = "<option>--请选择传感器数据项--</option>";
-                    var selectedIndex = $(this).get(0).selectedIndex;
-                    if (selectedIndex == 0) {
-                        console.log("没有进行选择");
-                    } else {
-                        // console.log(selectedIndex);
-                        var trigger_data = data[selectedIndex - 1].trigger_data;
-                        // console.log(trigger_data);
-                        for (var i = 0; i < trigger_data.length; i++) {
-                            create_data_options += "<option value='" + trigger_data[i] + "'>" + trigger_data[i] + "</option>";
-                        }
-                        //  console.log(create_data_options);
-                        $("#createData").html(create_data_options);
-                    }
-                });
-                $("#equip").change(function () {
+                     var create_data_options = "<option>--请选择传感器数据项--</option>";
+                     var selectedIndex = $(this).get(0).selectedIndex;
+                     if (selectedIndex == 0) {
+                         console.log("没有进行选择");
+                     } else {
+                         // console.log(selectedIndex);
+                         var trigger_data = data[selectedIndex - 1].trigger_data;
+                         // console.log(trigger_data);
+                         for (var i = 0; i < trigger_data.length; i++) {
+                             create_data_options += "<option value='" + trigger_data[i] + "'>" + trigger_data[i] + "</option>";
+                         }
+                         //  console.log(create_data_options);
+                         $("#createData").html(create_data_options);
+                     }
+                 });
+                /*$("#equip").change(function () {
                     var create_data_options = "<option>--请选择传感器数据项--</option>";
                     var selectedIndex = $(this).get(0).selectedIndex;
                     if (selectedIndex == 0) {
@@ -217,7 +254,7 @@ function sensor() {
                         //  console.log(create_data_options);
                         $("#data").html(create_data_options);
                     }
-                });
+                });*/
 
             } else {
                 console.log("获取数据失败");
@@ -238,11 +275,5 @@ function connect() {
     client.debug = null;
     client.connect({}, function (frame) {
         console.log("stomp connected ! ");
-        client.subscribe('/realtime/sensor', function (data) {
-            setTimeout(function () {
-                devicesState()
-                datatable.ajax.reload(false);
-            }, 1500);
-        });
     });
 }

@@ -17,10 +17,10 @@ public class WeatherGeneralMessage extends AbstractMessage {
     @Override
     public void randomValue() {
 
-        temperature = 20F + random.nextInt(-5, 5);
+        temperature = 20F + random.nextInt(-5, 25);
         humidity = 30F + random.nextInt(-10, 10);
         airPressure = 1000F + random.nextInt(-50, 50);
-        windSpeed = 3F + random.nextInt(-1, 1);
+        windSpeed = 8F + random.nextInt(-8, 22);
         windDirection = 180F + random.nextInt(-90, 90);
     }
 }

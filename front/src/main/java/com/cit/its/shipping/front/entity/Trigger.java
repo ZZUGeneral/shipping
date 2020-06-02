@@ -1,13 +1,13 @@
 package com.cit.its.shipping.front.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.cit.its.shipping.front.enums.TriggerGradeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -61,6 +61,7 @@ public class Trigger {
     @ApiModelProperty("触发器创建时间")
     @TableField("create_time")
     private Date createTime;
+
 
     //告警描述
     @TableField("trigger_desc")

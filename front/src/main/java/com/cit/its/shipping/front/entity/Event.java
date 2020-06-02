@@ -32,8 +32,8 @@ public class Event {
     private long eventId;
 
     @ApiModelProperty("触发器名称")
-    @TableField("trigger_id")
-    private int triggerId;
+    @TableField("trigger_name")
+    private String triggerName;
 
     @ApiModelProperty("事件等级")
     @TableField("grade")

@@ -19,7 +19,6 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
-@Transactional
 public class WeatherRainfallServiceImpl extends ServiceImpl<WeatherRainfallMapper, WeatherRainfall> implements WeatherRainfallService {
 
     @Autowired

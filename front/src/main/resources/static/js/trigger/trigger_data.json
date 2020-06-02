@@ -10,18 +10,18 @@
     "sensor": "msg_tilt",
     "name": "倾斜传感器",
     "trigger_data": [
-      "val1X",
-      "val1Y",
-      "val2X",
-      "val2Y"
+      "value_1x",
+      "value_1y",
+      "value_2x",
+      "value_2y"
     ]
   },
   {
     "sensor": "msg_vibration",
     "name": "垂直传感器",
     "trigger_data": [
-      "valueH",
-      "valueV"
+      "value_h",
+      "value_v"
     ]
   },
   {
@@ -37,23 +37,11 @@
     "trigger_data": [
       "temperature",
       "humidity",
-      "airPressure",
-      "windSpeed",
-      "windDirection"
-    ]
-  },
-  {
-    "sensor": "msg_weather_rainfall",
-    "name": "降雨量传感器",
-    "trigger_data": [
-      "value"
-    ]
-  },
-  {
-    "sensor": "msg_weather_visibility",
-    "name": "可视度传感器",
-    "trigger_data": [
-      "value"
+      "air_pressure",
+      "wind_speed",
+      "wind_direction",
+      "rainfall",
+      "visibility"
     ]
   }
 ]

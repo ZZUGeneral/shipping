@@ -45,15 +45,16 @@ public class MyMqttCallback implements MqttCallback {
      */
     @Override
     public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
+        //获取接受的消息
         byte[] payload = mqttMessage.getPayload();
+        //将消息转为字符串
         String jsonContent = new String(payload, Charset.forName("UTF-8"));
-        // System.out.println("===================" + topic);
-        // System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++"+StrUtil.endWith(topic, "disconnected"));
+        //客户端连接或断开时
         if (StrUtil.endWith(topic, "connected") || StrUtil.endWith(topic, "disconnected")) {
-            // System.out.println("=========================================================");
             updateClient(topic, jsonContent);
             template.convertAndSend("/realtime/sensor", "");
         } else {
+            //转发传感器发送的消息时
             template.convertAndSend("/realtime/" + topic, jsonContent);
             insertMessage(topic, jsonContent);
         }

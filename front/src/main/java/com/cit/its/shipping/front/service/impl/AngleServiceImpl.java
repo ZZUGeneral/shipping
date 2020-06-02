@@ -20,7 +20,6 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
-@Transactional
 public class AngleServiceImpl extends ServiceImpl<AngleMapper, Angle> implements AngleService {
 
     @Autowired

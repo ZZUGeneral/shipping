@@ -32,17 +32,27 @@
                                    name="triggerName">
                         </div>
                         <div class="col-md-2">
-                            <input class="form-control" type="text" placeholder="级别" id="grade" name="grade">
+                            <select class=" " type="text" placeholder="告警级别" id="grade"
+                                    name="grade" style="width:190px;height:30px">
+                                <option value="">全部</option>
+                                <option value="0">未分类</option>
+                                <option value="1">信息</option>
+                                <option value="2">一般</option>
+                                <option value="3">警告</option>
+                                <option value="4">严重</option>
+                                <option value="5">灾难</option>
+                            </select>
                         </div>
                         <div class="col-md-2">
                             <select class="custom-select" type="text" placeholder="设备" id="equip"
-                                    name="equip" style="width:190px;height:30px"></select>
-                        </div>
-                        <div class="col-md-2">
+                                    name="equip">
 
-                            <select class="custom-select" type="text" placeholder="设备" id="data"
-                                    name="data" style="width:190px;height:30px"></select>
+                            </select>
                         </div>
+                        <!-- <div class="col-md-2">
+                             <select class="custom-select" type="text" placeholder="设备" id="data"
+                                     name="data" ></select>
+                         </div>-->
                         <div class="col-md-2 ml-5">
                             <button type="button" class="btn btn-danger col-md-3" onclick="clientReset()"><i
                                     class="fa fa-undo"></i></button>
@@ -74,26 +84,27 @@
         </div>
         <!-- /.col -->
         <div class="popup"
-             style="width:500px;height:400px ;background-color:#f3f3f3;border:2px solid #dadde2;margin-left:260px;position:relative"
+             style="width:400px;height:400px ;background-color:#f3f3f3;border:2px solid #dadde2;margin-left:300px;margin-top100px;position:fixed"
              id="id">
 
             <div class="popup-head">
                 <!-- 标题 -->
-                <div class="popup-head title" style="text-align:center;margin-top:-20px">
-                    <h2>触发器</h2>
+                <div class="popup-head title" style="text-align:center;margin-top:20px">
+                    <h2>告警</h2>
                 </div>
 
             </div>
 
-            <div class="popup-body" style="margin-left:35px;width:90%;padding:0px;">
+            <div class="popup-body" style="margin-left:50px;width:90%;padding:2px;">
                 <div class="popup-body main">
                     <ul class="popup-body list" style="list-style:none">
-                        <li style="margin-top:6px;">触发器名称 : <input class="" type="text" placeholder="触发器名称"
-                                                                   id="createTriggerName"
-                                                                   name="createTriggerName"
-                                                                   style="width:190px;height:30px"></li>
                         <li style="margin-top:6px;">
-                            触发器级别 : <select class=" " type="text" placeholder="触发器级别" id="createGrade"
+                            告警 名称 : <input class="" type="text" placeholder="告警名称"
+                                           id="createTriggerName"
+                                           name="createTriggerName"
+                                           style="width:190px;height:30px"></li>
+                        <li style="margin-top:6px;">
+                            告警 级别 : <select class=" " type="text" placeholder="告警级别" id="createGrade"
                                             name="createGrade" style="width:190px;height:30px">
                             <option value="0">未分类</option>
                             <option value="1">信息</option>
@@ -104,38 +115,36 @@
                         </select>
                         </li>
                         <li style="margin-top:6px;">
-                            触 发 设 备 : <select class="" type="text" placeholder="设备" id="createEquip"
-                                              name="createEquip" style="width:190px;height:30px">
+                            告警 设备 : <select class="" type="text" placeholder="设备" id="createEquip"
+                                            name="createEquip" style="width:190px;height:30px">
                         </select>
 
                         </li>
                         <li style="margin-top:6px;">
-                            触发数据项 : <select class="" type="text" placeholder="设备" id="createData"
-                                            name="createData" style="width:190px;height:30px">
+                            告警数据项: <select class="" type="text" placeholder="设备" id="createData"
+                                           name="createData" style="width:190px;height:30px">
                         </select>
                         </li>
                         <li style="margin-top:6px;">
-                            触发值区域 : <input class="" type="text" placeholder="较小值" id="leValue" name="leValue"
-                                           style="width:190px;height:30px"><br>
+                            触发值区域: <input class="" type="text" placeholder="较小值" id="leValue" name="leValue"
+                                          style="width:190px;height:30px"><br>
                             <input class="form-control" type="text" placeholder="较大值" id="geValue" name="geValue"
                                    style="width:190px;height:30px;margin-left:93px;margin-top:6px">
                         </li>
                         <li style="margin-top:6px;">
-                            触发值区域 : <input class="" type="text" placeholder="描述" id="createDesc" name="createDesc"
-                                           style="width:190px;height:30px"><br>
+                            触发值区域: <input class="" type="text" placeholder="描述" id="createDesc" name="createDesc"
+                                          style="width:190px;height:30px"><br>
                         </li>
                     </ul>
                 </div>
 
             </div>
             <div class="popup-foot" style="margin-left:180px;margin-top:10px">
-                <button type="button" class="btn btn-danger col-md-3" onclick="addTrigger()"
-                        style="width:80px;height:30px"><i
-                        class="fa fa-undo"></i>添加
+                <button type="button" onclick="addTrigger()"
+                        style="width:100px;height:30px">添加
                 </button>
-                <button type="button" class="btn btn-primary col-md-3" onclick="cancelTrigger()"
-                        style="width:80px;height:30px"><i
-                        class="fa fa-search"></i>取消
+                <button type="button" onclick="cancelTrigger()"
+                        style="width:100px;height:30px">取消
                 </button>
             </div>
 

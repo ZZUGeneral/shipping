@@ -41,7 +41,6 @@ public class TriggerController {
     @PostMapping("/createTrigger")
     @ResponseBody
     public Result createTrigger(@RequestBody Trigger trigger) {
-        System.out.println(trigger);
         if (ObjectUtil.isNull(trigger)) {
             return Result.fail(500, "网络异常!");
         }

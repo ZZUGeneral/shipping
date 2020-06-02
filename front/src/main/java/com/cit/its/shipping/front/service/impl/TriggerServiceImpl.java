@@ -39,13 +39,22 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
         trigger.setCreateTime(timestamp);
         int rs = triggerMapper.insert(trigger);
         int id = trigger.getTriggerId();
+        if (StrUtil.equals("msg_weather_general", trigger.getEquip())) {
+            if (StrUtil.equals("rainfall", trigger.getData())) {
+                trigger.setEquip("msg_weather_rainfall");
+                trigger.setData("value");
+            }
+            if (StrUtil.equals("visibility", trigger.getData())) {
+                trigger.setEquip("msg_weather_visibility");
+                trigger.setData("value");
+            }
+        }
         try {
-            triggerMapper.createTrigger(trigger.getTriggerId(), trigger.getEquip(), trigger.getData(), trigger.getGrade(), trigger.getLeValue(), trigger.getGeValue(), trigger.getTriggerDesc());
+            triggerMapper.createTrigger(trigger.getTriggerName(), trigger.getEquip(), trigger.getData(), trigger.getGrade(), trigger.getLeValue(), trigger.getGeValue(), trigger.getTriggerDesc());
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
-
         return rs;
     }
 
@@ -63,7 +72,7 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
             return 0;
         }
         QueryWrapper<Trigger> wrapper = new QueryWrapper<>();
-        wrapper.eq("triggerName", triggerName);
+        wrapper.eq("trigger_name", triggerName);
         int rs = triggerMapper.delete(wrapper);
         return rs;
     }

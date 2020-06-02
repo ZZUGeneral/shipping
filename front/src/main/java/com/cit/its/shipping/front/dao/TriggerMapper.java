@@ -22,10 +22,10 @@ public interface TriggerMapper extends BaseMapper<Trigger> {
      * @Author: YHL
      * @Date: 2020/4/26 9:57
      */
-    public void createTrigger(@Param("trigger_id") int trigger_id, @Param("equip") String equip, @Param("val_name") String val_name, @Param("grade") int grade, @Param("le_value") float le_value, @Param("ge_value") float ge_value, @Param("desc") String desc);
+    public void createTrigger(@Param("trigger_name") String trigger_name, @Param("equip") String equip, @Param("val_name") String val_name, @Param("grade") int grade, @Param("le_value") float le_value, @Param("ge_value") float ge_value, @Param("desc") String desc);
 
-    public int replaceTrigger(@Param("trigger_id") int trigger_id, @Param("equip") String equip, @Param("val_name") String val_name, @Param("grade") int grade, @Param("le_value") float le_value, @Param("ge_value") float ge_value, @Param("desc") String desc);
+  //  public int replaceTrigger(@Param("trigger_id") int trigger_id, @Param("equip") String equip, @Param("val_name") String val_name, @Param("grade") int grade, @Param("le_value") float le_value, @Param("ge_value") float ge_value, @Param("desc") String desc);
 
-    public int dropTrigger(@Param("trigger_namae") String trigger_name);
+    public int dropTrigger(@Param("trigger_name") String trigger_name);
 
 }

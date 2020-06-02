@@ -15,5 +15,7 @@ import java.util.List;
  */
 public interface EventService extends IService<Event> {
 
-    IPage<Event> eventPageData(String beginDateTime, String endDateTime, int grade, Integer currentPage, Integer size);
+    IPage<Event> eventPageData(String beginDateTime, String endDateTime, Integer grade, Integer currentPage, Integer size);
+
+    public int updateDealNo(Long event_no, Long deal_no);
 }

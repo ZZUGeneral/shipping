@@ -19,7 +19,6 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
-@Transactional
 public class TiltServiceImpl extends ServiceImpl<TiltMapper, Tilt> implements TiltService {
 
     @Autowired

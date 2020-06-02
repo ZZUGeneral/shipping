@@ -48,27 +48,33 @@ function initDataTable() {
             {
                 "data": "grade",
                 "render": function (data, type, full, meta) {
-                    if (data == "0") return '<span class="badge badge-danger">未分类</span>';
+                    if (data == "0") return '<span class="badge badge-light">未分类</span>';
                     if (data == "1") return '<span class="badge badge-success">信息</span>';
-                    if (data == "2") return '<span class="badge badge-success">一般</span>';
-                    if (data == "3") return '<span class="badge badge-success">警告</span>';
-                    if (data == "4") return '<span class="badge badge-success">严重</span>';
-                    if (data == "5") return '<span class="badge badge-success">灾难</span>';
+                    if (data == "2") return '<span class="badge badge-info">一般</span>';
+                    if (data == "3") return '<span class="badge badge-warning">警告</span>';
+                    if (data == "4") return '<span class="badge badge-danger">严重</span>';
+                    if (data == "5") return '<span class="badge badge-dark">灾难</span>';
 
                 },
                 "className": "text-center"
             },
             {
-                "data": "createTime"
+                "data": "createTime",
+                render:
+                    function (data, type, full, meta) {
+                        if (data == null) return '无';
+                        return moment(data).format("YYYY-MM-DD HH:mm:ss")
+                    }
             }, {
                 "data": "eventDesc"
             },
             {
-                "data": function (data, type, full, meta) {
-                    if (data != null) {
-                        return '<span class="badge badge-danger">' + data + '</span>';
+                "data": "dealNo",
+                render: function (data, type, full, meta) {
+                    if (data != 0) {
+                        return '<span>' + data + '</span>';
                     } else {
-                        return '<span class="badge badge-danger">分配</span>'
+                        return '<span onclick="deal_event()">分配</span>'
                     }
                 }
             }
@@ -76,6 +82,26 @@ function initDataTable() {
         language: {
             "url": context + "/plugins/dataTable/datatables_language.json"
         },
+    });
+}
+
+function deal_event(node) {
+    var eventID = prompt("请输入分配处理的事件ID：", "");
+    var dealNo = prompt("请输入分配处理的事件的人员编号：", "");
+    $.ajax({
+        url: context + '/event/dealEvent',
+        type: "POST",
+        dataType: 'json',
+        data: {"event_no": eventID, "deal_no": dealNo},
+        success: function (data) {
+            alert("分配成攻");
+            location.reload();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(XMLHttpRequest.status);
+            alert(XMLHttpRequest.readyState);
+            alert(textStatus);
+        }
     });
 }
 

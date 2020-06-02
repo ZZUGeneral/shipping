@@ -12,6 +12,6 @@ public class WeatherVisibilityMessage extends AbstractMessage {
     @Override
     public void randomValue() {
 
-        val = 1000F + random.nextInt(-5, 5);
+        val = 1000F + random.nextInt(-800, 500);
     }
 }
