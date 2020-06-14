@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *@Author: 黄贵生
+ *@Author: 杨贺龙
  *@Description: 实时计算方法，计算后的数据写入map
  */
 public class Counting {

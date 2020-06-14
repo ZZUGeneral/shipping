@@ -6,6 +6,7 @@ import com.cit.its.shipping.front.entity.Vibration;
 import com.cit.its.shipping.front.service.VibrationAnalysisService;
 import com.cit.its.shipping.front.service.VibrationService;
 import com.cit.its.shipping.front.vo.Result;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 
 import static com.cit.its.shipping.front.enums.IntervalUtil.intervalSet;
 import static com.cit.its.shipping.front.enums.TimeUtil.getQueryDateMap;
-
+@Api(value = "振动分析Controller",tags = "振动分析接口")
 @RestController
 public class AnalysisVibrationController {
 

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
 
 /**
- *@Author: 黄贵生
+ *@Author: 杨贺龙
  *@Description: 水位传感器数据消息观察者注册类，用于注册不同的水位传感器数据处理方法
 */
 public class WaterLevelObserver {
@@ -24,7 +24,7 @@ public class WaterLevelObserver {
     private WaterLevelRealTime wl4 = new WaterLevelRealTime();
 
     /**
-     *@Author: 黄贵生
+     *@Author: 杨贺龙
      *@Description: 注册方法，根据topic自动分发数据消息来处理不同的传感器数据
      *@Param:
      *@return:

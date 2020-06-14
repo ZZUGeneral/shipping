@@ -37,7 +37,7 @@ public class WaterLevelServiceImpl extends ServiceImpl<WaterLevelMapper, WaterLe
         System.out.println("===========================" + topic);
         LambdaQueryWrapper wrapper = queryCondition(topic, beginDateTime, endDateTime);
         WaterLevelStatisticsDto dto = waterLevelMapper.waterLevelStatistics(wrapper);
-        dto.setTopic(topic);
+        // dto.setTopic(topic);
         dto.setBeginDateTime(beginDateTime);
         dto.setEndDateTime(endDateTime);
         return dto;

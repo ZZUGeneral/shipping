@@ -6,6 +6,7 @@ import com.cit.its.shipping.front.entity.Trigger;
 import com.cit.its.shipping.front.service.TriggerService;
 import com.cit.its.shipping.front.vo.PageVo;
 import com.cit.its.shipping.front.vo.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 @RequestMapping("/trigger")
+@Api(value = "告警Controller",tags = "告警处理接口")
 public class TriggerController {
     @Autowired
     private TriggerService triggerService;
@@ -66,12 +68,13 @@ public class TriggerController {
     @ApiOperation(value = "查找触发器", notes = "根据触发器ID查找触发器")
     @ApiImplicitParam(name = "triggerName", value = "触发器名称", dataType = "String", required = true)
     @RequestMapping("/selectTrigger")
+    @ResponseBody
     public Result selectTrigger(@RequestParam String triggerName) {
-        int result = this.triggerService.dropTrigger(triggerName);
+        int result = this.triggerService.selectTrigger(triggerName);
         if (result == 1) {
-            return Result.fail(1, "");
+            return Result.success("1");
         }
-        return Result.success(0);
+        return Result.success("0");
     }
 
     @ApiOperation(value = "更新触发器", notes = "根据触发器ID更新触发器")

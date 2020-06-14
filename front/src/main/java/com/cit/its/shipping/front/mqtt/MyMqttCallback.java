@@ -61,10 +61,10 @@ public class MyMqttCallback implements MqttCallback {
             insertMessage(topic, jsonContent);
 
             // 这里是实时计算观察者发送数据的地方
-            MyNotifier notifier = Notify.getNotifier();
-            jsonContent = notifier.post(topic, jsonContent);
-            template.convertAndSend("/realtime/" + topic, jsonContent);
-            System.out.println("+++++++++jsonContent测试++++++++++++++" + jsonContent);
+//            MyNotifier notifier = Notify.getNotifier();
+//            jsonContent = notifier.post(topic, jsonContent);
+//            template.convertAndSend("/realtime/" + topic, jsonContent);
+//            System.out.println("+++++++++jsonContent测试++++++++++++++" + jsonContent);
         }
         log.info("mqtt 接收到新消息 ---->  topic : {} ------> content : {}", topic, jsonContent);
     }

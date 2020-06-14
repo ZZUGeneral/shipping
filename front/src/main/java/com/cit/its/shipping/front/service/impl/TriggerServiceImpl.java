@@ -80,7 +80,7 @@ public class TriggerServiceImpl extends ServiceImpl<TriggerMapper, Trigger> impl
     @Override
     public int selectTrigger(String triggerName) {
         QueryWrapper<Trigger> wrapper = new QueryWrapper<>();
-        wrapper.eq("triggerName", triggerName);
+        wrapper.eq("trigger_name", triggerName);
         Trigger trigger = triggerMapper.selectOne(wrapper);
         if (ObjectUtil.isNull(trigger)) {
             return 0;

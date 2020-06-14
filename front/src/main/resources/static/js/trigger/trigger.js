@@ -23,7 +23,11 @@ function triggerShow() {
 
 function dropTrigger() {
     var triggerName = prompt("请输入删除的触发器名称：", "");
-    if (triggerName != null && triggerName != "") {
+    if (!triggerName.match(triggerRe) || triggerName == null) {
+        alert("请输入正确格式的告警名称");
+        $('#createTriggerName').style.color = "red";
+        return;
+    } else {
         $.ajax({
             url: context + '/trigger/dropTrigger',
             type: "POST",
@@ -31,7 +35,7 @@ function dropTrigger() {
             data: {"triggerName": triggerName},
             success: function (data) {
                 alert("删除成攻");
-             //   datatable.ajax.reload();
+                //   datatable.ajax.reload();
                 location.reload();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -44,20 +48,18 @@ function dropTrigger() {
 }
 
 function selectTrigger() {
-    $('createTriggerName').blur(function () {
-        var triggerName = $("createTriggerName").val();
+    $('#createTriggerName').blur(function () {
+        var triggerName = $("#createTriggerName").val();
         $.ajax({
             "url": context + '/trigger/selectTrigger',
             "dataType": "json",
             "type": "POST",
             "data": {"triggerName": triggerName},
             success: function success(data) {
-                if (data == 1) alert("触发器已存在，请重新命名。");
+                if (data.code == 1) alert("触发器已存在，请重新命名!");
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
-                alert(textStatus);
+                alert("请求错误,请重试！");
             }
         });
 
@@ -171,6 +173,40 @@ function initDataTable() {
 }
 
 function addTrigger() {
+    var triggerRe = /^[a-zA-Z0-9_]{1,}$/;
+    var triggerName = $('#createTriggerName').val();
+    if (!triggerName.match(triggerRe) || triggerName == null) {
+        alert("请输入正确格式的告警名称");
+        $('#createTriggerName').style.color = "red";
+        return;
+    }
+    var grade = $('#createGrade').val();
+    var equip = $('#createEquip').val();
+    if (!equip.match(triggerRe)) {
+        alert("请选择传感器");
+        $('#createEquip').style.color = "red";
+        return;
+    }
+    var trigger_data = $('#createData').val();
+    if (!trigger_data.match(triggerRe)) {
+        alert("请选择数据项");
+        $('#createData').style.color = "red";
+        return;
+    }
+    var leValue = $('#leValue').val();
+    var geValue = $('#geValue').val();
+    if (leValue > geValue) {
+        alert("请输入正确的数据范围！！！");
+        $('#leValue').style.color = "red";
+        $('#geValue').style.color = "red";
+        return;
+    }
+    var triggerDesc = $('#createDesc').val();
+    if (triggerDesc == null) {
+        alert("请输入告警描述！！！");
+        $('#createDesc').style.color = "red";
+        return;
+    }
     $.ajax({
         "url": context + '/trigger/createTrigger',
         contentType: "application/json",
@@ -178,25 +214,23 @@ function addTrigger() {
         "type": "POST",
         "data": function (data) {
             data = {
-                triggerName: $('#createTriggerName').val(),
-                grade: $('#createGrade').val(),
-                equip: $('#createEquip').val(),
-                data: $('#createData').val(),
-                leValue: $('#leValue').val(),
-                geValue: $('#geValue').val(),
-                triggerDesc: $('#createDesc').val(),
+                triggerName: triggerName,
+                grade: grade,
+                equip: equip,
+                data: trigger_data,
+                leValue: leValue,
+                geValue: geValue,
+                triggerDesc: triggerDesc,
             };
             return JSON.stringify(data);
         }(),
         success: function success(data) {
-            alert("添加成功");
-            $('#id').hide();
+            if (data == 1) alert("添加成功");
+            else alert("添加失败");
             location.reload();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(XMLHttpRequest.status);
-            alert(XMLHttpRequest.readyState);
-            alert(textStatus);
+            alert("添加失败");
         }
     });
 
@@ -224,21 +258,23 @@ function sensor() {
                 $("#equip").html(options);
                 //活动名称下拉选改变事件：
                 $("#createEquip").change(function () {
-                     var create_data_options = "<option>--请选择传感器数据项--</option>";
-                     var selectedIndex = $(this).get(0).selectedIndex;
-                     if (selectedIndex == 0) {
-                         console.log("没有进行选择");
-                     } else {
-                         // console.log(selectedIndex);
-                         var trigger_data = data[selectedIndex - 1].trigger_data;
-                         // console.log(trigger_data);
-                         for (var i = 0; i < trigger_data.length; i++) {
-                             create_data_options += "<option value='" + trigger_data[i] + "'>" + trigger_data[i] + "</option>";
-                         }
-                         //  console.log(create_data_options);
-                         $("#createData").html(create_data_options);
-                     }
-                 });
+                    var create_data_options = "<option>--请选择传感器数据项--</option>";
+                    var selectedIndex = $(this).get(0).selectedIndex;
+                    if (selectedIndex == 0) {
+                        alter("请选择传感器");
+                    } else {
+                        // console.log(selectedIndex);
+                        var trigger_data = data[selectedIndex - 1].trigger_data;
+                        // console.log(trigger_data);
+                        for (var i = 0; i < trigger_data.length; i++) {
+                            if (i == 0)
+                                create_data_options += "<option value='" + trigger_data[i] + "'  selected>" + trigger_data[i] + "</option>";
+                            else create_data_options += "<option value='" + trigger_data[i] + "'>" + trigger_data[i] + "</option>";
+                        }
+                        //  console.log(create_data_options);
+                        $("#createData").html(create_data_options);
+                    }
+                });
                 /*$("#equip").change(function () {
                     var create_data_options = "<option>--请选择传感器数据项--</option>";
                     var selectedIndex = $(this).get(0).selectedIndex;

@@ -3,6 +3,7 @@ package com.cit.its.shipping.front.controller;
 import com.cit.its.shipping.front.entity.WeatherGeneral;
 import com.cit.its.shipping.front.service.WeatherGeneralService;
 import com.cit.its.shipping.front.vo.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +16,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * @Author: 黄贵生
+ * @Author: 杨贺龙
  * @Description: 气象传感器常规数据Controller
  */
 @RestController
-@ApiIgnore
+@Api(value = "气象常规Controller", tags = "气象常规接口")
 public class WeatherGeneralController {
 
     @Autowired

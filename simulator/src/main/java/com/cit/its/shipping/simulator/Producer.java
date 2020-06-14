@@ -30,10 +30,10 @@ public class Producer {
             MqttClient wlc2 = ClientFactory.getClient(Const.CLIENT_ID_W2);
             MqttClient wlc3 = ClientFactory.getClient(Const.CLIENT_ID_W3);
             MqttClient wlc4 = ClientFactory.getClient(Const.CLIENT_ID_W4);
-            timer.schedule(new SendTask(wlc1, waterLevelMessage, Const.TOPIC_W1), 0, 3000);
-            timer.schedule(new SendTask(wlc2, waterLevelMessage, Const.TOPIC_W2), 0, 3000);
-            timer.schedule(new SendTask(wlc3, waterLevelMessage, Const.TOPIC_W3), 0, 3000);
-            timer.schedule(new SendTask(wlc4, waterLevelMessage, Const.TOPIC_W4), 0, 3000);
+            timer.schedule(new SendTask(wlc1, waterLevelMessage, Const.TOPIC_W1), 0, 1000);
+            timer.schedule(new SendTask(wlc2, waterLevelMessage, Const.TOPIC_W2), 0, 1000);
+            timer.schedule(new SendTask(wlc3, waterLevelMessage, Const.TOPIC_W3), 0, 1000);
+            timer.schedule(new SendTask(wlc4, waterLevelMessage, Const.TOPIC_W4), 0, 1000);
         } catch (MqttException e) {
             e.printStackTrace();
         }
@@ -51,14 +51,14 @@ public class Producer {
             // MqttClient wlc6 = ClientFactory.getClient(Const.CLIENT_ID_T6);
             MqttClient wlc7 = ClientFactory.getClient(Const.CLIENT_ID_T7);
             // MqttClient wlc8 = ClientFactory.getClient(Const.CLIENT_ID_T8);
-            timer.schedule(new SendTask(wlc1, tiltMessage, Const.TOPIC_T1), 0, 3000);
-            // timer.schedule(new SendTask(wlc2, tiltMessage, Const.TOPIC_T2), 0, 3000);
-            timer.schedule(new SendTask(wlc3, tiltMessage, Const.TOPIC_T3), 0, 3000);
-            // timer.schedule(new SendTask(wlc4, tiltMessage, Const.TOPIC_T4), 0, 3000);
-            timer.schedule(new SendTask(wlc5, tiltMessage, Const.TOPIC_T5), 0, 3000);
-            // timer.schedule(new SendTask(wlc6, tiltMessage, Const.TOPIC_T6), 0, 3000);
-            timer.schedule(new SendTask(wlc7, tiltMessage, Const.TOPIC_T7), 0, 3000);
-            // timer.schedule(new SendTask(wlc8, tiltMessage, Const.TOPIC_T8), 0, 3000);
+            timer.schedule(new SendTask(wlc1, tiltMessage, Const.TOPIC_T1), 0, 1000);
+            // timer.schedule(new SendTask(wlc2, tiltMessage, Const.TOPIC_T2), 0, 1000);
+            timer.schedule(new SendTask(wlc3, tiltMessage, Const.TOPIC_T3), 0, 1000);
+            // timer.schedule(new SendTask(wlc4, tiltMessage, Const.TOPIC_T4), 0, 1000);
+            timer.schedule(new SendTask(wlc5, tiltMessage, Const.TOPIC_T5), 0, 1000);
+            // timer.schedule(new SendTask(wlc6, tiltMessage, Const.TOPIC_T6), 0, 1000);
+            timer.schedule(new SendTask(wlc7, tiltMessage, Const.TOPIC_T7), 0, 1000);
+            // timer.schedule(new SendTask(wlc8, tiltMessage, Const.TOPIC_T8), 0, 1000);
         } catch (MqttException e) {
             e.printStackTrace();
         }
@@ -72,10 +72,10 @@ public class Producer {
             MqttClient mqttClient2 = ClientFactory.getClient(Const.CLIENT_ID_A2);
             MqttClient mqttClient3 = ClientFactory.getClient(Const.CLIENT_ID_A3);
             MqttClient mqttClient4 = ClientFactory.getClient(Const.CLIENT_ID_A4);
-            timer.schedule(new SendTask(mqttClient1, angleMessage, Const.TOPIC_A1), 0, 3000);
-            timer.schedule(new SendTask(mqttClient2, angleMessage, Const.TOPIC_A2), 0, 3000);
-            timer.schedule(new SendTask(mqttClient3, angleMessage, Const.TOPIC_A3), 0, 3000);
-            timer.schedule(new SendTask(mqttClient4, angleMessage, Const.TOPIC_A4), 0, 3000);
+            timer.schedule(new SendTask(mqttClient1, angleMessage, Const.TOPIC_A1), 0, 1000);
+            timer.schedule(new SendTask(mqttClient2, angleMessage, Const.TOPIC_A2), 0, 1000);
+            timer.schedule(new SendTask(mqttClient3, angleMessage, Const.TOPIC_A3), 0, 1000);
+            timer.schedule(new SendTask(mqttClient4, angleMessage, Const.TOPIC_A4), 0, 1000);
         } catch (MqttException e) {
             e.printStackTrace();
         }
@@ -89,10 +89,10 @@ public class Producer {
             MqttClient mqttClient2 = ClientFactory.getClient(Const.CLIENT_ID_V2);
             MqttClient mqttClient3 = ClientFactory.getClient(Const.CLIENT_ID_V3);
             MqttClient mqttClient4 = ClientFactory.getClient(Const.CLIENT_ID_V4);
-            timer.schedule(new SendTask(mqttClient1, vibrationMessage, Const.TOPIC_V1), 0, 3000);
-            timer.schedule(new SendTask(mqttClient2, vibrationMessage, Const.TOPIC_V2), 0, 3000);
-            timer.schedule(new SendTask(mqttClient3, vibrationMessage, Const.TOPIC_V3), 0, 3000);
-            timer.schedule(new SendTask(mqttClient4, vibrationMessage, Const.TOPIC_V4), 0, 3000);
+            timer.schedule(new SendTask(mqttClient1, vibrationMessage, Const.TOPIC_V1), 0, 1000);
+            timer.schedule(new SendTask(mqttClient2, vibrationMessage, Const.TOPIC_V2), 0, 1000);
+            timer.schedule(new SendTask(mqttClient3, vibrationMessage, Const.TOPIC_V3), 0, 1000);
+            timer.schedule(new SendTask(mqttClient4, vibrationMessage, Const.TOPIC_V4), 0, 1000);
         } catch (MqttException e) {
             e.printStackTrace();
         }
@@ -107,9 +107,9 @@ public class Producer {
             MqttClient wlc1 = ClientFactory.getClient(Const.CLIENT_ID_WEATHER1);
             MqttClient wlc2 = ClientFactory.getClient(Const.CLIENT_ID_WEATHER2);
             MqttClient wlc3 = ClientFactory.getClient(Const.CLIENT_ID_WEATHER3);
-            timer.schedule(new SendTask(wlc1, weatherGeneralMessage, Const.TOPIC_WEATHER1), 0, 3000);
-            timer.schedule(new SendTask(wlc2, weatherRainfallMessage, Const.TOPIC_WEATHER2), 0, 3000);
-            timer.schedule(new SendTask(wlc3, weatherVisibilityMessage, Const.TOPIC_WEATHER3), 0, 3000);
+            timer.schedule(new SendTask(wlc1, weatherGeneralMessage, Const.TOPIC_WEATHER1), 0, 1000);
+            timer.schedule(new SendTask(wlc2, weatherRainfallMessage, Const.TOPIC_WEATHER2), 0, 1000);
+            timer.schedule(new SendTask(wlc3, weatherVisibilityMessage, Const.TOPIC_WEATHER3), 0, 1000);
         } catch (MqttException e) {
             e.printStackTrace();
         }

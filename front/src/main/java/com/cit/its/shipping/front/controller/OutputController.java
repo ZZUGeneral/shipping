@@ -82,7 +82,7 @@ public class OutputController {
             @ApiImplicitParam(name = "endTime", value = "结束时间", dataType = "Long", required = true),
             @ApiImplicitParam(name = "isDetail", value = "详情数据的导出与否", dataType = "Boolean", required = true)
     })
-    @RequestMapping(value = "runningStatusXlsx")
+    @RequestMapping(value = "/runningStatusXlsx")
     @ResponseBody
     public void runningStatusXlsx(HttpServletRequest request, HttpServletResponse response, @RequestParam String name, @RequestParam long beginTime, @RequestParam long endTime) {
         String filename = "运行状态" + new SimpleDateFormat("yyyyMMDDhh24mmssSSS")

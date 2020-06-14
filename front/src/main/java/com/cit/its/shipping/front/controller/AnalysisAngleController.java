@@ -6,6 +6,7 @@ import com.cit.its.shipping.front.entity.Angle;
 import com.cit.its.shipping.front.service.AngleAnalysisService;
 import com.cit.its.shipping.front.service.AngleService;
 import com.cit.its.shipping.front.vo.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 import static com.cit.its.shipping.front.enums.IntervalUtil.intervalSet;
 import static com.cit.its.shipping.front.enums.TimeUtil.getQueryDateMap;
 
-
+@Api(value = "角度分析Controller",tags = "角度分析接口")
 @RestController
 public class AnalysisAngleController {
 

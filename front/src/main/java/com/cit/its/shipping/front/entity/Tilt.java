@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @Author: 黄贵生
+ * @Author: 杨贺龙
  * @Description: 倾斜传感器实体类
  */
 @Data

@@ -9,6 +9,7 @@ import com.cit.its.shipping.front.service.*;
 import com.cit.its.shipping.front.vo.DevicesStateVo;
 import com.cit.its.shipping.front.vo.PageVo;
 import com.cit.its.shipping.front.vo.Result;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
+@Api(value = "访问跳转Controller", tags = "访问跳转接口")
 public class IndexController {
 
     @Autowired
@@ -115,20 +117,20 @@ public class IndexController {
         return Result.success(voList);
     }
 
-    @ApiOperation(value = "获取水位历史数据", notes = "获取水位历史数据")
-    @PostMapping("history/waterLevel")
-    public Result historyWaterLevelData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
-        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        List<WaterLevel> waterLevelList = waterLevelService.waterLevelHistory(null, beginDateTime, endDateTime);
-        //waterLevelList = waterLevelList.subList(0, 1000);
-        Map<String, List<WaterLevel>> waterLevelMap = waterLevelList.stream().collect(Collectors.groupingBy(WaterLevel::getTopic));
-        WaterLevelStatisticsDto waterLevelStatisticsDto = waterLevelService.waterLevelStatistics(null, beginDateTime, endDateTime);
-        Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put("waterLevel", waterLevelMap);
-        dataMap.put("sta", waterLevelStatisticsDto);
-        return Result.success(dataMap);
-    }
+//    @ApiOperation(value = "获取水位历史数据", notes = "获取水位历史数据")
+//    @PostMapping("history/waterLevel")
+//    public Result historyWaterLevelData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
+//        LocalDateTime beginDateTime = LocalDateTime.parse(beginDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        LocalDateTime endDateTime = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+//        List<WaterLevel> waterLevelList = waterLevelService.waterLevelHistory(null, beginDateTime, endDateTime);
+//        //waterLevelList = waterLevelList.subList(0, 1000);
+//        Map<String, List<WaterLevel>> waterLevelMap = waterLevelList.stream().collect(Collectors.groupingBy(WaterLevel::getTopic));
+//        WaterLevelStatisticsDto waterLevelStatisticsDto = waterLevelService.waterLevelStatistics(null, beginDateTime, endDateTime);
+//        Map<String, Object> dataMap = new HashMap<>();
+//        dataMap.put("waterLevel", waterLevelMap);
+//        dataMap.put("sta", waterLevelStatisticsDto);
+//        return Result.success(dataMap);
+//    }
 
 //    @PostMapping("history/tilt")
 //    public Result historyTiltData(@RequestParam(value = "beginDateStr", required = false) String beginDateStr, @RequestParam(value = "endDateStr", required = false) String endDateStr) {
